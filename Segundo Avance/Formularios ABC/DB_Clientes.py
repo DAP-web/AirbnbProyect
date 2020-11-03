@@ -1,7 +1,6 @@
 import pymysql
 
 
-#Prueba
 connection = pymysql.connect(
     host="localhost",
     user="root",
