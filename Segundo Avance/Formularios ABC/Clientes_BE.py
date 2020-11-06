@@ -1,10 +1,11 @@
 from prettytable import PrettyTable
-from DB_Clientes import (
+from DB_Clientes_BE import (
     connection,
     getClients,
     insertClient,
     searchClientById,
     updateClientBD,
+    traerIDCliente,
     deleteClientDB
 )
 
@@ -31,7 +32,10 @@ def addClient():
     user = input("\nNombre de usuario: ")
 
     insertClient(name,lastname,telephone,country,email,pswrd,user)
+    idcliente=traerIDCliente(name,lastname,telephone,country,email,pswrd,user)
+
     print("\nSu perfil se ha creado con éxito.\n")
+    print(f"Su código de cliente único es {idcliente}.\n")
     getAllClients()
 
 def updateClient():
@@ -64,8 +68,7 @@ def updateClient():
     update = int(input("Update Country? 0-No - 1-Yes "))
     if update == 1:
         print(f"Old Country: {client['Pais']}")
-        client["Pais"] = input("New Country: ")
-        country = client["Pais"]
+        country = input("New Country: ")
     else:
         country = client["Pais"]
 

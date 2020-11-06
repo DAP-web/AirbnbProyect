@@ -74,4 +74,3 @@ def deleteClientDB(idClient):
             connection.commit()
     finally:
         pass
-        
