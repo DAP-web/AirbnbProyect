@@ -1,7 +1,5 @@
 import pymysql
 
-
-#Prueba
 connection = pymysql.connect(
     host="localhost",
     user="root",
@@ -66,6 +64,21 @@ def updateClientBD(id,name, lastname,telephone,country,email,pswrd,user):
             connection.commit()
     finally:
         pass
+
+def traerIDCliente(name, lastname,telephone,country,email,pswrd,user):
+    idcliente = 0
+    try:
+        with connection.cursor() as cursor:
+            sql = f"""SELECT idClientes
+            FROM clientes
+            WHERE Nombre = '{name}' AND Apellido = '{lastname}' AND NumeroTelefonico = '{telephone}' 
+            AND Pais = '{country}' AND Correo = '{email}' AND Contrasenha = '{pswrd}' 
+            AND Usuario = '{user}';"""
+            cursor.execute(sql)
+            idcliente = cursor.fetchone()
+    finally:
+        pass
+    return idcliente["idClientes"]
 
 def deleteClientDB(idClient):
     try:

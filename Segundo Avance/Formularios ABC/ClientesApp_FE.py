@@ -1,4 +1,4 @@
-from DB_ClientesView import (
+from Clientes_BE import (
     connection,
     getAllClients,
     addClient,
