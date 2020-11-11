@@ -19,6 +19,8 @@ def getServices():
         pass
     return result
 
+#Un parametro que correponde a los campos que vas a actualizar
+#En el caso de servicios solo es un parametro
 def insertService(name, lastname,telephone,country,email,pswrd,user):
     try:
         with connection.cursor() as cursor:
@@ -58,7 +60,8 @@ def updateServiceBD(id,name, lastname,telephone,country,email,pswrd,user):
     try:
         with connection.cursor() as cursor:
             sql = f"""UPDATE airbnb.service SET 
-            Nombre = '{name}', Apellido = '{lastname}', NumeroTelefonico = '{telephone}', Pais = '{country}', Correo = '{email}', Contrasenha = '{pswrd}', Usuario = '{user}' 
+            Nombre = '{name}', Apellido = '{lastname}', NumeroTelefonico = '{telephone}', 
+            Pais = '{country}', Correo = '{email}', Contrasenha = '{pswrd}', Usuario = '{user}' 
             WHERE idServicios = {id};"""
             cursor.execute(sql)
             connection.commit()
@@ -83,6 +86,7 @@ def traerIDServicio(name, lastname,telephone,country,email,pswrd,user):
 def deleteServiceDB(idService):
     try:
         with connection.cursor() as cursor:
+            #Son nombres de la tabla de Servicios
             sql = f"DELETE FROM airbnb.clientes WHERE idClientes={idService};"
             cursor.execute(sql)
             connection.commit()

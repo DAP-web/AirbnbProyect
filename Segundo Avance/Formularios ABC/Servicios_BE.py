@@ -13,9 +13,11 @@ def getAllServices():
     result = getServices()
 
     table = PrettyTable()
+    #Son nombres de la tabla de Servicios
     table.field_names = ["IdServicio","Nombre","Apellido","Telefono","Pais","Correo","Usuario"]
 
     for servicio in result:
+        #Son nombres de la tabla de Servicios
         table.add_row([servicio["idServicios"],servicio["Nombre"],servicio["Apellido"],servicio["NumeroTelefonico"],servicio["Pais"],servicio["Correo"],servicio["Usuario"]])
 
     print(table)
@@ -23,6 +25,7 @@ def getAllServices():
 
 def addService():
     print("\nAdding a new service...")
+    #Son parametros de la tabla de Servicios
     name = input("\nNombre: ")
     lastname = input("\nApellido: ")
     telephone = input("\nNumero de Telefono: ")
@@ -34,11 +37,13 @@ def addService():
     insertService(name,lastname,telephone,country,email,pswrd,user)
     idservicio=traerIDServicio(name,lastname,telephone,country,email,pswrd,user)
 
+    #Es sobre servicios, no sobre clientes
     print("\nSu perfil se ha creado con éxito.\n")
     print(f"Su código de cliente único es {idservicio}.\n")
     getAllServices()
 
 def updateService():
+    #No vas a actuaizar a un cliente si no a un servicio
     print("\nUpdating an existing client...")
     id = int(input("\nID del cliente a actualizar: "))
 
