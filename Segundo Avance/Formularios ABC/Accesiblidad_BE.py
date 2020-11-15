@@ -4,12 +4,12 @@ from DB_Accesibilidad_BE import (
     getAccessibilities,
     insertAccessibility,
     searchAccessibilityById,
-    updateAccessibilityBD,
+    updateAccesibilityBD,
     traerIDAccessibility,
     deleteAccessibilityDB
 )
 
-def getAccessibilities():
+def getAllAccessibilities():
     result = getAccessibilities()
 
     table = PrettyTable()
@@ -26,7 +26,7 @@ def addAccessibility():
     accessibilityname = input("\nNombre de la accesibilidad: ")
     
     insertAccessibility(accessibilityname)
-    idaccessibility=traerIDAccessibility(accessibilityname)
+    idaccesibilidad=traerIDAccessibility(accessibilityname)
 
     print("\nSu accesibilidad se ha creado con éxito.\n")
     print(f"Su código de accesibilidad único es {idaccesibilidad}.\n")
@@ -36,7 +36,7 @@ def updateAccessibility():
     print("\nUpdating an existing accessibility...")
     id = int(input("\nID de la accesibilidad a actualizar: "))
 
-    accesibility = searchAccessibilityById(id)
+    accesibilidad = searchAccessibilityById(id)
 
     update = int(input("Update Name? 0-No - 1-Yes "))
     if update == 1:
@@ -45,9 +45,7 @@ def updateAccessibility():
     else:
         accessibilityname = accesibilidad["Nombre"]
 
-    
-
-    updateAccessibilityBD(id,accessibilityname,code)
+    updateAccesibilityBD(id,accessibilityname)
     print("\nLos cambios se han efectuado con éxito.")
     getAllAccessibilities()
 
@@ -55,6 +53,6 @@ def deleteAccessibility():
     print("Deleting accessibility...")
     id = int(input("ID of accessibility to delete: "))
 
-    deleteAccessibility(id)
+    deleteAccessibilityDB(id)
     print("La accesibilidad se ha removido con éxito.")
     getAllAccessibilities()

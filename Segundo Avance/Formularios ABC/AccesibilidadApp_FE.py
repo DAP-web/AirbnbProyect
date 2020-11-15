@@ -1,6 +1,6 @@
-from Paises_BE import (
+from Accesiblidad_BE import (
     connection,
-    getAllAccessibility,
+    getAllAccessibilities,
     addAccessibility,
     updateAccessibility,
     deleteAccessibility

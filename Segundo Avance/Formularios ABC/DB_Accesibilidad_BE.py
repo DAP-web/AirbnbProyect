@@ -25,7 +25,7 @@ def insertAccessibility(accessibilityname):
             sql = f"""INSERT INTO airbnb.accesibilidad
             (Nombre)
             VALUES
-            ('{accessibilityname}';"""
+            ('{accessibilityname}');"""
             cursor.execute(sql)
             connection.commit()
     finally:
