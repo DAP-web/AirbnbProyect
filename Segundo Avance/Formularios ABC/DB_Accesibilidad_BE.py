@@ -42,7 +42,7 @@ def searchAccessibilityById(idAccessibility):
         pass
     return accesibilidad
 
-def updateCountryBD(id,accessibilityname):
+def updateAccesibilityBD(id,accessibilityname):
     try:
         with connection.cursor() as cursor:
             sql = f"""UPDATE airbnb.accesibilidad SET 
@@ -53,7 +53,7 @@ def updateCountryBD(id,accessibilityname):
     finally:
         pass
 
-def traerIDCountry(accessibilityname):
+def traerIDAccessibility(accessibilityname):
     idaccesibilidad = 0
     try:
         with connection.cursor() as cursor:
