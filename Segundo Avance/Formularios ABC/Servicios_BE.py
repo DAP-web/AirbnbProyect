@@ -13,92 +13,41 @@ def getAllServices():
     result = getServices()
 
     table = PrettyTable()
-    #Son nombres de la tabla de Servicios
-    table.field_names = ["IdServicio","Nombre","Apellido","Telefono","Pais","Correo","Usuario"]
+    table.field_names = ["NombreServicio"]
 
     for servicio in result:
-        #Son nombres de la tabla de Servicios
-        table.add_row([servicio["idServicios"],servicio["Nombre"],servicio["Apellido"],servicio["NumeroTelefonico"],servicio["Pais"],servicio["Correo"],servicio["Usuario"]])
+        table.add_row([servicio["idServicios"],servicio["NombreServicio"]])
 
     print(table)
     table.clear()
 
 def addService():
     print("\nAdding a new service...")
-    #Son parametros de la tabla de Servicios
-    name = input("\nNombre: ")
-    lastname = input("\nApellido: ")
-    telephone = input("\nNumero de Telefono: ")
-    country = input("\nPais de provinencia: ")
-    email = input("\nCorreo electrónico: ")
-    pswrd = input("\nContraseña: ")
-    user = input("\nNombre del servicio: ")
+    name = input("\nNombreServicio: ")
 
-    insertService(name,lastname,telephone,country,email,pswrd,user)
-    idservicio=traerIDServicio(name,lastname,telephone,country,email,pswrd,user)
 
-    #Es sobre servicios, no sobre clientes
-    print("\nSu perfil se ha creado con éxito.\n")
-    print(f"Su código de cliente único es {idservicio}.\n")
+    insertService(name)
+    idservicio=traerIDServicio(name)
+
+    print("\nSu servicio se ha registrado con éxito.\n")
+    print(f"Su código de servico único es {idservicio}.\n")
     getAllServices()
 
 def updateService():
-    #No vas a actuaizar a un cliente si no a un servicio
-    print("\nUpdating an existing client...")
-    id = int(input("\nID del cliente a actualizar: "))
+    print("\nUpdating an existing service...")
+    id = int(input("\nID del servicio a actualizar: "))
 
     service = searchServiceById(id)
 
     update = int(input("Update Name? 0-No - 1-Yes "))
     if update == 1:
-        print(f"Old Name: {service['Nombre']}")
-        name = input("New Name: ")
+        print(f"Viejo Nombre del Servicio: {service['NombreServicio']}")
+        name = input("Nuevo Nombre del Servicio: ")
     else:
-        name = service["Nombre"]
+        name = service["NombreServicio"]
 
-    update = int(input("Update Lastname? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Lastname: {service['Apellido']}")
-        lastname = input("New Lastname: ")
-    else:
-        lastname = service["Apellido"]
-
-    update = int(input("Update Telephone number? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Telephone number {service['NumeroTelefonico']}")
-        number = input("New Telephone number: ")
-    else:
-        number = service["NumeroTelefonico"]
-
-    update = int(input("Update Country? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Country: {service['Pais']}")
-        country = input("New Country: ")
-    else:
-        country = service["Pais"]
-
-    update = int(input("Update Email? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Email: {service['Correo']}")
-        email = input("New Email: ")
-    else:
-        email = service["Correo"]
-
-    update = int(input("Update Password? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old password {service['Contrasenha']}")
-        pswd = input("New password: ")
-    else:
-        pswd = service["Contrasenha"]
-
-    update = int(input("Update Service? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Service {service['Servicio']}")
-        user = input("New Service: ")
-    else:
-        user = service["Usuario"]
-
-    updateServiceBD(id,name,lastname,number,country,email,pswd,user)
+    
+    updateServiceBD(id,name)
     print("\nLos cambios se han efectuado con éxito.")
     getAllServices()
 

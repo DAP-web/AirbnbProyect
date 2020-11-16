@@ -19,27 +19,13 @@ def getServices():
         pass
     return result
 
-#Un parametro que correponde a los campos que vas a actualizar
-#En el caso de servicios solo es un parametro
-def insertService(name, lastname,telephone,country,email,pswrd,user):
+def insertService(name):
     try:
         with connection.cursor() as cursor:
             sql = f"""INSERT INTO airbnb.servicios
-            (Nombre,
-            Apellido,
-            NumeroTelefonico,
-            Pais,
-            Correo,
-            Contrasenha,
-            Usuario)
+            (NombreServicio)
             VALUES
-            ('{name}',
-            '{lastname}',
-            '{telephone}',
-            '{country}',
-            '{email}',
-            '{pswrd}',
-            '{user}');"""
+            ('{name}');"""
             cursor.execute(sql)
             connection.commit()
     finally:
@@ -49,45 +35,41 @@ def searchServiceById(idServicio):
     servicio = {}
     try:
         with connection.cursor() as cursor:
-            sql = f"SELECT * FROM airbnb.servicios WHERE idServicios={idServicio};"
+            sql = f"SELECT * FROM airbnb.servicios WHERE idServicio={idServicio};"
             cursor.execute(sql)
             servicio = cursor.fetchone()
     finally:
         pass
     return servicio
 
-def updateServiceBD(id,name, lastname,telephone,country,email,pswrd,user):
+def updateServiceBD(id,name):
     try:
         with connection.cursor() as cursor:
-            sql = f"""UPDATE airbnb.service SET 
-            Nombre = '{name}', Apellido = '{lastname}', NumeroTelefonico = '{telephone}', 
-            Pais = '{country}', Correo = '{email}', Contrasenha = '{pswrd}', Usuario = '{user}' 
-            WHERE idServicios = {id};"""
+            sql = f"""UPDATE airbnb.servicios SET 
+            Nombre = '{name}' 
+            WHERE idServicio = {id};"""
             cursor.execute(sql)
             connection.commit()
     finally:
         pass
 
-def traerIDServicio(name, lastname,telephone,country,email,pswrd,user):
+def traerIDServicio(name):
     idservicio = 0
     try:
         with connection.cursor() as cursor:
-            sql = f"""SELECT idServicios
+            sql = f"""SELECT idServicio
             FROM servicios
-            WHERE Nombre = '{name}' AND Apellido = '{lastname}' AND NumeroTelefonico = '{telephone}' 
-            AND Pais = '{country}' AND Correo = '{email}' AND Contrasenha = '{pswrd}' 
-            AND Usuario = '{user}';"""
+            WHERE NombreServicio = '{name}';"""
             cursor.execute(sql)
             idservicio = cursor.fetchone()
     finally:
         pass
-    return idservicio["idServicios"]
+    return idservicio["idServicio"]
 
 def deleteServiceDB(idService):
     try:
         with connection.cursor() as cursor:
-            #Son nombres de la tabla de Servicios
-            sql = f"DELETE FROM airbnb.clientes WHERE idClientes={idService};"
+            sql = f"DELETE FROM airbnb.servicios WHERE idServicio={idService};"
             cursor.execute(sql)
             connection.commit()
     finally:
