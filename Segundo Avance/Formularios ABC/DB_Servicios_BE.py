@@ -46,7 +46,7 @@ def updateServiceBD(id,name):
     try:
         with connection.cursor() as cursor:
             sql = f"""UPDATE airbnb.servicios SET 
-            Nombre = '{name}' 
+            NombreServicio = '{name}' 
             WHERE idServicio = {id};"""
             cursor.execute(sql)
             connection.commit()

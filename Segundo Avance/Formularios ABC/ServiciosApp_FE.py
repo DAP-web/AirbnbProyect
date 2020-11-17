@@ -10,7 +10,7 @@ print("Inicializando la app de Airbnb Servicios")
 while True:
     Menu = """\nElija una de las siguientes opciones:
     0-Salir de la app
-    1- Recuperar todos los servicios
+    1-Recuperar todos los servicios
     2-Ingresar un nuevo servicio
     3-Actualizar servicio
     4-Eliminar servicio\n"""

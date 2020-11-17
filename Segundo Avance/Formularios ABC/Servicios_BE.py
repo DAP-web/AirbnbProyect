@@ -13,10 +13,10 @@ def getAllServices():
     result = getServices()
 
     table = PrettyTable()
-    table.field_names = ["NombreServicio"]
+    table.field_names = ["IdServicio","NombreServicio"]
 
     for servicio in result:
-        table.add_row([servicio["idServicios"],servicio["NombreServicio"]])
+        table.add_row([servicio["idServicio"],servicio["NombreServicio"]])
 
     print(table)
     table.clear()
@@ -52,9 +52,9 @@ def updateService():
     getAllServices()
 
 def deleteService():
-    print("Deleting service...")
-    id = int(input("ID of service to delete: "))
+    print("\nDeleting service...")
+    id = int(input("\nID of service to delete: "))
 
     deleteServiceDB(id)
-    print("El servicio se ha removido con éxito.")
+    print("\nEl servicio se ha removido con éxito.")
     getAllServices()
