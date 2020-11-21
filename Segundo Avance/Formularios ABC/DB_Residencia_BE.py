@@ -102,3 +102,14 @@ def deleteResidenciaDB(idResidencia):
             connection.commit()
     finally:
         pass
+
+def chequeoFlexCancelacion(idResidencia):
+    residencia = {}
+    try:
+        with connection.cursor() as cursor:
+            sql = f"SELECT FlexibilidadDeCancelacion FROM airbnb.residencias WHERE idResidencia={idResidencia};"
+            cursor.execute(sql)
+            residencia = cursor.fetchone()
+    finally:
+        pass
+    return residencia

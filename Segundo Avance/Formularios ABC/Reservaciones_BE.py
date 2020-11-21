@@ -7,7 +7,11 @@ from DB_Reservaciones_BE import (
     actualizarReserva,
     buscarReservaV,
     traerIDReserva,
-    cancelarReserva
+    cancelarReserva,
+    chequeoCancelacion
+)
+from DB_Residencia_BE import(
+    chequeoFlexCancelacion
 )
 
 def getAllReservas():
@@ -103,10 +107,17 @@ def modificarReserva():
     print("\nLos cambios se han efectuado con éxito.")
     getAllReservas()
 
-def deleteClient():
-    print("Deleting client...")
-    id = int(input("ID of client to delete: "))
+def cancelacionDeReserva():
+    print("Cancelando reserva...")
+    id = int(input("ID de reserva único: "))
 
-    deleteClientDB(id)
-    print("El usuario se ha removido con éxito.")
-    getAllClients()
+    residencia = chequeoCancelacion(id)
+    chequeo = chequeoFlexCancelacion(residencia["IdResidencia"])
+
+    if chequeo["FlexibilidadDeCancelacion"]==0:
+        print("\nLa residencia no tiene flexibilidad de cancelación.")
+        print("No se ha podido cancelar la reserva.")
+    else:
+        cancelarReserva(id)
+        print("\nLa reserva se ha cancelado con éxito.")
+
