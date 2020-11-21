@@ -8,6 +8,24 @@ UPDATE `airbnb`.`experiencia` SET `PrecioIndividual` = '18' WHERE (`idExp` = '1'
 UPDATE `airbnb`.`experiencia` SET `PrecioIndividual` = '25' WHERE (`idExp` = '2');
 UPDATE `airbnb`.`experiencia` SET `PrecioIndividual` = '13' WHERE (`idExp` = '3');
 
+/*Corrigiendo tabla de Facturas*/
+ALTER TABLE `airbnb`.`factura` 
+ADD COLUMN `IdReserva` INT NULL AFTER `IdResidencia`;
+
+ALTER TABLE `airbnb`.`factura` 
+ADD INDEX `fk_Factura_Reservacion1_idx` (`IdReserva` ASC) VISIBLE;
+;
+ALTER TABLE `airbnb`.`factura` 
+ADD CONSTRAINT `fk_Factura_Reservacion1`
+  FOREIGN KEY (`IdReserva`)
+  REFERENCES `airbnb`.`reservaciones` (`IdReserva`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+UPDATE `airbnb`.`factura` SET `IdReserva` = '1' WHERE (`idFactura` = '1');
+UPDATE `airbnb`.`factura` SET `IdReserva` = '2' WHERE (`idFactura` = '2');
+UPDATE `airbnb`.`factura` SET `IdReserva` = '3' WHERE (`idFactura` = '3');
+
 
 /*Vista de reservas*/
 create view reservas as
@@ -24,6 +42,13 @@ create view ciudadPais as
 select ciudades.NombreCiudad,paises.NombrePais,paises.CodigoTelefonico
 from ciudades inner join paises on ciudades.IdPais=paises.idPais;
 
+
+/*Vista de Direcciones, Ciudades y Paises*/
+create view direccionCompleta as
+SELECT direcciones.IdDireccion,direcciones.Estado,direcciones.CodigoPostal,direcciones.Calle,ciudades.NombreCiudad,paises.NombrePais
+from direcciones 
+	 inner join ciudades on direcciones.IdCiudad=ciudades.idCiudad
+     inner join paises on ciudades.IdPais=paises.idPais;
 
 /*Vista de Residencias y Servicios*/
 create view RServicio as
@@ -49,11 +74,14 @@ from residenciaaccesibilidad
      
 /*Vista de facturas y residencias*/
 create view facturaResidencias as
-select factura.idFactura,factura.IdResidencia,residencias.Precio,concat(clientes.Nombre,' ',clientes.Apellido) as Cliente,
-	   clientes.NumeroTelefonico,factura.IVA,factura.Subtotal,factura.Cupon
+select factura.idFactura,factura.IdResidencia,reservaciones.IdReserva,
+	   residencias.Precio,concat(clientes.Nombre,' ',clientes.Apellido) as Cliente,
+	   reservaciones.FechaRetirada as FechaEmitida,
+       clientes.NumeroTelefonico,factura.IVA,factura.Subtotal,factura.Cupon
 from clientes
 	 inner join factura on clientes.idClientes=factura.IdCliente
      inner join residencias on factura.IdResidencia=residencias.idResidencia
+     inner join reservaciones on factura.IdReserva=reservaciones.IdReserva
 where factura.IdExp is null;
 
 
