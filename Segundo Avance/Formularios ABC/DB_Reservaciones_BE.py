@@ -114,4 +114,14 @@ def cancelarReserva(idReserva):
             connection.commit()
     finally:
         pass
-        
+    
+def chequeoCancelacion(idReserva):
+    reserva = {}
+    try:
+        with connection.cursor() as cursor:
+            sql = f"SELECT IdResidencia FROM airbnb.reservas WHERE IdReserva={idReserva};"
+            cursor.execute(sql)
+            reserva = cursor.fetchone()
+    finally:
+        pass
+    return reserva

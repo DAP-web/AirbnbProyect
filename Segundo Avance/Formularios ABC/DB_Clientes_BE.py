@@ -88,4 +88,14 @@ def deleteClientDB(idClient):
             connection.commit()
     finally:
         pass
-        
+    
+def verificarUsuario(email, contrasenha):
+    cliente = {}
+    try:
+        with connection.cursor() as cursor:
+            sql = f"SELECT * FROM airbnb.clientes WHERE Correo='{email}' and Contrasenha='{contrasenha}';"
+            cursor.execute(sql)
+            cliente = cursor.fetchone()
+    finally:
+        pass
+    return cliente

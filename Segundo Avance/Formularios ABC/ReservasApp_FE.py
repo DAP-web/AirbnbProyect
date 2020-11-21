@@ -2,7 +2,8 @@ from Reservaciones_BE import (
     connection,
     getAllReservas,
     agendarReservaV,
-    modificarReserva
+    modificarReserva,
+    cancelacionDeReserva
 )
 
 print("Inicializando la app de Airbnb Reservas")
@@ -29,4 +30,4 @@ while True:
     if option == 3:
         modificarReserva()
     if option == 4:
-        pass
+        cancelacionDeReserva()
