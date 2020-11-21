@@ -89,6 +89,8 @@ def deleteClientDB(idClient):
     finally:
         pass
     
+#Esta funcion es para permitir iniciar sesion al usuario
+#Es parte de un proceso no de una tabla
 def verificarUsuario(email, contrasenha):
     cliente = {}
     try:

@@ -5,8 +5,11 @@ from Clientes_BE import (
     addClient,
     updateClient,
     actualizarCliente,
-    deleteClient
+    deleteClient,
+    clienteAgendaReserva
 )
+
+#Menú para administradores
 def AppClientes():
     print("Inicializando la app de Airbnb Clientes")
     while True:
@@ -34,6 +37,8 @@ def AppClientes():
         if option == 4:
             deleteClient()
 
+#Desde el perfil de un cliente
+#Se le presenta este menú
 def AppClientesRegular(cliente):
     print("Inicializando la app de Airbnb Clientes")
     while True:
@@ -57,8 +62,8 @@ def AppClientesRegular(cliente):
         if option == 2:
             actualizarCliente(cliente)
         if option == 3:
-            updateClient()
+            clienteAgendaReserva(cliente)
         if option == 4:
-            deleteClient()
+            pass
 #AppClientes()
             

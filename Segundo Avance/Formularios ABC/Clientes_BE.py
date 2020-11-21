@@ -8,6 +8,12 @@ from DB_Clientes_BE import (
     traerIDCliente,
     deleteClientDB
 )
+from DB_Residencia_BE import(
+    busquedaDeResidencias
+)
+from Reservaciones_BE import(
+    agendarReservaClientePerfil
+)
 
 def getAllClients():
     result = getClients()
@@ -106,7 +112,7 @@ def deleteClient():
     getAllClients()
 
 #ESTOS METODOS SON ESPECIFICAMENTE PARA UN USUARIO YA LOGGEADO
-
+#Esta parte es de procesos no de tablas
 def getClient(cliente):
     id = cliente["idClientes"]
     cliente = searchClientById(id)
@@ -178,3 +184,28 @@ def actualizarCliente(cliente):
     client = searchClientById(client["idClientes"])
     print("\nLos cambios se han efectuado con éxito.")
     getClient(client)
+
+def clienteAgendaReserva(cliente):
+    pais=input("¿A qué país viajas? ")
+    
+    residencias = busquedaDeResidencias(pais)
+
+    table = PrettyTable()
+    table.field_names = ["idResidencia","TipoAlojamiento","AirbnbPlus","Precio"]
+
+    for residencia in residencias:
+        table.add_row([
+        residencia["idResidencia"],
+        residencia["TipoAlojamiento"],
+        residencia["AirbnbPlus"],
+        residencia["Precio"]
+        ])
+
+    print(table)
+    table.clear()
+
+    eleccion = input("¿Cuál residencia quieres reservar? ¡Ingresa el ID de la residencia! ")
+    agendarReservaClientePerfil(cliente,eleccion)
+
+
+

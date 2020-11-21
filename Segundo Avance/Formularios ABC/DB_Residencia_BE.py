@@ -102,7 +102,7 @@ def deleteResidenciaDB(idResidencia):
             connection.commit()
     finally:
         pass
-
+#Esta funcion es parte de la funcionalidad de la tabla Reservaciones
 def chequeoFlexCancelacion(idResidencia):
     residencia = {}
     try:
@@ -113,3 +113,24 @@ def chequeoFlexCancelacion(idResidencia):
     finally:
         pass
     return residencia
+
+#Esta función es de procesos no de tablas
+#Cuando un cliente quiera agendar una reserva se le solicita el pais al que viaja
+#y se llama a este metodo para mostrarle todas las residencias que se encuentran en ese pais
+def busquedaDeResidencias(pais):
+    result = {}
+    try:
+        with connection.cursor() as cursor:
+            sql = f"""select residencias.idResidencia,residencias.TipoAlojamiento,residencias.Habitaciones,residencias.Banhos,
+	            residencias.Camas,residencias.Precio,residencias.FlexibilidadDeCancelacion,residencias.AirbnbPlus,
+                residencias.Mascotas,residencias.Fumadores
+            from residencias
+	            inner join direcciones on residencias.IdDireccion=direcciones.IdDireccion
+                inner join ciudades on direcciones.IdCiudad=ciudades.idCiudad
+                inner join paises on ciudades.IdPais=paises.idPais
+            where paises.NombrePais='{pais}';"""
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        pass
+    return result

@@ -121,3 +121,25 @@ def cancelacionDeReserva():
         cancelarReserva(id)
         print("\nLa reserva se ha cancelado con éxito.")
 
+#A PARTIR DE AQUI LAS FUNCIONES SON PARA AGENDARLAS DESDE EL PERFIL DE UN CLIENTE
+#Esta parte es de procesos no de tablas
+def agendarReservaClientePerfil(cliente,residencia):
+    print("\nAdding a new client...")
+    idCliente = int(cliente["idClientes"])
+    idResidencia = int(residencia)
+    strFechaLlegada = input("\nFecha de llegada (dd-mm-yyyy): ")
+    strHoraLlegada = input("\nHora de llegada (hh:mm:ss): ")
+    strFechaRetirada = input("\nFecha de retirada (dd-mm-yyyy): ")
+    strHoraRetirada = input("\nHora de retirada (hh:mm:ss): ")
+    intAdultos = int(input("\nNo. de adultos: "))
+    intNinhos = int(input("\nNo. de niños: "))
+    intBebes = int(input("\nNo. de bebés: "))
+    intTipoPago = int(input("\nTipo de pago (0-Tarjeta | 1-Efectivo): "))
+
+    strLlegada = strFechaLlegada+" "+strHoraLlegada
+    strRetirada = strFechaRetirada+" "+strHoraRetirada
+
+    agendarReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
+    idreserva=traerIDReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
+
+    print(f"\nSu reserva se ha agendado con éxito. Su número de reservación es {idreserva}\n")
