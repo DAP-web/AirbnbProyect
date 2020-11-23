@@ -134,3 +134,21 @@ def busquedaDeResidencias(pais):
     finally:
         pass
     return result
+
+def verResidenciaEspecifica(id):
+    result = {}
+    try:
+        with connection.cursor() as cursor:
+            sql = f"""select residencias.idResidencia,residencias.TipoAlojamiento,residencias.Habitaciones,residencias.Banhos,
+	            residencias.Camas,residencias.Precio,residencias.FlexibilidadDeCancelacion,residencias.AirbnbPlus,
+                residencias.Mascotas,residencias.Fumadores,direccioncompleta.Estado,
+                direccioncompleta.CodigoPostal,direccioncompleta.Calle,
+                direccioncompleta.NombreCiudad,direccioncompleta.NombrePais
+            from residencias
+	            inner join direccioncompleta on residencias.IdDireccion=direccioncompleta.IdDireccion
+            where residencias.idResidencia={id};"""
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        pass
+    return result

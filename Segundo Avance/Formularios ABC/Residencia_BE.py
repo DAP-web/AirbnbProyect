@@ -1,12 +1,12 @@
 from prettytable import PrettyTable
-from BD_Residencia_Be import (
+from DB_Residencia_BE import (
     connection,
     getResidencias,
     insertResidencias,
     searchResidenciasById,
     updateResidenciaBD,
     traerIDResidencia,
-    deleteResidenciaDB,
+    deleteResidenciaDB
 )
 
 
@@ -41,7 +41,7 @@ def getAllResidencias():
                 residencia["FlexibilidadDeCancelacion"],
                 residencia["AirbnbPlus"],
                 residencia["Mascotas"],
-                residencia["Fumadores"],
+                residencia["Fumadores"]
             ]
         )
     print(table)

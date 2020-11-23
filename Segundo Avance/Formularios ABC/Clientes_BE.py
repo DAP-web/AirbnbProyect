@@ -9,7 +9,8 @@ from DB_Clientes_BE import (
     deleteClientDB
 )
 from DB_Residencia_BE import(
-    busquedaDeResidencias
+    busquedaDeResidencias,
+    verResidenciaEspecifica
 )
 from Reservaciones_BE import(
     agendarReservaClientePerfil
@@ -204,8 +205,68 @@ def clienteAgendaReserva(cliente):
     print(table)
     table.clear()
 
-    eleccion = input("¿Cuál residencia quieres reservar? ¡Ingresa el ID de la residencia! ")
-    agendarReservaClientePerfil(cliente,eleccion)
+    ver = int(input("¿Ver alguna residencia en específico? No(0)|Sí(1): "))
+    if ver==1:
+        residenciaVer = input("¿Cuál residencia quieres ver? (Introduce el ID de la residencia): ")
+        morada = verResidenciaEspecifica(residenciaVer)
+
+        tablaResidencia = PrettyTable()
+        tablaDireccioin = PrettyTable()
+
+        tablaResidencia.field_names = [
+            "idResidencia",
+            "TipoAlojamiento",
+            "Habitaciones",
+            "Banhos",
+            "Camas",
+            "Precio",
+            "FlexibilidadDeCancelacion",
+            "AirbnbPlus",
+            "Mascotas",
+            "Fumadores"
+        ]
+
+        tablaDireccioin.field_names=[ 
+            "Estado",
+            "CodigoPostal", 
+            "Calle", 
+            "NombreCiudad", 
+            "NombrePais"
+        ]
+
+        for residencia in morada:
+            tablaResidencia.add_row([
+                residencia["idResidencia"],
+                residencia["TipoAlojamiento"],
+                residencia["Habitaciones"],
+                residencia["Banhos"],
+                residencia["Camas"],
+                residencia["Precio"],
+                residencia["FlexibilidadDeCancelacion"],
+                residencia["AirbnbPlus"],
+                residencia["Mascotas"],
+                residencia["Fumadores"],
+            ])
+            tablaDireccioin.add_row([
+                residencia["Estado"],
+                residencia["CodigoPostal"], 
+                residencia["Calle"], 
+                residencia["NombreCiudad"], 
+                residencia["NombrePais"]
+            ])
+        print(tablaResidencia)
+        tablaResidencia.clear()
+        print(tablaDireccioin)
+        tablaDireccioin.clear()
+    
+        eleccion = int(input("Reservar ya No(0)|Sí(1): "))
+        if eleccion==1:
+            agendarReservaClientePerfil(cliente,morada["idResidencia"])
+            
+    """decision = bool(input("¿Quieres escoger otro país? No(0)|Sí(1)"))
+    if decision==False:
+        eleccion = input("¿Cuál residencia quieres reservar? ¡Ingresa el ID de la residencia! ")"""
+        
 
 
 

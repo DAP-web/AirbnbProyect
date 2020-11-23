@@ -124,7 +124,7 @@ def cancelacionDeReserva():
 #A PARTIR DE AQUI LAS FUNCIONES SON PARA AGENDARLAS DESDE EL PERFIL DE UN CLIENTE
 #Esta parte es de procesos no de tablas
 def agendarReservaClientePerfil(cliente,residencia):
-    print("\nAdding a new client...")
+    print("\nAgregando una nueva reserva...")
     idCliente = int(cliente["idClientes"])
     idResidencia = int(residencia)
     strFechaLlegada = input("\nFecha de llegada (dd-mm-yyyy): ")

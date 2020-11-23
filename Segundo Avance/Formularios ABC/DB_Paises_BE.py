@@ -12,7 +12,7 @@ def getCountries():
     result = {}
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT * FROM airbnb.paises;"
+            sql = "SELECT * FROM airbnb.paises ORDER BY NombrePais;"
             cursor.execute(sql)
             result = cursor.fetchall()
     finally:
