@@ -57,10 +57,10 @@ def updateDirection():
 
     update = int(input("Update Street? 0-No - 1-Yes "))
     if update == 1:
-        print(f"Old Telephone {direction['NumeroTelefonico']}")
-        street = input("New Telephone : ")
+        print(f"Old Telephone {direction['Calle']}")
+        street = input("New Street : ")
     else:
-        street = direction["NumeroTelefonico"]
+        street = direction["Calle"]
 
     update = int(input("Update IdCity number? 0-No - 1-Yes "))
     if update == 1:
@@ -83,6 +83,7 @@ def deleteDirection():
     print("La direccion se ha removido con éxito.")
     getAllDirections()
 
+#Desde aqui empieza el codigo para procesos
 def getDirection(direccion):
     id = direccion["idDirecciones"]
     direccion = searchDirectionById(id)
@@ -127,7 +128,7 @@ def actualizarDireccion(direccion):
         idcity = direction["IdCiudad"]
 
 
-    updateDirectionBD(direction["idDirecciones"],state,postalcode,street,idcity)
-    direction = searchDirectionById(direction["idDirecciones"])
+    updateDirectionBD(direction["IdDireccion"],state,postalcode,street,idcity)
+    direction = searchDirectionById(direction["IdDireccion"])
     print("\nLos cambios se han efectuado con éxito.")
     getDirection(direction)

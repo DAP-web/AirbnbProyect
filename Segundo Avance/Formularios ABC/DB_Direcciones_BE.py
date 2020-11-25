@@ -23,12 +23,12 @@ def insertDirection(state,postalCode,street,idCity):
     try:
         with connection.cursor() as cursor:
             sql = f"""INSERT INTO airbnb.direcciones
-            (IdDireccion,Estado,CodigoPostal,Calle,IdCiudad)
+            (Estado,CodigoPostal,Calle,IdCiudad)
             VALUES
             ('{state}',
             '{postalCode}',
             '{street}',
-            '{idCity}');"""
+            {idCity});"""
             cursor.execute(sql)
             connection.commit()
     finally:
@@ -38,7 +38,7 @@ def searchDirectionById(idDireccion):
     direccion = {}
     try:
         with connection.cursor() as cursor:
-            sql = f"SELECT * FROM airbnb.clientes WHERE idDireccion={idDireccion};"
+            sql = f"SELECT * FROM airbnb.direcciones WHERE IdDireccion={idDireccion};"
             cursor.execute(sql)
             direccion = cursor.fetchone()
     finally:
@@ -49,8 +49,8 @@ def updateDirectionBD(idDirection, state,postalCode,street,idCity):
     try:
         with connection.cursor() as cursor:
             sql = f"""UPDATE airbnb.direcciones SET 
-            Estado = '{state}', CodigoPostal = '{postalCode}', Calle = '{street}', idCiudad = '{idCity}'
-            WHERE idDireccion = {idDirection};"""
+            Estado = '{state}', CodigoPostal = '{postalCode}', Calle = '{street}', idCiudad = {idCity}
+            WHERE IdDireccion = {idDirection};"""
             cursor.execute(sql)
             connection.commit()
     finally:
@@ -60,20 +60,20 @@ def traerIDDireccion(state,postalCode,street,idCity):
     iddirreccion = 0
     try:
         with connection.cursor() as cursor:
-            sql = f"""SELECT idDirecciones
+            sql = f"""SELECT IdDireccion
             FROM direcciones
             WHERE Estado = '{state}' AND CodigoPostal = '{postalCode}' AND Calle = '{street}' 
-            AND idCiudad = '{idCity}';"""
+            AND idCiudad = {idCity};"""
             cursor.execute(sql)
             iddirreccion = cursor.fetchone()
     finally:
         pass
-    return iddirreccion["idDirecciones"]
+    return iddirreccion["IdDireccion"]
 
 def deleteDirectionDB(idDirection):
     try:
         with connection.cursor() as cursor:
-            sql = f"DELETE FROM airbnb.clientes WHERE idDirecciones={idDirection};"
+            sql = f"DELETE FROM airbnb.direcciones WHERE IdDireccion={idDirection};"
             cursor.execute(sql)
             connection.commit()
     finally:
