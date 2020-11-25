@@ -1,13 +1,8 @@
-from Reservaciones_BE import (
-    connection,
-    getAllReservas,
-    agendarReservaV,
-    modificarReserva,
-    cancelacionDeReserva
-)
-from Clientes_BE import(
-    clienteAgendaReserva
-)
+from Reservaciones_BE import reservaciones
+from Clientes_BE import clientesBE
+
+clientebe = clientesBE()
+reservas = reservaciones()
 
 def reservasAdmin():
     print("Inicializando la app de Airbnb Reservas")
@@ -25,17 +20,17 @@ def reservasAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Reservas")
-            connection.close()
+            # reservas.connection.close()
             break
         if option == 1:
-            getAllReservas()
+            reservas.getAllReservas()
         if option == 2:
-            agendarReservaV()
+            reservas.agendarReservaV()
         if option == 3:
-            modificarReserva()
+            reservas.modificarReserva()
         if option == 4:
-            cancelacionDeReserva()
-        
+            reservas.cancelacionDeReserva()
+
 def reservasClientes(cliente):
     print("Inicializando la app de Airbnb Reservas")
     while True:
@@ -52,13 +47,13 @@ def reservasClientes(cliente):
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Reservas")
-            #connection.close()
             break
         if option == 1:
             pass
         if option == 2:
-            clienteAgendaReserva(cliente)
+            clientebe.clienteAgendaReserva(cliente)
         if option == 3:
-            modificarReserva()
+            reservas.modificarReserva()
         if option == 4:
-            cancelacionDeReserva()
+            #reservas.cancelacionDeReserva()
+            pass

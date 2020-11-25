@@ -1,19 +1,15 @@
-from Clientes_BE import (
-    connection,
-    getAllClients,
-    getClient,
-    addClient,
-    updateClient,
-    actualizarCliente,
-    deleteClient,
-    clienteAgendaReserva
-)
+from DB_Clientes_BE import DBClientes
+
+from Clientes_BE import clientesBE
+
 from ReservasApp_FE import(
     reservasClientes
 )
 
 #Menú para administradores
 def AppClientes():
+    dbcliente = DBClientes()
+    becliente = clientesBE()
     print("Inicializando la app de Airbnb Clientes")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -29,20 +25,22 @@ def AppClientes():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            connection.close()
+            dbcliente.connection.close()
             break
         if option == 1:
-            getAllClients()
+            becliente.getAllClients()
         if option == 2:
-            addClient()
+            becliente.addClient()
         if option == 3:
-            updateClient()
+            becliente.updateClient()
         if option == 4:
-            deleteClient()
-
+            becliente.deleteClient()
 #Desde el perfil de un cliente
 #Se le presenta este menú
+
 def AppClientesRegular(cliente):
+    dbcliente = DBClientes()
+    becliente = clientesBE()
     print("Inicializando la app de Airbnb Clientes")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -61,12 +59,13 @@ def AppClientesRegular(cliente):
             #connection.close()
             break
         if option == 1:
-            getClient(cliente)
+            becliente.getClient(cliente)
         if option == 2:
-            actualizarCliente(cliente)
+            becliente.actualizarCliente(cliente)
         if option == 3:
             reservasClientes(cliente)
         if option == 4:
             pass
+
 #AppClientes()
             

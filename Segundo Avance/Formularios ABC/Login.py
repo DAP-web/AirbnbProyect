@@ -1,11 +1,11 @@
 import pymysql
-from DB_Clientes_BE import(
-    verificarUsuario
-)
+from DB_Clientes_BE import DBClientes
 from ClientesApp_FE import(
     AppClientes,
     AppClientesRegular
 )
+
+dbcliente = DBClientes()
 
 connection = pymysql.connect(
     host="localhost",
@@ -19,7 +19,7 @@ def signin():
     correo = input("Correo de usuario: ")
     pswd = input("Contraseña de acceso: ")
 
-    cliente = verificarUsuario(correo,pswd)
+    cliente = dbcliente.verificarUsuario(correo,pswd)
 
     if cliente is None:
         print("No se pudo iniciar sesión.")
