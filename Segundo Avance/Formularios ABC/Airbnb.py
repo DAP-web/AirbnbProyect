@@ -13,8 +13,9 @@ while True:
     0-Salir de la app
     1-Ingresar a mi cuenta
     2-Registrarse
-    3-Actualizar cliente
-    4-Eliminar cliente\n"""
+    3-Buscar residencias
+    4-Buscar experiencias
+    5-Buscar experiencias en línea\n"""
     print("-"*100)
     print(Menu)
     print("-"*100)

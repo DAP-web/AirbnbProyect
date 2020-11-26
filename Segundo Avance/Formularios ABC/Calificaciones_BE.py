@@ -1,36 +1,36 @@
 from prettytable import PrettyTable
-from DB_Calificaciones_BE import (
-    connection,
-    obtenerCalificaciones,
-    agregarCalificacion
-)
+from DB_Calificaciones_BE import calificacionesDB
 
-def getCalificaciones():
-    result = obtenerCalificaciones()
+class calificionesBE:
+    def __init__(self):
+        self.calificiones=calificacionesDB()
 
-    table = PrettyTable()
-    table.field_names = ["Residencia","Calificación Promedio"]
+    def getCalificaciones(self):
+        result = self.calificiones.obtenerCalificaciones()
 
-    for residencia in result:
-        table.add_row([
-            residencia["IdResidencia"],
-            residencia["Promedio"]
-            ])
+        table = PrettyTable()
+        table.field_names = ["Residencia","Calificación Promedio"]
 
-    print(table)
-    table.clear()
+        for residencia in result:
+            table.add_row([
+                residencia["IdResidencia"],
+                residencia["Promedio"]
+                ])
 
-def calificar():
-    print("\nAgregando una calificación...")
-    calificacion = int(input("\nCalificación (Valor entre 0-Peor | 5-Mejor): "))
+        print(table)
+        table.clear()
 
-    while calificacion>5 or calificacion<0:
-        print("La calificación es incorrecta. Favor ingresar un valor entre 0 y 5.")
-        print("Siendo 5 el mejor y 0 lo peor.")
-        calificacion = int(input("\nCalificación: "))
+    def calificar(self):
+        print("\nAgregando una calificación...")
+        calificacion = int(input("\nCalificación (Valor entre 0-Peor | 5-Mejor): "))
 
-    residencia = input("\nResidencia ID: ")
+        while calificacion>5 or calificacion<0:
+            print("La calificación es incorrecta. Favor ingresar un valor entre 0 y 5.")
+            print("Siendo 5 el mejor y 0 lo peor.")
+            calificacion = int(input("\nCalificación: "))
 
-    agregarCalificacion(calificacion,residencia)
+        residencia = input("\nResidencia ID: ")
 
-    print("\nSu calificación se ha guardado con éxito.\n")
+        self.calificiones.agregarCalificacion(calificacion,residencia)
+
+        print("\nSu calificación se ha guardado con éxito.\n")

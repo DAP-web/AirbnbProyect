@@ -1,9 +1,9 @@
-from Calificaciones_BE import (
-    connection,
-    getCalificaciones,
-    calificar
-)
+from Calificaciones_BE import calificionesBE
+from DB_Calificaciones_BE import calificacionesDB
 
+
+calificacionbe = calificionesBE()
+calificaciondb = calificacionesDB()
 #Menú para administradores
 def AppCalificaciones():
     print("Inicializando la app de Airbnb Calificaciones...")
@@ -19,12 +19,12 @@ def AppCalificaciones():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            connection.close()
+            calificaciondb.connection.close()
             break
         if option == 1:
-            getCalificaciones()
+            calificacionbe.getCalificaciones()
         if option == 2:
-            calificar()
+            calificacionbe.calificar()
         if option == 3:
             pass
         if option == 4:

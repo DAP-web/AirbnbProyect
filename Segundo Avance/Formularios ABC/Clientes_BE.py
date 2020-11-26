@@ -1,19 +1,9 @@
 from prettytable import PrettyTable
-"""from DB_Clientes_BE import (
-    connection,
-    getClients,
-    insertClient,
-    searchClientById,
-    updateClientBD,
-    traerIDCliente,
-    deleteClientDB
-)"""
 from DB_Clientes_BE import DBClientes
 from DB_Residencia_BE import ResidenciaDB
 from Reservaciones_BE import reservaciones
 
 class clientesBE:
-
     def __init__(self):
         self.dbcliente=DBClientes()
         self.dbreservaciones = reservaciones()

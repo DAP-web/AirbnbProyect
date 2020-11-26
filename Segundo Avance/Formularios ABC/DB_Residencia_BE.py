@@ -21,7 +21,6 @@ class ResidenciaDB:
             pass
         return result
 
-
     def insertResidencias(self,tipo, rooms, bathrooms, beds, direction, price, cancellation, plus, pets, smokers):
         try:
             with self.connection.cursor() as cursor:
@@ -52,7 +51,6 @@ class ResidenciaDB:
         finally:
             pass
 
-
     def searchResidenciasById(self,idResidencia):
         residencia = {}
         try:
@@ -63,7 +61,6 @@ class ResidenciaDB:
         finally:
             pass
         return residencia
-
 
     def updateResidenciaBD(self,id,tipo,rooms,bathrooms,beds,price,cancellation,plus,pets,smokers):
         try:
@@ -94,7 +91,6 @@ class ResidenciaDB:
         finally:
             pass
         return idresidencia["idResidencia"]
-
 
     def deleteResidenciaDB(self,idResidencia):
         try:
