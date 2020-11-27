@@ -1,134 +1,130 @@
 from prettytable import PrettyTable
-from DB_Direcciones_BE import (
-    connection,
-    getDirections,
-    insertDirection,
-    searchDirectionById,
-    updateDirectionBD,
-    traerIDDireccion,
-    deleteDirectionDB
-)
+from DB_Direcciones_BE import direccionesDB 
 
-def getAllDirections():
-    result = getDirections()
+class direccionesBE:
+    def __init__(self):
+        self.direcciones=direccionesDB()
 
-    table = PrettyTable()
-    table.field_names = ["IdDireccion","Estado","CodigoPostal","Calle","IdCiudad"]
+    def getAllDirections(self):
+        result = self.direcciones.getDirections()
 
-    for direccion in result:
-        table.add_row([direccion["IdDireccion"],direccion["Estado"],direccion["CodigoPostal"],direccion["Calle"],direccion["IdCiudad"]])
+        table = PrettyTable()
+        table.field_names = ["IdDireccion","Estado","CodigoPostal","Calle","IdCiudad"]
 
-    print(table)
-    table.clear()
+        for direccion in result:
+            table.add_row([direccion["IdDireccion"],direccion["Estado"],direccion["CodigoPostal"],direccion["Calle"],direccion["IdCiudad"]])
 
-def addDirection():
-    print("\nAdding a new direction...")
-    state = input("\nEstado: ")
-    postalcode = input("\nCodigoPostal: ")
-    street = input("\nCalle: ")
-    idcity = input("\nIdCiudad: ")
+        print(table)
+        table.clear()
 
-    insertDirection(state,postalcode,street,idcity)
-    iddireccion=traerIDDireccion(state,postalcode,street,idcity)
+    def addDirection(self):
+        print("\nAdding a new direction...")
+        state = input("\nEstado: ")
+        postalcode = input("\nCodigoPostal: ")
+        street = input("\nCalle: ")
+        idcity = input("\nIdCiudad: ")
 
-    print("\nSu direccion se ha registrado con éxito.\n")
-    print(f"Su código de direccion única es {iddireccion}.\n")
-    getAllDirections()
+        self.direcciones.insertDirection(state,postalcode,street,idcity)
+        iddireccion=self.direcciones.traerIDDireccion(state,postalcode,street,idcity)
 
-def updateDirection():
-    print("\nUpdating an existing direction...")
-    id = int(input("\nID de la direccion a actualizar: "))
+        print("\nSu direccion se ha registrado con éxito.\n")
+        print(f"Su código de direccion única es {iddireccion}.\n")
+        self.direcciones.getAllDirections()
 
-    direction = searchDirectionById(id)
+    def updateDirection(self):
+        print("\nUpdating an existing direction...")
+        id = int(input("\nID de la direccion a actualizar: "))
 
-    update = int(input("Update State? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old State: {direction['Estado']}")
-        state = input("New State: ")
-    else:
-        state = direction["Estado"]
+        direction = self.direcciones.searchDirectionById(id)
 
-    update = int(input("Update PostalCode? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old PostalCode: {direction['CodigoPostal']}")
-        postalcode = input("New PostalCode: ")
-    else:
-        postalcode = direction["CodigoPostal"]
+        update = int(input("Update State? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old State: {direction['Estado']}")
+            state = input("New State: ")
+        else:
+            state = direction["Estado"]
 
-    update = int(input("Update Street? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Telephone {direction['Calle']}")
-        street = input("New Street : ")
-    else:
-        street = direction["Calle"]
+        update = int(input("Update PostalCode? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old PostalCode: {direction['CodigoPostal']}")
+            postalcode = input("New PostalCode: ")
+        else:
+            postalcode = direction["CodigoPostal"]
 
-    update = int(input("Update IdCity number? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old IdCity number: {direction['IdCiudad']}")
-        idcity = input("New IdCity number: ")
-    else:
-        idcity = direction["IdCiudad"]
+        update = int(input("Update Street? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Telephone {direction['Calle']}")
+            street = input("New Street : ")
+        else:
+            street = direction["Calle"]
+
+        update = int(input("Update IdCity number? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old IdCity number: {direction['IdCiudad']}")
+            idcity = input("New IdCity number: ")
+        else:
+            idcity = direction["IdCiudad"]
 
    
 
-    updateDirectionBD(id,state,postalcode,street,idcity)
-    print("\nLos cambios se han efectuado con éxito.")
-    getAllDirections()
+        self.direcciones.updateDirectionBD(id,state,postalcode,street,idcity)
+        print("\nLos cambios se han efectuado con éxito.")
+        self.direcciones.getAllDirections()
 
-def deleteDirection():
-    print("Deleting direction...")
-    id = int(input("ID of direction to delete: "))
+    def deleteDirection(self):
+        print("Deleting direction...")
+        id = int(input("ID of direction to delete: "))
 
-    deleteDirectionDB(id)
-    print("La direccion se ha removido con éxito.")
-    getAllDirections()
+        self.direcciones.deleteDirectionDB(id)
+        print("La direccion se ha removido con éxito.")
+        self.direcciones.getAllDirections()
 
 #Desde aqui empieza el codigo para procesos
-def getDirection(direccion):
-    id = direccion["idDirecciones"]
-    direccion = searchDirectionById(id)
+    def getDirection(self,direccion):   
+        id = direccion["idDirecciones"]
+        direccion = self.direcciones.searchDirectionById(id)
 
-    print(f"ID de direccion única: {direccion['idDirecciones']}")
-    print(f"Estado: {direccion['Estado']}")
-    print(f"CodigoPostal: {direccion['CodigoPostal']}")
-    print(f"Calle: {direccion['Calle']}")
-    print(f"IdCiudad: {direccion['IdCiudad']}")
+        print(f"ID de direccion única: {direccion['idDirecciones']}")
+        print(f"Estado: {direccion['Estado']}")
+        print(f"CodigoPostal: {direccion['CodigoPostal']}")
+        print(f"Calle: {direccion['Calle']}")
+        print(f"IdCiudad: {direccion['IdCiudad']}")
 
-def actualizarDireccion(direccion):
-    print("\nUpdating an existing direction...")
+    def actualizarDireccion(self,direccion):
+        print("\nUpdating an existing direction...")
 
-    direction = direccion
+        direction = direccion
 
-    update = int(input("Update State? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old State: {direction['Estado']}")
-        state = input("New State: ")
-    else:
-        state = direction["Estado"]
+        update = int(input("Update State? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old State: {direction['Estado']}")
+            state = input("New State: ")
+        else:
+            state = direction["Estado"]
 
-    update = int(input("Update PostalCode? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old PostalCode: {direction['CodigoPostal']}")
-        postalcode = input("New PostalCode: ")
-    else:
-        postalcode = direction["CodigoPostal"]
+        update = int(input("Update PostalCode? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old PostalCode: {direction['CodigoPostal']}")
+            postalcode = input("New PostalCode: ")
+        else:
+            postalcode = direction["CodigoPostal"]
 
-    update = int(input("Update Street? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Street  {direction['Calle']}")
-        street = input("New Street: ")
-    else:
-        street = direction["Calle"]
+        update = int(input("Update Street? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Street  {direction['Calle']}")
+            street = input("New Street: ")
+        else:
+            street = direction["Calle"]
 
-    update = int(input("Update IdCity number? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old IdCity number: {direction['IdCiudad']}")
-        idcity = input("New IdCity number: ")
-    else:
-        idcity = direction["IdCiudad"]
+        update = int(input("Update IdCity number? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old IdCity number: {direction['IdCiudad']}")
+            idcity = input("New IdCity number: ")
+        else:
+            idcity = direction["IdCiudad"]
 
 
-    updateDirectionBD(direction["IdDireccion"],state,postalcode,street,idcity)
-    direction = searchDirectionById(direction["IdDireccion"])
-    print("\nLos cambios se han efectuado con éxito.")
-    getDirection(direction)
+        self.direcciones.updateDirectionBD(direction["IdDireccion"],state,postalcode,street,idcity)
+        direction = self.direcciones.searchDirectionById(direction["IdDireccion"])
+        print("\nLos cambios se han efectuado con éxito.")
+        self.direcciones.getDirections(direction)
