@@ -1,66 +1,66 @@
 from prettytable import PrettyTable
-from DB_Ciudades_BE import (
-    connection,
-    getCities,
-    insertCity,
-    searchCityById,
-    updateCityBD,
-    traerIDCity,
-    deleteCityDB
-)
+from DB_Ciudades_BE import DBCiudades
 
-def getAllCities():
-    result = getCities()
+class ciudadesBE:
+    def __init__(self):
+        self.dbciudad=DBCiudades()
 
-    table = PrettyTable()
-    table.field_names = ["NombreCiudad", "NombrePais", "CodigoTelefonico"]
+    def getAllCities(self):
+        result = self.dbciudad.getCities()
 
-    for ciudades in result:
-        table.add_row([ciudades["NombreCiudad"],ciudades["NombrePais"],ciudades["CodigoTelefonico"]])
+        table = PrettyTable()
+        table.field_names = ["NombreCiudad", "NombrePais", "CodigoTelefonico"]
 
-    print(table)
-    table.clear()
+        for ciudades in result:
+            table.add_row([
+                ciudades["NombreCiudad"],
+                ciudades["NombrePais"],
+                ciudades["CodigoTelefonico"]
+                ])
 
-def addCity():
-    print("\nAdding a new city...")
-    cityname = input("\nNombre de ciudad: ")
-    idcountry = int(input("\nCodigo de pais: "))
+        print(table)
+        table.clear()
 
-    insertCity(cityname,idcountry)
-    idciudad=traerIDCity(cityname,idcountry)
+    def addCity(self):
+        print("\nAdding a new city...")
+        cityname = input("\nNombre de ciudad: ")
+        idcountry = int(input("\nCodigo de pais: "))
 
-    print("\nSu ciudad se ha creado con éxito.\n")
-    print(f"Su código de ciudad único es {idciudad}.\n")
-    getAllCities()
+        self.dbciudad.insertCity(cityname,idcountry)
+        idciudad=self.dbciudad.traerIDCity(cityname,idcountry)
 
-def updateCity():
-    print("\nUpdating an existing city...")
-    id = int(input("\nID de la ciudad a actualizar: "))
+        print("\nSu ciudad se ha creado con éxito.\n")
+        print(f"Su código de ciudad único es {idciudad}.\n")
+        self.getAllCities()
 
-    ciudad = searchCityById(id)
+    def updateCity(self):
+        print("\nUpdating an existing city...")
+        id = int(input("\nID de la ciudad a actualizar: "))
 
-    update = int(input("Update Name? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Name: {ciudad['NombreCiudad']}")
-        cityname = input("New Name: ")
-    else:
-        cityname = ciudad["NombreCiudad"]
+        ciudad = self.dbciudad.searchCityById(id)
 
-    update = int(input("Update IdPais? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old IdPais: {ciudad['IdPais']}")
-        idcountry = int(input("New IdPais: "))
-    else:
-        idcountry = ciudad["IdPais"]
+        update = int(input("Update Name? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Name: {ciudad['NombreCiudad']}")
+            cityname = input("New Name: ")
+        else:
+            cityname = ciudad["NombreCiudad"]
 
-    updateCityBD(id,cityname,idcountry)
-    print("\nLos cambios se han efectuado con éxito.")
-    getAllCities()
+        update = int(input("Update IdPais? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old IdPais: {ciudad['IdPais']}")
+            idcountry = int(input("New IdPais: "))
+        else:
+            idcountry = ciudad["IdPais"]
 
-def deleteCity():
-    print("Deleting city...")
-    id = int(input("ID of city to delete: "))
+        self.dbciudad.updateCityBD(id,cityname,idcountry)
+        print("\nLos cambios se han efectuado con éxito.")
+        self.getAllCities()
 
-    deleteCityDB(id)
-    print("La ciudad se ha removido con éxito.")
-    getAllCities()
+    def deleteCity(self):
+        print("Deleting city...")
+        id = int(input("ID of city to delete: "))
+
+        self.dbciudad.deleteCityDB(id)
+        print("La ciudad se ha removido con éxito.")
+        self.getAllCities()

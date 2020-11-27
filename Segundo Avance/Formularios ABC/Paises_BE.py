@@ -1,66 +1,62 @@
 from prettytable import PrettyTable
-from DB_Paises_BE import (
-    connection,
-    getCountries,
-    insertCountry,
-    searchCountryById,
-    updateCountryBD,
-    traerIDCountry,
-    deleteCountryDB
-)
+from DB_Paises_BE import DBPaises
 
-def getAllCountries():
-    result = getCountries()
+class paisesBE:
+    def __init__(self):
+        self.dbpais=DBPaises()
 
-    table = PrettyTable()
-    table.field_names = ["IdPais", "NombrePais", "CodigoTelefonico"]
+    def getAllCountries(self):
+        result = self.dbpais.getCountries()
 
-    for paises in result:
-        table.add_row([paises["idPais"],paises["NombrePais"],paises["CodigoTelefonico"]])
+        table = PrettyTable()
+        table.field_names = ["IdPais", "NombrePais", "CodigoTelefonico"]
 
-    print(table)
-    table.clear()
+        for paises in result:
+            table.add_row([paises["idPais"],paises["NombrePais"],paises["CodigoTelefonico"]])
 
-def addCountry():
-    print("\nAdding a new country...")
-    countryname = input("\nNombre de pais: ")
-    code = input("\nCodigo telefonico: ")
+        print(table)
+        table.clear()
 
-    insertCountry(countryname,code)
-    idpais=traerIDCountry(countryname,code)
+    def addCountry(self):
+        print("\nAdding a new country...")
+        countryname = input("\nNombre de pais: ")
+        code = input("\nCodigo telefonico: ")
 
-    print("\nSu pais se ha creado con éxito.\n")
-    print(f"Su código de país único es {idpais}.\n")
-    getAllCountries()
+        self.dbciudad.insertCountry(countryname,code)
+        idpais=self.dbpais.traerIDCountry(countryname,code)
 
-def updateCountry():
-    print("\nUpdating an existing country...")
-    id = int(input("\nID del pais a actualizar: "))
+        print("\nSu pais se ha creado con éxito.\n")
+        print(f"Su código de país único es {idpais}.\n")
+        getAllCountries()
 
-    pais = searchCountryById(id)
+    def updateCountry(self):
+        print("\nUpdating an existing country...")
+        id = int(input("\nID del pais a actualizar: "))
 
-    update = int(input("Update Name? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Name: {pais['NombrePais']}")
-        countryname = input("New Name: ")
-    else:
-        countryname = pais["NombrePais"]
+        pais = self.dbpais.searchCountryById(id)
 
-    update = int(input("Update PhoneCode? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old PhoneCode: {pais['CodigoTelefonico']}")
-        code = input("New PhoneCode: ")
-    else:
-        code = pais["CodigoTelefonico"]
+        update = int(input("Update Name? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Name: {pais['NombrePais']}")
+            countryname = input("New Name: ")
+        else:
+            countryname = pais["NombrePais"]
 
-    updateCountryBD(id,countryname,code)
-    print("\nLos cambios se han efectuado con éxito.")
-    getAllCountries()
+        update = int(input("Update PhoneCode? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old PhoneCode: {pais['CodigoTelefonico']}")
+            code = input("New PhoneCode: ")
+        else:
+            code = pais["CodigoTelefonico"]
 
-def deleteCountry():
-    print("Deleting country...")
-    id = int(input("ID of country to delete: "))
+        self.dbpais.updateCountryBD(id,countryname,code)
+        print("\nLos cambios se han efectuado con éxito.")
+        getAllCountries()
 
-    deleteCountryDB(id)
-    print("El país se ha removido con éxito.")
-    getAllCountries()
+    def deleteCountry(self):
+        print("Deleting country...")
+        id = int(input("ID of country to delete: "))
+
+        self.dbpais.deleteCountryDB(id)
+        print("El país se ha removido con éxito.")
+        getAllCountries()
