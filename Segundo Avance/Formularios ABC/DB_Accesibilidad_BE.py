@@ -9,7 +9,7 @@ class AccesibilidadDB:
             db="airbnb",
             cursorclass=pymysql.cursors.DictCursor,
         )
-    def getAccessibilities():
+    def getAccessibilities(self):
         result = {}
         try:
             with connection.cursor() as cursor:
@@ -20,7 +20,7 @@ class AccesibilidadDB:
             pass
         return result
 
-    def insertAccessibility(accessibilityname):
+    def insertAccessibility(self,accessibilityname):
         try:
             with connection.cursor() as cursor:
                 sql = f"""INSERT INTO airbnb.accesibilidad
@@ -32,7 +32,7 @@ class AccesibilidadDB:
         finally:
             pass
 
-    def searchAccessibilityById(idAccessibility):
+    def searchAccessibilityById(self,idAccessibility):
         accesibilidad = {}
         try:
             with connection.cursor() as cursor:
@@ -43,7 +43,7 @@ class AccesibilidadDB:
             pass
         return accesibilidad
 
-    def updateAccesibilityBD(id,accessibilityname):
+    def updateAccesibilityBD(self,id,accessibilityname):
         try:
             with connection.cursor() as cursor:
                 sql = f"""UPDATE airbnb.accesibilidad SET 
@@ -54,7 +54,7 @@ class AccesibilidadDB:
         finally:
             pass
 
-    def traerIDAccessibility(accessibilityname):
+    def traerIDAccessibility(self,accessibilityname):
         idaccesibilidad = 0
         try:
             with connection.cursor() as cursor:
@@ -67,7 +67,7 @@ class AccesibilidadDB:
             pass
         return idaccesibilidad["idAccesibilidad"]
 
-    def deleteAccessibilityDB(idAccessibility):
+    def deleteAccessibilityDB(self,idAccessibility):
         try:
             with connection.cursor() as cursor:
                 sql = f"DELETE FROM airbnb.accesibilidad WHERE idAccesibilidad={idAccessibility};"
