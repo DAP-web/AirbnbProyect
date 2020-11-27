@@ -1,66 +1,62 @@
 from prettytable import PrettyTable
-from DB_Tematica_BE import (
-    connection,
-    getTematica,
-    insertTematica,
-    searchTematicaById,
-    updateTematicaBD,
-    traerIDTematica,
-    deleteTematicaDB
-)
+from DB_Tematica_BE import DBTematica
 
-def getAllTematicas():
-    result = getTematicas()
+class TematicaBE:
+    def __init__(self):
+        self.dbtematica=DBTematica()
 
-    table = PrettyTable()
-    table.field_names = ["IdTematica", "NombreTematica", "Descripcion"]
+    def getAllTematicas():
+        result = getTematicas()
 
-    for tematica in result:
-        table.add_row([tematica["IdTematica"],tematica["NombreTematica"],tematica["Descripcion"]])
+        table = PrettyTable()
+        table.field_names = ["IdTematica", "NombreTematica", "Descripcion"]
 
-    print(table)
-    table.clear()
+        for tematica in result:
+            table.add_row([tematica["IdTematica"],tematica["NombreTematica"],tematica["Descripcion"]])
 
-def addTematica():
-    print("\nAdding a new tematica...")
-    tematicaname = input("\nNombre de tematica: ")
-    description = input("\nDescripción: ")
+        print(table)
+        table.clear()
 
-    insertTematica(tematicaname,description)
-    idtematica=traerIDTematica(tematicaname,description)
+    def addTematica():
+        print("\nAdding a new tematica...")
+        tematicaname = input("\nNombre de tematica: ")
+        description = input("\nDescripción: ")
 
-    print("\nSu tematica se ha creado con éxito.\n")
-    print(f"Su descripción es {idtematica}.\n")
-    getAllTematicas()
+        insertTematica(tematicaname,description)
+        idtematica=traerIDTematica(tematicaname,description)
 
-def updateTematica():
-    print("\nUpdating an existing tematica...")
-    id = int(input("\nID de la tematica a actualizar: "))
+        print("\nSu tematica se ha creado con éxito.\n")
+        print(f"Su descripción es {idtematica}.\n")
+        getAllTematicas()
 
-    tematica = searchTematicaById(id)
+    def updateTematica():
+        print("\nUpdating an existing tematica...")
+        id = int(input("\nID de la tematica a actualizar: "))
 
-    update = int(input("Update Name? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Name: {tematica['NombreTematica']}")
-        tematicaname = input("New Name: ")
-    else:
-        tematicaname = tematica["NombreTematica"]
+        tematica = searchTematicaById(id)
 
-    update = int(input("Update Descripcion? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Old Description: {tematica['Descripcion']}")
-        code = input("New Description: ")
-    else:
-        code = tematica["Descripcion"]
+        update = int(input("Update Name? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Name: {tematica['NombreTematica']}")
+            tematicaname = input("New Name: ")
+        else:
+            tematicaname = tematica["NombreTematica"]
 
-    updateTematicaBD(id,tematicaname,description)
-    print("\nLos cambios se han efectuado con éxito.")
-    getAllTematicas()
+        update = int(input("Update Descripcion? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Description: {tematica['Descripcion']}")
+            code = input("New Description: ")
+        else:
+            code = tematica["Descripcion"]
 
-def deleteTematica():
-    print("Deleting tematica...")
-    id = int(input("ID of tematica to delete: "))
+        updateTematicaBD(id,tematicaname,description)
+        print("\nLos cambios se han efectuado con éxito.")
+        getAllTematicas()
 
-    deleteTematicaDB(id)
-    print("La temática se ha removido con éxito.")
-    getAllTematicas()
+    def deleteTematica():
+        print("Deleting tematica...")
+        id = int(input("ID of tematica to delete: "))
+
+        deleteTematicaDB(id)
+        print("La temática se ha removido con éxito.")
+        getAllTematicas()
