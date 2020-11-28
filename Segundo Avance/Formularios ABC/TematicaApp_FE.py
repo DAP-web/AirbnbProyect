@@ -1,7 +1,7 @@
 from DB_Tematica_BE import DBTematica
 from Tematica_BE import TematicaBE
 
-def AppClientes():
+def AppTematica():
     dbtematica = DBTematica()
     betematica = TematicaBE()
     print("Inicializando la app de Airbnb Tematica")

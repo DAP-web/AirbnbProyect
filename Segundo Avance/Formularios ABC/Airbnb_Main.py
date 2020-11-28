@@ -8,6 +8,14 @@ from Login import (
 from ClientesApp_FE import AppClientes
 from ReservasApp_FE import reservasAdmin
 from ResidenciaApp_FE import residenciasAppAdmin
+from DireccionesApp_FE import direccionesAdmin
+from CiudadesApp_FE import AppCiudades
+from PaisesApp_FE import AppPaises
+from CalificacionesApp_FE import AppCalificaciones
+from AccesibilidadApp_FE import accesibilidadesAdmin
+from Desc_AccesibilidadApp_FE import desc_accesibilidadAppAdmin
+from ServiciosApp_FE import ServiciosAdmin
+from TematicaApp_FE import AppTematica
 
 def AirbnbClientes():
     print("Inicializando la app de Airbnb...")
@@ -50,7 +58,12 @@ def AirbnbAdmin():
         4-Gestionar Direcciones en la BD
         5-Gestionar Ciudades en la BD
         6-Gestionar Paises en la BD
-        7-Buscar experiencias en línea\n"""
+        7-Gestionar Calificaciones
+        8-Gestionar Accesibilidades
+        9-Ver descripciones de accesibilidades
+        10-Ver Servicios disponibles
+        11-Ver experiencias
+        12- Gestionar temáticas experiencias\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
@@ -67,14 +80,23 @@ def AirbnbAdmin():
         if option == 3:
             residenciasAppAdmin()
         if option == 4:
-            pass
+            direccionesAdmin()
         if option == 5:
-            pass
+            AppCiudades()
         if option == 6:
-            pass
+            AppPaises()
         if option == 7:
-            pass
+            AppCalificaciones()
         if option == 8:
+            accesibilidadesAdmin()
+        if option == 9:
+            desc_accesibilidadAppAdmin()
+        if option == 10:
+            ServiciosAdmin()
+        if option == 11:
             pass
+        if option == 12:
+            AppTematica()
+        
 
 AirbnbAdmin()

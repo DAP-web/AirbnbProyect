@@ -20,7 +20,7 @@ def AppCiudades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Ciudades")
-            dbciudad.connection.close()
+            #dbciudad.connection.close()
             break
         if option == 1:
             beciudad.getAllCities()
