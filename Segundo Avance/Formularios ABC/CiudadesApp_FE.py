@@ -3,13 +3,13 @@ from DB_Ciudades_BE import DBCiudades
 from Ciudades_BE import ciudadesBE
 
 def AppCiudades():
-    dbciudad = DBCiudades
-    beciudad = ciudadesBE
+    dbciudad = DBCiudades()
+    beciudad = ciudadesBE()
     print("Inicializando la app de Airbnb Ciudades")
     while True:
         Menu = """\nElija una de las siguientes opciones:
         0-Salir de la app
-        1- Recuperar todas las ciudades
+        1-Recuperar todas las ciudades
         2-Ingresar una nueva ciudad
         3-Actualizar ciudad
         4-Eliminar ciudad\n"""
@@ -30,4 +30,3 @@ def AppCiudades():
             beciudad.updateCity()
         if option == 4:
             beciudad.deleteCity()
-            

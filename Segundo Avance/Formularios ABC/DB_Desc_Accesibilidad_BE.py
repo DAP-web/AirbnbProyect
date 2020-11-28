@@ -27,17 +27,28 @@ class Desc_AccesibilidadDB:
                 sql = f"""INSERT INTO airbnb.desc_accesibilidad
                 (Descripcion, IdAccesibilidad)
                 VALUES
-                ({description}, {accesibility});"""
+                ('{description}', {accesibility});"""
                 cursor.execute(sql)
                 self.connection.commit()
         finally:
             pass
 
+    def searchDesc_AccesibilidadById(self,idDescAccesibilidad):
+        accesibilidades = {}
+        try:
+            with self.connection.cursor() as cursor:
+                sql = f"SELECT * FROM airbnb.desc_accesibilidad WHERE idDA={idDescAccesibilidad};"
+                cursor.execute(sql)
+                accesibilidades = cursor.fetchone()
+        finally:
+            pass
+        return accesibilidades
+
     def updateDescriptionBD(self,id,description):
         try:
             with self.connection.cursor() as cursor:
-                sql = f"""UPDATE airbnb.residencias SET 
-                Descripcion = {description}
+                sql = f"""UPDATE airbnb.desc_accesibilidad SET 
+                Descripcion = '{description}'
                 WHERE idDA = {id};"""
                 cursor.execute(sql)
                 self.connection.commit()
@@ -47,7 +58,7 @@ class Desc_AccesibilidadDB:
     def deleteDescriptionBD(self,idDA):
         try:
             with self.connection.cursor() as cursor:
-                sql = f"DELETE FROM airbnb.residencias WHERE idDa={idDA};"
+                sql = f"DELETE FROM airbnb.desc_accesibilidad WHERE idDA={idDA};"
                 cursor.execute(sql)
                 self.connection.commit()
         finally:

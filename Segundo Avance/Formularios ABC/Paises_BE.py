@@ -22,12 +22,12 @@ class paisesBE:
         countryname = input("\nNombre de pais: ")
         code = input("\nCodigo telefonico: ")
 
-        self.dbciudad.insertCountry(countryname,code)
+        self.dbpais.insertCountry(countryname,code)
         idpais=self.dbpais.traerIDCountry(countryname,code)
 
         print("\nSu pais se ha creado con éxito.\n")
         print(f"Su código de país único es {idpais}.\n")
-        getAllCountries()
+        self.getAllCountries()
 
     def updateCountry(self):
         print("\nUpdating an existing country...")
@@ -51,7 +51,7 @@ class paisesBE:
 
         self.dbpais.updateCountryBD(id,countryname,code)
         print("\nLos cambios se han efectuado con éxito.")
-        getAllCountries()
+        self.getAllCountries()
 
     def deleteCountry(self):
         print("Deleting country...")
@@ -59,4 +59,4 @@ class paisesBE:
 
         self.dbpais.deleteCountryDB(id)
         print("El país se ha removido con éxito.")
-        getAllCountries()
+        self.getAllCountries()

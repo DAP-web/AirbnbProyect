@@ -25,7 +25,7 @@ def AppClientes():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            dbcliente.connection.close()
+            #dbcliente.connection.close()
             break
         if option == 1:
             becliente.getAllClients()

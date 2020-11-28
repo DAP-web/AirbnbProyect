@@ -26,32 +26,21 @@ class desc_AccesibilidadBE:
         print(table)
         table.clear()
 
-
     def addDescription(self):
         print("\nAñadiendo una nueva descripcion...")
         Descripcion = input("\nDescripción: ")
         idAccesibilidad = input("\nid de accesibilidad: ")
 
-        self.residenciabd.insertResidencias(
-            Descripcion,
-            idAccesibilidad
-        )
-        idDA = self.residenciabd.traerIDResidencia(
-            Descripcion,
-            idAccesibilidad
-        )
+        self.desc_accesibilidadbd.insertDescription(Descripcion,idAccesibilidad)
 
         print("\nLa descripción se ha agregado con éxito.")
-        print(f"El código de la descripción es {idDA}. \n")
         self.getAllDescription()
-
 
     def updateDescription(self):
         print("\nActualizando la descripción...")
         id = int(input("\nID de la descripción a actualizar: "))
 
         descripcion = self.desc_accesibilidadbd.searchDesc_AccesibilidadById(id)
-
         update = int(input("¿Actualizar descripción? 0-No - 1-Yes: "))
         if update == 1:
             print(f"Descripción: {descripcion['Descripcion']}")
@@ -59,18 +48,14 @@ class desc_AccesibilidadBE:
         else:
             descripcion = descripcion["Descripcion"]
 
-        self.residenciabd.updateResidenciaBD(
-            id,
-            descripcion
-        )
+        self.desc_accesibilidadbd.updateDescriptionBD(id,descripcion)
         print("\nLos cambios se han efectuado con éxito.")
         self.getAllDescription()
-
 
     def deleteDescription(self):
         print("Borrando descripciónn...")
         id = int(input("ID de descripciónn a eliminar: "))
 
-        self.desc_accesibilidadbd.deleteDescriptionDB(id)
+        self.desc_accesibilidadbd.deleteDescriptionBD(id)
         print("La residencia se ha removido con éxito.")
         self.getAllDescription()

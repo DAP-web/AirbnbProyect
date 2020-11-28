@@ -14,7 +14,7 @@ class direccionesDB:
         result = {}
         try:
             with self.connection.cursor() as cursor:
-                sql = "SELECT * FROM airbnb.direcciones;"
+                sql = "SELECT * FROM airbnb.direccioncompleta;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
         finally:
@@ -51,7 +51,8 @@ class direccionesDB:
         try:
             with self.connection.cursor() as cursor:
                 sql = f"""UPDATE airbnb.direcciones SET 
-                Estado = '{state}', CodigoPostal = '{postalCode}', Calle = '{street}', idCiudad = {idCity}
+                Estado = '{state}', CodigoPostal = '{postalCode}', 
+                Calle = '{street}', IdCiudad = {idCity}
                 WHERE IdDireccion = {idDirection};"""
                 cursor.execute(sql)
                 self.connection.commit()
@@ -65,12 +66,16 @@ class direccionesDB:
                 sql = f"""SELECT IdDireccion
                 FROM direcciones
                 WHERE Estado = '{state}' AND CodigoPostal = '{postalCode}' AND Calle = '{street}' 
-                AND idCiudad = {idCity};"""
+                AND IdCiudad = {idCity};"""
                 cursor.execute(sql)
                 iddirreccion = cursor.fetchone()
         finally:
             pass
-        return iddirreccion["IdDireccion"]
+        if iddirreccion is None:
+            iddirreccion=0
+            return iddirreccion
+        else:
+            return iddirreccion["IdDireccion"]
 
     def deleteDirectionDB(self,idDirection):
         try:

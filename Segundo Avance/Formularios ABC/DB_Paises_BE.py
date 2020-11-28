@@ -13,7 +13,7 @@ class DBPaises:
     def getCountries(self):
         result = {}
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = "SELECT * FROM airbnb.paises;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
@@ -23,7 +23,7 @@ class DBPaises:
 
     def insertCountry(self, countryname,code):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""INSERT INTO airbnb.paises
                 (NombrePais,
                 CodigoTelefonico)

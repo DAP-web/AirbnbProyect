@@ -8,11 +8,19 @@ class direccionesBE:
     def getAllDirections(self):
         result = self.direcciones.getDirections()
 
+#IdDireccion, Estado, CodigoPostal, Calle, NombreCiudad, NombrePais
         table = PrettyTable()
-        table.field_names = ["IdDireccion","Estado","CodigoPostal","Calle","IdCiudad"]
+        table.field_names = ["IdDireccion","Estado","CodigoPostal","Calle","NombreCiudad","NombrePais"]
 
         for direccion in result:
-            table.add_row([direccion["IdDireccion"],direccion["Estado"],direccion["CodigoPostal"],direccion["Calle"],direccion["IdCiudad"]])
+            table.add_row([
+                direccion["IdDireccion"],
+                direccion["Estado"],
+                direccion["CodigoPostal"],
+                direccion["Calle"],
+                direccion["NombreCiudad"],
+                direccion["NombrePais"]
+                ])
 
         print(table)
         table.clear()
@@ -29,7 +37,7 @@ class direccionesBE:
 
         print("\nSu direccion se ha registrado con éxito.\n")
         print(f"Su código de direccion única es {iddireccion}.\n")
-        self.direcciones.getAllDirections()
+        self.getAllDirections()
 
     def updateDirection(self):
         print("\nUpdating an existing direction...")
@@ -65,11 +73,9 @@ class direccionesBE:
         else:
             idcity = direction["IdCiudad"]
 
-   
-
         self.direcciones.updateDirectionBD(id,state,postalcode,street,idcity)
         print("\nLos cambios se han efectuado con éxito.")
-        self.direcciones.getAllDirections()
+        self.getAllDirections()
 
     def deleteDirection(self):
         print("Deleting direction...")
@@ -77,7 +83,7 @@ class direccionesBE:
 
         self.direcciones.deleteDirectionDB(id)
         print("La direccion se ha removido con éxito.")
-        self.direcciones.getAllDirections()
+        self.getAllDirections()
 
 #Desde aqui empieza el codigo para procesos
     def getDirection(self,direccion):   
@@ -123,8 +129,7 @@ class direccionesBE:
         else:
             idcity = direction["IdCiudad"]
 
-
         self.direcciones.updateDirectionBD(direction["IdDireccion"],state,postalcode,street,idcity)
         direction = self.direcciones.searchDirectionById(direction["IdDireccion"])
         print("\nLos cambios se han efectuado con éxito.")
-        self.direcciones.getDirections(direction)
+        self.getDirections(direction)

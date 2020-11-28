@@ -27,7 +27,6 @@ class serviciosBE:
 
         print("\nSu servicio se ha registrado con éxito.\n")
         print(f"Su código de servico único es {idservicio}.\n")
-        self.servicios.getAllServices()
 
     def updateService(self):
         print("\nUpdating an existing service...")
@@ -41,11 +40,9 @@ class serviciosBE:
             name = input("Nuevo Nombre del Servicio: ")
         else:
             name = service["NombreServicio"]
-
     
         self.servicios.updateServiceBD(id,name)
         print("\nLos cambios se han efectuado con éxito.")
-        self.servicios.getAllServices()
 
     def deleteService(self):
         print("\nDeleting service...")
@@ -53,4 +50,3 @@ class serviciosBE:
 
         self.servicios.deleteServiceDB(id)
         print("\nEl servicio se ha removido con éxito.")
-        self.servicios.getAllServices()

@@ -22,12 +22,12 @@ def desc_accesibilidadAppAdmin():
             desc_accesibilidaddb.connection.close()
             break
         if option == 1:
-            desc_accesibilidadbe.getAllResidencias()
+            desc_accesibilidadbe.getAllDescription()
         if option == 2:
-            desc_accesibilidadbe.addResidencia()
+            desc_accesibilidadbe.addDescription()
         if option == 3:
-            desc_accesibilidadbe.updateResidencia()
+            desc_accesibilidadbe.updateDescription()
         if option == 4:
-            desc_accesibilidadbe.deleteResidencia()
+            desc_accesibilidadbe.deleteDescription()
 
 desc_accesibilidadAppAdmin()

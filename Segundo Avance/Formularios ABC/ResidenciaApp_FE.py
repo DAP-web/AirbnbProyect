@@ -1,5 +1,6 @@
 from Residencia_BE import residenciasBE
 from DB_Residencia_BE import ResidenciaDB
+from AgregarResidenciaFull import residenciaFull
 
 def residenciasAppAdmin():
     residenciabe=residenciasBE()
@@ -19,15 +20,14 @@ def residenciasAppAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Residencia")
-            residenciadb.connection.close()
+            #residenciadb.connection.close()
             break
         if option == 1:
             residenciabe.getAllResidencias()
         if option == 2:
-            residenciabe.addResidencia()
+            #residenciabe.addResidencia()
+            residenciaFull()
         if option == 3:
             residenciabe.updateResidencia()
         if option == 4:
             residenciabe.deleteResidencia()
-
-residenciasAppAdmin()

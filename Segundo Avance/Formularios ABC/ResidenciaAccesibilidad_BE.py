@@ -6,7 +6,7 @@ class raccesibilidadBE:
         self.dbraccesibilidad=DBRA()
 
     def getAllRAccessibilities(self):
-        result = self.dbraccesibilidad.getRAccessibilities
+        result = self.dbraccesibilidad.getRAccessibilities()
 
         table = PrettyTable()
         table.field_names = ["Nombre", "Descripcion"]
@@ -15,7 +15,6 @@ class raccesibilidadBE:
             table.add_row([
                 raccesibilidad["Nombre"],
                 raccesibilidad["Descripcion"],
-                
                 ])
 
         print(table)
@@ -31,7 +30,7 @@ class raccesibilidadBE:
 
         print("\nSu residencia accessibility se ha creado con éxito.\n")
         print(f"Su código de residencia accessibility único es {idraccesibilidad}.\n")
-        self.getAllRAccessibilities
+        self.getAllRAccessibilities()
 
     def updateRAccessibility(self):
         print("\nUpdating an existing residencia accessibility...")
@@ -56,7 +55,7 @@ class raccesibilidadBE:
 
         self.dbraccesibilidad.updateRAccessibilityBD(id)
         print("\nLos cambios se han efectuado con éxito.")
-        self.getAllRAccessibilities
+        self.getAllRAccessibilities()
 
     def deleteRAccessibility(self):
         print("Deleting residencia accesibility...")

@@ -1,12 +1,10 @@
 from prettytable import PrettyTable
 from DB_Accesibilidad_BE import AccesibilidadDB
 
-
-
 class accesibilidad:
-    self.dbaccesibilidad=AccesibilidadDB()
+    def __init__(self):
+        self.dbaccesibilidad=AccesibilidadDB()
         
-
     def getAllAccessibilities(self):
         result = self.dbaccesibilidad.getAccessibilities()
 
@@ -28,7 +26,7 @@ class accesibilidad:
 
         print("\nSu accesibilidad se ha creado con éxito.\n")
         print(f"Su código de accesibilidad único es {idaccesibilidad}.\n")
-        getAllAccessibilities()
+        self.getAllAccessibilities()
 
     def updateAccessibility(self):
         print("\nUpdating an existing accessibility...")
@@ -45,7 +43,7 @@ class accesibilidad:
 
         self.dbaccesibilidad.updateAccesibilityBD(id,accessibilityname)
         print("\nLos cambios se han efectuado con éxito.")
-        getAllAccessibilities()
+        self.getAllAccessibilities()
 
     def deleteAccessibility(self):
         print("Deleting accessibility...")
@@ -53,4 +51,4 @@ class accesibilidad:
 
         self.dbaccesibilidad.deleteAccessibilityDB(id)
         print("La accesibilidad se ha removido con éxito.")
-        getAllAccessibilities()
+        self.getAllAccessibilities()

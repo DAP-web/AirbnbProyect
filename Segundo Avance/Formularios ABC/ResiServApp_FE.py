@@ -28,6 +28,6 @@ def residenciaservicioAppAdmin():
         if option == 3:
             resiservbe.updateResiServ()
         if option == 4:
-            resiservbe.deleteResiServ()
+            resiservbe.deleteResidenciaServicio()
 
 residenciaservicioAppAdmin()

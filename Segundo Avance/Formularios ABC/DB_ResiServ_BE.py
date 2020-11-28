@@ -13,32 +13,32 @@ class ResiServDB:
     def getResiServ(self):
         result = {}
         try:
-            with connection.cursor() as cursor:
-                sql = "SELECT * FROM airbnb.residenciaservicio;"
+            with self.connection.cursor() as cursor:
+                sql = "SELECT * FROM airbnb.rservicio;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
         finally:
             pass
         return result
 
-    def insertResiServ(self, serviceID, residenceID):
+    def insertResiServ(self,residenceID, serviceID):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""INSERT INTO airbnb.residenciaservicio
                 (IdServicio,
                 IdResidencia)
                 VALUES
-                ('{serviceID}'
-                '{residenceID});"""
+                ({serviceID},
+                {residenceID});"""
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
 
     def searchResiServById(self, idResiServ):
         resiserv = {}
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"SELECT * FROM airbnb.residenciaservicio WHERE idRS={idResiServ};"
                 cursor.execute(sql)
                 resiserv = cursor.fetchone()
@@ -48,33 +48,33 @@ class ResiServDB:
 
     def updateResiServBD(self, id, serviceID, residenceID):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""UPDATE airbnb.residenciaservicio SET 
-                IDServicio = '{serviceID}', IDResidencia = '{residenceID}'
+                IdServicio = {serviceID}, IdResidencia = {residenceID}
                 WHERE idRS = {id};"""
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
 
     def traerIDResiServ(self, serviceID, residenceID):
-        idRS = 0
+        idresservicio = 0
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""SELECT idRS
                 FROM residenciaservicio
-                WHERE idServicio = '{serviceID}' AND idResidencia = '{residenceID}';"""
+                WHERE IdServicio = {serviceID} AND IdResidencia = {residenceID};"""
                 cursor.execute(sql)
-                idservicio = cursor.fetchone()
+                idresservicio = cursor.fetchone()
         finally:
             pass
-        return idRS["idRS"]
+        return idresservicio["idRS"]
 
     def deleteResiServDB(self, idRS):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"DELETE FROM airbnb.residenciaservicio WHERE idRS={idRS};"
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass

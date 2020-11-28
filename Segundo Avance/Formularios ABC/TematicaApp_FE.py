@@ -1,10 +1,9 @@
-from Tematica_BE import DBTematica
-
-from Tematica_BE import tematicaBE
+from DB_Tematica_BE import DBTematica
+from Tematica_BE import TematicaBE
 
 def AppClientes():
     dbtematica = DBTematica()
-    betematica = tematicaBE()
+    betematica = TematicaBE()
     print("Inicializando la app de Airbnb Tematica")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -20,14 +19,15 @@ def AppClientes():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Tematica")
-            connection.close()
+            dbtematica.connection.close()
             break
         if option == 1:
-            getAllTematicas()
+            betematica.getAllTematicas()
         if option == 2:
-            addTematica()
+            betematica.addTematica()
         if option == 3:
-            updateTematica()
+            betematica.updateTematica()
         if option == 4:
-            deleteTematica()
+            betematica.deleteTematica()
             
+AppClientes()

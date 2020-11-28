@@ -10,10 +10,10 @@ class DBTematica:
             cursorclass=pymysql.cursors.DictCursor,
     )
 
-    def getTematica(self):
+    def getTematicas(self):
         result = {}
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = "SELECT * FROM airbnb.tematica;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
@@ -23,7 +23,7 @@ class DBTematica:
 
     def insertTematica(self,tematicaname,description):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""INSERT INTO airbnb.tematica
                 (NombreTematica,
                 Descripcion)
@@ -31,14 +31,14 @@ class DBTematica:
                 ('{tematicaname}',
                 '{description}');"""
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
 
     def searchTematicaById(self,idTematica):
         tematica = {}
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"SELECT * FROM airbnb.tematica WHERE idTematica={idTematica};"
                 cursor.execute(sql)
                 tematica = cursor.fetchone()
@@ -48,19 +48,19 @@ class DBTematica:
 
     def updateTematicaBD(self,id,tematicaname,description):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""UPDATE airbnb.tematica SET 
                 NombreTematica = '{tematicaname}', Descripcion = '{description}'
                 WHERE idTematica = {id};"""
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
 
     def traerIDTematica(self,tematicaname, description):
         idtematica = 0
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""SELECT idTematica
                 FROM tematica
                 WHERE NombreTematica = '{tematicaname}' AND Descripcion = '{description}';"""
@@ -72,10 +72,10 @@ class DBTematica:
 
     def deleteTematicaDB(self,idTematica):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"DELETE FROM airbnb.tematica WHERE idTematica={idTematica};"
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
             

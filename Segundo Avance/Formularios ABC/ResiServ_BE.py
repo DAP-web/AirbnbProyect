@@ -6,23 +6,19 @@ class residenciaservicioBE:
         self.resiservbd=ResiServDB()
 
     def getAllResidenciaServicio(self):
-        result = self.resiservbd.getResidencias()
+        result = self.resiservbd.getResiServ()
 
         table = PrettyTable()
         table.field_names = [
-            "idRS"
             "idResidencia",
-            "idServicio
+            "idServicio"
         ]
 
         for residenciaservicio in result:
-            table.add_row(
-                [
-                    residenciaservicio["idRS"],
-                    residenciaservicio["idResidencia"],
-                    residenciaservicio["idServicio"],
-                ]
-            )
+            table.add_row([
+                    residenciaservicio["IdResidencia"],
+                    residenciaservicio["NombreServicio"]
+                ])
         print(table)
         table.clear()
 
@@ -32,13 +28,14 @@ class residenciaservicioBE:
         idResidencia = input("\nID de la Residencia: ")
         idServicio = input("\nID del servicio: ")
 
-        self.resiservbd.insertResiServs(
+        self.resiservbd.insertResiServ(
             idResidencia,
-            idServicio,
+            idServicio
         )
-        idRS = self.residenciaserviciobd.traerIDResiServ(
-            idResidencia,
+
+        idRS = self.resiservbd.traerIDResiServ(
             idServicio,
+            idResidencia
         )
 
         print("\nLa residenciaservicio se ha agregado con éxito.")
@@ -50,26 +47,26 @@ class residenciaservicioBE:
         print("\nActualizando la RS...")
         id = int(input("\nID de la RS a actualizar: "))
 
-        residenciaservicio = self.residenciaserviciobd.searchResiServById(id)
+        residenciaservicio = self.resiservbd.searchResiServById(id)
 
         update = int(input("¿Actualizar ID de Residencia? 0-No - 1-Yes: "))
         if update == 1:
             print(f"ID de Residencia antiguo: {residenciaservicio['idResidencia']}")
             idResidencia = input("Nuevo ID de Residencia: ")
         else:
-            idResidencia = residenciaservicio["idResidencia"]
+            idResidencia = residenciaservicio["IdResidencia"]
 
         update = int(input("¿Actualizar ID de Servicio? 0-No - 1-Yes: "))
         if update == 1:
             print(f"Antigüo ID de Servicio: {residenciaservicio['idServicio']}")
             idServicio = input("Nuevo ID de Servicio: ")
         else:
-            idServicio = residenciaservicio["idServicio"]
+            idServicio = residenciaservicio["IdServicio"]
 
-        self.residenciabd.updateResidenciaBD(
+        self.resiservbd.updateResiServBD(
             id,
-            idResidencia,
             idServicio,
+            idResidencia            
         )
         print("\nLos cambios se han efectuado con éxito.")
         self.getAllResidenciaServicio()
@@ -79,6 +76,6 @@ class residenciaservicioBE:
         print("Borrando RS...")
         id = int(input("ID de RS a eliminar: "))
 
-        self.residenciabd.deleteResidenciaDB(id)
+        self.resiservbd.deleteResiServDB(id)
         print("La RS se ha removido con éxito.")
         self.getAllResidenciaServicio()

@@ -1,10 +1,9 @@
 from DB_Paises_BE import DBPaises
-
 from Paises_BE import paisesBE
 
 def AppPaises():
     dbpais = DBPaises()
-    bepais = paisesBE
+    bepais = paisesBE()
     print("Inicializando la app de Airbnb Paises")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -30,4 +29,3 @@ def AppPaises():
             bepais.updateCountry()
         if option == 4:
             bepais.deleteCountry()
-            

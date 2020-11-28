@@ -12,7 +12,7 @@ class AccesibilidadDB:
     def getAccessibilities(self):
         result = {}
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = "SELECT * FROM airbnb.accesibilidad;"
                 cursor.execute(sql)
                 result = cursor.fetchall()
@@ -22,20 +22,20 @@ class AccesibilidadDB:
 
     def insertAccessibility(self,accessibilityname):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""INSERT INTO airbnb.accesibilidad
                 (Nombre)
                 VALUES
                 ('{accessibilityname}');"""
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
 
     def searchAccessibilityById(self,idAccessibility):
         accesibilidad = {}
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"SELECT * FROM airbnb.accesibilidad WHERE idAccesibilidad={idAccessibility};"
                 cursor.execute(sql)
                 accesibilidad = cursor.fetchone()
@@ -45,19 +45,19 @@ class AccesibilidadDB:
 
     def updateAccesibilityBD(self,id,accessibilityname):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""UPDATE airbnb.accesibilidad SET 
                 Nombre = '{accessibilityname}'
                 WHERE idAccesibilidad = {id};"""
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
 
     def traerIDAccessibility(self,accessibilityname):
         idaccesibilidad = 0
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"""SELECT idAccesibilidad
                 FROM accesibilidad
                 WHERE Nombre = '{accessibilityname}' ;"""
@@ -69,10 +69,10 @@ class AccesibilidadDB:
 
     def deleteAccessibilityDB(self,idAccessibility):
         try:
-            with connection.cursor() as cursor:
+            with self.connection.cursor() as cursor:
                 sql = f"DELETE FROM airbnb.accesibilidad WHERE idAccesibilidad={idAccessibility};"
                 cursor.execute(sql)
-                connection.commit()
+                self.connection.commit()
         finally:
             pass
         

@@ -68,7 +68,11 @@ class DBCiudades:
                 idciudad = cursor.fetchone()
         finally:
             pass
-        return idciudad["idCiudad"]
+        if idciudad is None:
+            idciudad=0
+            return idciudad
+        else:
+            return idciudad["idCiudad"]
 
     def deleteCityDB(self, idCity):
         try:
