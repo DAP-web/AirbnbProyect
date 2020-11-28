@@ -2,4 +2,8 @@ El archivo "Airbnb_Main.py" es el main de todas las tablas administrador.
 Ahí también se encuentra el main para el cliente, pero concentramos el segundo avance en
 una vista casi completa de la vista del administrador. Ya que a partir de los métodos del administrador 
 se pueden modificar, hacer controles de flujo, etc. para el main del cliente.
+
+Para correr este archivo:
+  1. Correr el archivo en MySQL "Airbnb_vistas.sql" que está en la carpeta "Primer avance"
+
 Cualquier inconveniente y/o duda quedamos al pendiente como equipo.
