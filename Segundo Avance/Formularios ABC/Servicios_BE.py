@@ -1,60 +1,56 @@
 from prettytable import PrettyTable
-from DB_Servicios_BE import (
-    connection,
-    getServices,
-    insertService,
-    searchServiceById,
-    updateServiceBD,
-    traerIDServicio,
-    deleteServiceDB
-)
+from DB_Servicios_BE import serviciosDB 
 
-def getAllServices():
-    result = getServices()
+class serviciosBE:
+    def __init__(self):
+        self.servicios=serviciosDB()
 
-    table = PrettyTable()
-    table.field_names = ["IdServicio","NombreServicio"]
+    def getAllServices(self):
+        result = self.servicios.getServices()
 
-    for servicio in result:
-        table.add_row([servicio["idServicio"],servicio["NombreServicio"]])
+        table = PrettyTable()
+        table.field_names = ["IdServicio","NombreServicio"]
 
-    print(table)
-    table.clear()
+        for servicio in result:
+            table.add_row([servicio["idServicio"],servicio["NombreServicio"]])
 
-def addService():
-    print("\nAdding a new service...")
-    name = input("\nNombreServicio: ")
+        print(table)
+        table.clear()
+
+    def addService(self):
+        print("\nAdding a new service...")
+        name = input("\nNombreServicio: ")
 
 
-    insertService(name)
-    idservicio=traerIDServicio(name)
+        self.servicios.insertService(name)
+        idservicio=self.servicios.traerIDServicio(name)
 
-    print("\nSu servicio se ha registrado con éxito.\n")
-    print(f"Su código de servico único es {idservicio}.\n")
-    getAllServices()
+        print("\nSu servicio se ha registrado con éxito.\n")
+        print(f"Su código de servico único es {idservicio}.\n")
+        self.servicios.getAllServices()
 
-def updateService():
-    print("\nUpdating an existing service...")
-    id = int(input("\nID del servicio a actualizar: "))
+    def updateService(self):
+        print("\nUpdating an existing service...")
+        id = int(input("\nID del servicio a actualizar: "))
 
-    service = searchServiceById(id)
+        service = self.servicios.searchServiceById(id)
 
-    update = int(input("Update Name? 0-No - 1-Yes "))
-    if update == 1:
-        print(f"Viejo Nombre del Servicio: {service['NombreServicio']}")
-        name = input("Nuevo Nombre del Servicio: ")
-    else:
-        name = service["NombreServicio"]
+        update = int(input("Update Name? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Viejo Nombre del Servicio: {service['NombreServicio']}")
+            name = input("Nuevo Nombre del Servicio: ")
+        else:
+            name = service["NombreServicio"]
 
     
-    updateServiceBD(id,name)
-    print("\nLos cambios se han efectuado con éxito.")
-    getAllServices()
+        self.servicios.updateServiceBD(id,name)
+        print("\nLos cambios se han efectuado con éxito.")
+        self.servicios.getAllServices()
 
-def deleteService():
-    print("\nDeleting service...")
-    id = int(input("\nID of service to delete: "))
+    def deleteService(self):
+        print("\nDeleting service...")
+        id = int(input("\nID of service to delete: "))
 
-    deleteServiceDB(id)
-    print("\nEl servicio se ha removido con éxito.")
-    getAllServices()
+        self.servicios.deleteServiceDB(id)
+        print("\nEl servicio se ha removido con éxito.")
+        self.servicios.getAllServices()
