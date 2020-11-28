@@ -19,7 +19,7 @@ def AppCalificaciones():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            calificaciondb.connection.close()
+            #calificaciondb.connection.close()
             break
         if option == 1:
             calificacionbe.getCalificaciones()
@@ -29,4 +29,4 @@ def AppCalificaciones():
             pass
         if option == 4:
             pass
-AppCalificaciones()
+#AppCalificaciones()

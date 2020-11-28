@@ -19,7 +19,7 @@ def accesibilidadesAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Accesibilidad")
-            accesibilidadbd.connection.close()
+            #accesibilidadbd.connection.close()
             break
         if option == 1:
             accesibilidadbe.getAllAccessibilities()
@@ -30,4 +30,4 @@ def accesibilidadesAdmin():
         if option == 4:
             accesibilidadbe.deleteAccessibility()
             
-accesibilidadesAdmin()
+#accesibilidadesAdmin()

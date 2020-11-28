@@ -19,7 +19,7 @@ def desc_accesibilidadAppAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Residencia")
-            desc_accesibilidaddb.connection.close()
+            # desc_accesibilidaddb.connection.close()
             break
         if option == 1:
             desc_accesibilidadbe.getAllDescription()
@@ -30,4 +30,4 @@ def desc_accesibilidadAppAdmin():
         if option == 4:
             desc_accesibilidadbe.deleteDescription()
 
-desc_accesibilidadAppAdmin()
+# desc_accesibilidadAppAdmin()

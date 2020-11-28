@@ -19,7 +19,7 @@ def AppPaises():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Paises")
-            dbpais.connection.close()
+            #dbpais.connection.close()
             break
         if option == 1:
             bepais.getAllCountries()

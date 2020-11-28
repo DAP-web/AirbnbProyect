@@ -19,7 +19,7 @@ def direccionesAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Direcciones")
-            direccionesdb.connection.close()
+            #direccionesdb.connection.close()
             break
         if option == 1:
             direccionesbe.getAllDirections()
@@ -29,5 +29,3 @@ def direccionesAdmin():
             direccionesbe.updateDirection()
         if option == 4:
             direccionesbe.deleteDirection()
-
-direccionesAdmin()

@@ -19,7 +19,7 @@ def ServiciosAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Servicios")
-            serviciosdb.connection.close()
+            #serviciosdb.connection.close()
             break
         if option == 1:
             serviciosbe.getAllServices()

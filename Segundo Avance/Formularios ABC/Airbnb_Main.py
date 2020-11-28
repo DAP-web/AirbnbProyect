@@ -16,6 +16,8 @@ from AccesibilidadApp_FE import accesibilidadesAdmin
 from Desc_AccesibilidadApp_FE import desc_accesibilidadAppAdmin
 from ServiciosApp_FE import ServiciosAdmin
 from TematicaApp_FE import AppTematica
+from ExperienciaApp_FE import ExperienciasAppAdmin
+from ExperienciaResidenciaApp_FE import ExperienciaresidenciasAppAdmin
 
 def AirbnbClientes():
     print("Inicializando la app de Airbnb...")
@@ -63,7 +65,8 @@ def AirbnbAdmin():
         9-Ver descripciones de accesibilidades
         10-Ver Servicios disponibles
         11-Ver experiencias
-        12- Gestionar temáticas experiencias\n"""
+        12-Gestionar temáticas experiencias
+        13-Gestionar las residencias de las experiencias\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
@@ -94,9 +97,11 @@ def AirbnbAdmin():
         if option == 10:
             ServiciosAdmin()
         if option == 11:
-            pass
+            ExperienciasAppAdmin()
         if option == 12:
             AppTematica()
+        if option ==13:
+            ExperienciaresidenciasAppAdmin()
         
 
 AirbnbAdmin()

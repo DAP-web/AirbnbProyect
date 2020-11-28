@@ -19,7 +19,7 @@ def AppTematica():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Tematica")
-            dbtematica.connection.close()
+            #dbtematica.connection.close()
             break
         if option == 1:
             betematica.getAllTematicas()
@@ -30,4 +30,3 @@ def AppTematica():
         if option == 4:
             betematica.deleteTematica()
             
-AppClientes()
