@@ -1,4 +1,4 @@
-
+from Core_databaseX import DatabaseX
 
 class Logic:
     def __init__(self, tableName=None):
@@ -22,8 +22,8 @@ class Logic:
         rowDict = database.executeQueryOneRow(sql)
         return rowDict
 
-    def deleteRowById(self, id, tableName):
+    def deleteRowById(self, idName, id, tableName):
         database = self.database
-        sql = f"DELETE FROM `{database.database}`.`{tableName}` WHERE id = {id};"
+        sql = f"DELETE FROM `{database.database}`.`{tableName}` WHERE {idName} = {id};"
         rows = database.executeNonQueryRows(sql)
         return rows
