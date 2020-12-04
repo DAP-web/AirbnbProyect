@@ -8,7 +8,7 @@ class ClientObj:
         self.email = email
         self.pswd = pswd
         self.user = user
-    
+
     def __init__(self,name,lastname, telephone, country, email, pswd, user,id=0):
         self.id=id
         self.name = name

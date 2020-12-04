@@ -5,7 +5,7 @@ class ClientLogic(Logic):
     def __init__(self):
         super().__init__("clientes")
         self.idName="idClientes"
-    
+
     def getClientes(self):
         clientList = super().getAllRows(self.tableName)
         clientObjList = []
@@ -14,12 +14,8 @@ class ClientLogic(Logic):
             clientObjList.append(newClient)
         return clientObjList
 
-    def createClientObj(self,id, name,lastname, telephone, country, email, pswd, user):
-        clientobj = ClientObj(name,lastname,telephone,country,email,pswd,user,id)
-        return clientobj
-
     def createClientObj(self, clientDict):
-        userObj = ClientObj(
+        clientObj = ClientObj(
             clientDict["Nombre"],
             clientDict["Apellido"],
             clientDict["NumeroTelefonico"],
@@ -29,7 +25,7 @@ class ClientLogic(Logic):
             clientDict["Usuario"],
             clientDict["idClientes"]
         )
-        return userObj
+        return clientObj
 
     def insertClient(self,name, lastname,telephone,country,email,pswrd,user):
         database = self.database
