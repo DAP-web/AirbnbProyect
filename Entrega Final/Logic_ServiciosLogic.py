@@ -4,10 +4,10 @@ from Objects_ServiciosObj import ServiceObj
 class ServiceLogic(Logic):
     def __init__(self):
         super().__init__("servicios")
-        self.idName="idServicios"
+        self.idName="idServicio"
     
     def getServices(self):
-        serviceList= super().getAllRows(self.TableName)
+        serviceList= super().getAllRows(self.tableName)
         serviceObjList =[]
         for service in serviceList:
             newService = self.createServiceObj(service)
@@ -16,8 +16,8 @@ class ServiceLogic(Logic):
 
     def createServiceObj(self,serviceDict):
         serviceObj = ServiceObj(
-            serviceDict[NombreServicio],
-            serviceDict[idServicio]
+            serviceDict["NombreServicio"],
+            serviceDict["idServicio"]
         )
         return serviceObj
 
@@ -29,7 +29,6 @@ class ServiceLogic(Logic):
                 ('{name}');"""
         rows = database.executeNonQueryRows(sql)
         return rows
-        
 
     def searchServiceById(self,id):
         rowDict = super().getRowById(self.idName,id,self.tableName)
@@ -52,9 +51,8 @@ class ServiceLogic(Logic):
         id = database.executeQueryOneRow(sql)
         return id["idServicio"]
       
-
     def deleteServiceDB(self,id):
-       super().deleteRowById(self,idName,id,self.tableName)
+       super().deleteRowById(self.idName,id,self.tableName)
 
                
     

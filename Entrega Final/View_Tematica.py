@@ -12,7 +12,11 @@ class TematicaBE:
         table.field_names = ["IdTematica", "NombreTematica", "Descripcion"]
 
         for tematica in result:
-            table.add_row([tematica["idTematica"],tematica["NombreTematica"],tematica["Descripcion"]])
+            table.add_row([
+                tematica.id,
+                tematica.tematicaname,
+                tematica.description
+                ])
 
         print(table)
         table.clear()
@@ -36,17 +40,17 @@ class TematicaBE:
 
         update = int(input("Update Name? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old Name: {tematica['NombreTematica']}")
+            print(f"Old Name: {tematica.tematicaname}")
             tematicaname = input("New Name: ")
         else:
-            tematicaname = tematica["NombreTematica"]
+            tematicaname = tematica.tematicaname
 
         update = int(input("Update Descripcion? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old Description: {tematica['Descripcion']}")
+            print(f"Old Description: {tematica.description}")
             description = input("New Description: ")
         else:
-            description = tematica["Descripcion"]
+            description = tematica.description
 
         self.dbtematica.updateTematicaBD(id,tematicaname,description)
         print("\nLos cambios se han efectuado con éxito.")

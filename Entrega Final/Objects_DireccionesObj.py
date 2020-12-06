@@ -6,7 +6,6 @@ class DirectionObj:
         self.street = street
         self.cityid = cityid
         
-    
     def __init__(self,state,postalcode,street,cityid,id=0):
         self.id = id
         self.state =state

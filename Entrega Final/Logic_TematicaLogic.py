@@ -14,14 +14,20 @@ class TematicaLogic(Logic):
             tematicaObjList.append(newTematica)
         return tematicaObjList
 
+    def createTematicaObj(self,tematicaDict):
+        tematicaobj = TematicaObj(
+            tematicaDict["NombreTematica"],
+            tematicaDict["Descripcion"],
+            tematicaDict["idTematica"]
+            )
+        return tematicaobj
+
     def insertTematica(self,tematicaname,description):
         database = self.database
         sql = f"""INSERT INTO airbnb.tematica
-                (NombreTematica,
-                Descripcion)
-                VALUES
-                ('{tematicaname}',
-                '{description}');"""
+        (NombreTematica, Descripcion)
+        VALUES
+        ('{tematicaname}', '{description}');"""
         rows = database.executeNonQueryRows(sql)
         return rows
 
