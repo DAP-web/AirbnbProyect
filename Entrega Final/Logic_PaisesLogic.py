@@ -4,7 +4,7 @@ from Objects_PaisesObj import CountryObj
 class PaisesLogic(Logic):
     def __init__(self):
         super().__init__("paises")
-        self.idCountry="idPaises"
+        self.idName="idPais"
 
     def getCountries(self):
         countryList = super().getAllRows(self.tableName)
@@ -25,14 +25,14 @@ class PaisesLogic(Logic):
     def insertCountry(self, countryname,code):
         database = self.database
         sql = f"""INSERT INTO airbnb.paises
-            (NombrePais, CodigoTelefonico)
-            VALUES
-            ('{countryname}', '{code}');"""
+        (NombrePais, CodigoTelefonico)
+        VALUES
+        ('{countryname}', '{code}');"""
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def searchCountryById(self, idCountry):
-        rowDict = super().getRowById(self.idName,id,self.tableName)
+        rowDict = super().getRowById(self.idName,idCountry,self.tableName)
         newCountry = self.createCountryObj(rowDict)
         return newCountry
 
@@ -53,5 +53,5 @@ class PaisesLogic(Logic):
         return id["idPais"]
 
     def deleteCountryDB(self, idCountry):
-        super().deleteRowById(self.idCountry, id, self.tableName)
+        super().deleteRowById(self.idName, idCountry, self.tableName)
             
