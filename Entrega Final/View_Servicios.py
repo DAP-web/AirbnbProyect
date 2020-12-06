@@ -3,7 +3,7 @@ from Logic_ServiciosLogic import ServiceLogic
 
 class serviciosBE:
     def __init__(self):
-        self.servicios=ServiceLogic()
+        self.dbcliente=ServiceLogic()
 
     def getAllServices(self):
         result = self.dbcliente.getServices()
@@ -13,8 +13,8 @@ class serviciosBE:
 
         for servicio in result:
             table.add_row([
-                servicio.id,
-                servicio.name
+                    servicio.id,
+                    servicio.name
                 ])
 
         print(table)
@@ -24,9 +24,8 @@ class serviciosBE:
         print("\nAdding a new service...")
         name = input("\nNombreServicio: ")
 
-
-        self.servicios.insertService(name)
-        idservicio=self.servicios.traerIDServicio(name)
+        self.dbcliente.insertService(name)
+        idservicio=self.dbcliente.traerIDServicio(name)
 
         print("\nSu servicio se ha registrado con éxito.\n")
         print(f"Su código de servico único es {idservicio}.\n")
@@ -36,7 +35,7 @@ class serviciosBE:
         print("\nUpdating an existing service...")
         id = int(input("\nID del servicio a actualizar: "))
 
-        service = self.servicios.searchServiceById(id)
+        service = self.dbcliente.searchServiceById(id)
 
         update = int(input("Update Name? 0-No - 1-Yes "))
         if update == 1:
@@ -45,7 +44,7 @@ class serviciosBE:
         else:
             name = service.name
     
-        self.servicios.updateServiceBD(id,name)
+        self.dbcliente.updateServiceBD(id,name)
         print("\nLos cambios se han efectuado con éxito.")
         self.getAllServices()
 
@@ -53,6 +52,6 @@ class serviciosBE:
         print("\nDeleting service...")
         id = int(input("\nID of service to delete: "))
 
-        self.servicios.deleteServiceDB(id)
+        self.dbcliente.deleteServiceDB(id)
         print("\nEl servicio se ha removido con éxito.")
         self.getAllServices()
