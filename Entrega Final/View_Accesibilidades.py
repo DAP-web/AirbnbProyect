@@ -2,7 +2,7 @@ from prettytable import PrettyTable
 from Logic_AccesibilidadLogic import AccesibilidadLogic
 # from DB_Residencia_BE import ResidenciaDB
 
-class accesibilidades:
+class accesibilidadesBE:
     def __init__(self):
         self.dbaccesibilidades=AccesibilidadLogic()
         
