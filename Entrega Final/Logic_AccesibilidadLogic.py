@@ -31,7 +31,7 @@ class AccesibilidadLogic(Logic):
         )
         return accesibilidadesoviewbj
 
-    def agendarAccesibilidad(self,idAccesibilidades,strNombre, strDescripcion):
+    def agregarAccesibilidad(self,idAccesibilidades,strNombre, strDescripcion):
         database = self.database
         sql = f"""INSERT INTO `airbnb`.`accesibilidades`
         (`idAccesibilidades`,
