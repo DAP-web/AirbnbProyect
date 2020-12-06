@@ -12,7 +12,11 @@ class paisesBE:
         table.field_names = ["IdPais", "NombrePais", "CodigoTelefonico"]
 
         for paises in result:
-            table.add_row([paises["idPais"],paises["NombrePais"],paises["CodigoTelefonico"]])
+            table.add_row([
+                paises.id,
+                paises.countryname,
+                paises.code
+                ])
 
         print(table)
         table.clear()
@@ -37,17 +41,17 @@ class paisesBE:
 
         update = int(input("Update Name? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old Name: {pais['NombrePais']}")
+            print(f"Old Name: {pais.countryname}")
             countryname = input("New Name: ")
         else:
-            countryname = pais["NombrePais"]
+            countryname = pais.countryname
 
         update = int(input("Update PhoneCode? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old PhoneCode: {pais['CodigoTelefonico']}")
+            print(f"Old PhoneCode: {pais.code}")
             code = input("New PhoneCode: ")
         else:
-            code = pais["CodigoTelefonico"]
+            code = pais.code
 
         self.dbpais.updateCountryBD(id,countryname,code)
         print("\nLos cambios se han efectuado con éxito.")

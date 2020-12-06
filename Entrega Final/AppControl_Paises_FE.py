@@ -3,7 +3,7 @@ from View_Paises import paisesBE
 
 def AppPaises():
     dbpais = PaisesLogic()
-    bepais = paisesBE
+    bepais = paisesBE()
     print("Inicializando la app de Airbnb Paises")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -19,7 +19,7 @@ def AppPaises():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Paises")
-            dbpais.connection.close()
+            #dbpais.connection.close()
             break
         if option == 1:
             bepais.getAllCountries()
@@ -29,3 +29,5 @@ def AppPaises():
             bepais.updateCountry()
         if option == 4:
             bepais.deleteCountry()
+
+# AppPaises()
