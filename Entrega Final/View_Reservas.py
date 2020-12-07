@@ -1,11 +1,11 @@
 from prettytable import PrettyTable
 from Logic_ReservasLogics import ReservasLogic
-# from DB_Residencia_BE import ResidenciaDB
+from Logic_ResidenciasLogic import ResidenciaLogic
 
 class reservaciones:
     def __init__(self):
         self.dbreservas=ReservasLogic()
-        # self.dbresidencia=ResidenciaDB()
+        self.dbresidencia=ResidenciaLogic()
 
     def getAllReservas(self,):
         result = self.dbreservas.getReservas()
@@ -114,35 +114,34 @@ class reservaciones:
         id = int(input("ID de reserva único: "))
 
         residencia = self.dbreservas.chequeoCancelacion(id)
-        #chequeo = self.dbresidencia.chequeoFlexCancelacion(residencia["IdResidencia"])
+        chequeo = self.dbresidencia.chequeoFlexCancelacion(residencia)
 
-        self.dbreservas.cancelarReserva(id)
-        # if chequeo["FlexibilidadDeCancelacion"]==0:
-        #     print("\nLa residencia no tiene flexibilidad de cancelación.")
-        #     print("No se ha podido cancelar la reserva.")
-        # else:
-        #     self.dbreservas.cancelarReserva(id)
-        #     print("\nLa reserva se ha cancelado con éxito.")
+        if chequeo==0:
+            print("\nLa residencia no tiene flexibilidad de cancelación.")
+            print("No se ha podido cancelar la reserva.")
+        else:
+            self.dbreservas.cancelarReserva(id)
+            print("\nLa reserva se ha cancelado con éxito.")
 
     #A PARTIR DE AQUI LAS FUNCIONES SON PARA AGENDARLAS DESDE EL PERFIL DE UN CLIENTE
     #Esta parte es de procesos no de tablas
-    # def agendarReservaClientePerfil(self,cliente,residencia):
-    #     print("\nAgregando una nueva reserva...")
-    #     idCliente = int(cliente["idClientes"])
-    #     idResidencia = int(residencia)
-    #     strFechaLlegada = input("\nFecha de llegada (dd-mm-yyyy): ")
-    #     strHoraLlegada = input("\nHora de llegada (hh:mm:ss): ")
-    #     strFechaRetirada = input("\nFecha de retirada (dd-mm-yyyy): ")
-    #     strHoraRetirada = input("\nHora de retirada (hh:mm:ss): ")
-    #     intAdultos = int(input("\nNo. de adultos: "))
-    #     intNinhos = int(input("\nNo. de niños: "))
-    #     intBebes = int(input("\nNo. de bebés: "))
-    #     intTipoPago = int(input("\nTipo de pago (0-Tarjeta | 1-Efectivo): "))
+    def agendarReservaClientePerfil(self,cliente,residencia):
+        print("\nAgregando una nueva reserva...")
+        idCliente = int(cliente.id)
+        idResidencia = int(residencia)
+        strFechaLlegada = input("\nFecha de llegada (dd-mm-yyyy): ")
+        strHoraLlegada = input("\nHora de llegada (hh:mm:ss): ")
+        strFechaRetirada = input("\nFecha de retirada (dd-mm-yyyy): ")
+        strHoraRetirada = input("\nHora de retirada (hh:mm:ss): ")
+        intAdultos = int(input("\nNo. de adultos: "))
+        intNinhos = int(input("\nNo. de niños: "))
+        intBebes = int(input("\nNo. de bebés: "))
+        intTipoPago = int(input("\nTipo de pago (0-Tarjeta | 1-Efectivo): "))
 
-    #     strLlegada = strFechaLlegada+" "+strHoraLlegada
-    #     strRetirada = strFechaRetirada+" "+strHoraRetirada
+        strLlegada = strFechaLlegada+" "+strHoraLlegada
+        strRetirada = strFechaRetirada+" "+strHoraRetirada
 
-    #     self.dbreservas.agendarReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
-    #     idreserva=self.dbreservas.traerIDReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
+        self.dbreservas.agendarReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
+        idreserva=self.dbreservas.traerIDReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
 
-    #     print(f"\nSu reserva se ha agendado con éxito. Su número de reservación es {idreserva}\n")
+        print(f"\nSu reserva se ha agendado con éxito. Su número de reservación es {idreserva}\n")

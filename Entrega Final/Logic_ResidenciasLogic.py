@@ -1,5 +1,5 @@
 from Core_dx_logic import Logic
-from Objects_ResidenciaObj import ResidenciaObj
+from Objects_ResidenciaObj import ResidenciaObj,ResidenciaFullObj
 from Objects_CiudadesObj import CityObj
 from Objects_PaisesObj import CountryObj
 from Objects_DireccionesObj import DirectionObj
@@ -100,8 +100,7 @@ class ResidenciaLogic(Logic):
         database = self.database
         sql = f"SELECT FlexibilidadDeCancelacion FROM airbnb.residencias WHERE idResidencia={idResidencia};"
         residencia = database.executeQueryOneRow(sql)
-        residencia = self.createResidenciaObj(residencia)
-        return residencia
+        return residencia["FlexibilidadDeCancelacion"]
 
     # Esta función es de procesos no de tablas
     # Cuando un cliente quiera agendar una reserva se le solicita el pais al que viaja
@@ -131,6 +130,7 @@ class ResidenciaLogic(Logic):
             residenciaDict["Banhos"],
             residenciaDict["Camas"],
             residenciaDict["Precio"],
+            0,
             residenciaDict["FlexibilidadDeCancelacion"],
             residenciaDict["AirbnbPlus"],
             residenciaDict["Mascotas"],
@@ -140,7 +140,6 @@ class ResidenciaLogic(Logic):
         return residenciaObj
 
     def verResidenciaEspecifica(self, id):
-        result = {}
         database = self.database
         sql = f"""select residencias.idResidencia,residencias.TipoAlojamiento,residencias.Habitaciones,residencias.Banhos,
             residencias.Camas,residencias.Precio,residencias.FlexibilidadDeCancelacion,residencias.AirbnbPlus,
@@ -153,4 +152,25 @@ class ResidenciaLogic(Logic):
             inner join paises on ciudades.IdPais = paises.IdPais
         where residencias.idResidencia={id};"""
         result = database.executeQueryOneRow(sql)
+        result = self.createResidenciaEspecificaObj(result)
         return result
+    
+    def createResidenciaEspecificaObj(self, residenciaDict):
+        residenciaobj = ResidenciaFullObj(
+            residenciaDict["idResidencia"],
+            residenciaDict["TipoAlojamiento"],
+            residenciaDict["Habitaciones"],
+            residenciaDict["Banhos"],
+            residenciaDict["Camas"],
+            residenciaDict["Precio"],
+            residenciaDict["FlexibilidadDeCancelacion"],
+            residenciaDict["AirbnbPlus"],
+            residenciaDict["Mascotas"],
+            residenciaDict["Fumadores"],
+            residenciaDict["Estado"],
+            residenciaDict["CodigoPostal"],
+            residenciaDict["Calle"],
+            residenciaDict["NombreCiudad"],
+            residenciaDict["NombrePais"]
+        )
+        return residenciaobj

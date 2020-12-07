@@ -73,4 +73,8 @@ class ClientLogic(Logic):
         sql = f"""SELECT * FROM airbnb.clientes 
         WHERE Correo='{email}' and Contrasenha='{pswd}';"""
         cliente = database.executeQueryOneRow(sql)
-        return cliente
+        if cliente is None:
+            return cliente
+        else:
+            cliente = self.createClientObj(cliente)
+            return cliente

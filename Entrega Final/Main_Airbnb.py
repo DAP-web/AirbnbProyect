@@ -1,3 +1,6 @@
+from Login import signin
+from Core_databaseX import DatabaseX
+
 def AirbnbClientes():
     print("Inicializando la app de Airbnb...")
     while True:
@@ -17,10 +20,10 @@ def AirbnbClientes():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb...")
-            #connection.close()
+            DatabaseX().connection.close()
             break
         if option == 1:
-            #signin()
+            signin()
             pass
         if option == 2:
             pass
@@ -88,3 +91,4 @@ def AirbnbAdmin():
         # if option ==13:
         #  #   ExperienciaresidenciasAppAdmin()
         
+AirbnbClientes()
