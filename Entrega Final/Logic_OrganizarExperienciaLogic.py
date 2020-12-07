@@ -71,6 +71,20 @@ class OrganizarExperienciaLogic(Logic):
         WHERE idExp = {id};"""
         rows = database.executeNonQueryRows(sql)
         return rows
+    def traerIDOrganizarExperiencia(self, host, ExperienceTitle, TypeExperience, Location,
+    Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements,
+    precio, fecha, idTematic):
+        database = self.database
+        sql = f"""SELECT idExp
+        FROM experiencia
+        WHERE NombreAnfitrion = '{host}' AND TituloExperiencia = '{ExperienceTitle}' AND
+        TipoDeExperiencia = {TypeExperience} AND Ubicacion = '{Location}' AND
+        Descripcion = '{Descrption}' AND Idioma = '{Idiom}' AND
+        PublicoObjetivo = '{PublicObject}' AND Organizacion = '{Organization}' AND
+        AnfitrionExp = '{hostExperience}' AND ElementosANecesitar = '{NeedElements}' AND
+        PrecioIndividual = {precio} AND Fecha = '{fecha}' AND IdTematica ={idTematic};"""
+        id = database.executeQueryOneRow(sql)
+        return id["idExp"]
 
-    def deleteExperienciaDB(self, idExp):
+    def deleteOrganizarExperienciaDB(self, idExp):
         super().deleteRowById(self.idName, idExp, self.tableName)
