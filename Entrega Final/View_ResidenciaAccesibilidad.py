@@ -31,7 +31,7 @@ class accesibilidadesBE:
         self.dbraccesibilidades.agregarRAccesibilidad(idAccesibilidad, idResidencia)
         idraccesibilidades=self.dbraccesibilidad.traerIDRAccesibilidad(idAccesibilidad, idResidencia)
 
-        print(f"\nSu accesibilidad de residencia se ha agregado con éxito. Su número de reservación es {idaccesibilidades}\n")
+        print(f"\nSu accesibilidad de residencia se ha agregado con éxito. Su número de accesibilidad de residencia es {idraccesibilidades}\n")
         self.getAllRAccesibilidades()
 
     def modificarRAccesibilidad(self):

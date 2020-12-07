@@ -31,7 +31,7 @@ class accesibilidadesBE:
         self.dbaccesibilidades.agregarAccesibilidad(strNombre, strDescripcion)
         idaccesibilidades=self.dbaccesibilidad.traerIDAccesibilidad(strNombre,strDescripcion)
 
-        print(f"\nSu accesibilidad se ha agendado con éxito. Su número de reservación es {idaccesibilidades}\n")
+        print(f"\nSu accesibilidad se ha agendado con éxito. Su número de accesibilidad es {idaccesibilidades}\n")
         self.getAllAccesibilidades()
 
     def modificarAccesibilidad(self):
