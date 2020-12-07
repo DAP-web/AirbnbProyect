@@ -1,13 +1,19 @@
 from prettytable import PrettyTable
 from Logic_ClientLogic import ClientLogic
-# from DB_Residencia_BE import ResidenciaDB
-# from Reservaciones_BE import reservaciones
+from Logic_ResidenciasLogic import ResidenciaLogic
+from View_Reservas import reservaciones
+from Logic_ReservasLogics import ReservasLogic
+from Logic_FacturasLogic import FacturasLogic
+from View_Facturas import facturasBE
 
 class clientesBE:
     def __init__(self):
         self.dbcliente=ClientLogic()
-        # self.dbreservaciones = reservaciones()
-        # self.dbresidencias = ResidenciaDB()
+        self.dbreservaciones = reservaciones()
+        self.dbresidencias = ResidenciaLogic()
+        self.reservaslogic = ReservasLogic()
+        self.dbfacturas = FacturasLogic()
+        self.facturasbe = facturasBE()
 
     def getAllClients(self):
         result = self.dbcliente.getClientes()
@@ -115,165 +121,186 @@ class clientesBE:
 
     #ESTOS METODOS SON ESPECIFICAMENTE PARA UN USUARIO YA LOGGEADO
     #Esta parte es de procesos no de tablas
-    # def getClient(self,cliente):
-    #     id = cliente["idClientes"]
-    #     cliente = self.dbcliente.searchClientById(id)
+    def getClient(self,cliente):
+        id = cliente.id
+        cliente = self.dbcliente.searchClientById(id)
 
-    #     print(f"ID de cliente único: {cliente['idClientes']}")
-    #     print(f"Nombre: {cliente['Nombre']}")
-    #     print(f"Apellido: {cliente['Apellido']}")
-    #     print(f"Número telefónico: {cliente['NumeroTelefonico']}")
-    #     print(f"País: {cliente['Pais']}")
-    #     print(f"Correo: {cliente['Correo']}")
-    #     print(f"Usuario: {cliente['Usuario']}")
-    #     print(f"Contraseña: {cliente['Contrasenha']}")
+        print(f"ID de cliente único: {cliente.id}")
+        print(f"Nombre: {cliente.name}")
+        print(f"Apellido: {cliente.lastname}")
+        print(f"Número telefónico: {cliente.telephone}")
+        print(f"País: {cliente.country}")
+        print(f"Correo: {cliente.email}")
+        print(f"Usuario: {cliente.user}")
+        print(f"Contraseña: {cliente.pswd}")
 
-    # def actualizarCliente(self,cliente):
-    #     print("\nUpdating an existing client...")
+    def actualizarCliente(self,cliente):
+        print("\nUpdating an existing client...")
 
-    #     client = cliente
+        client = cliente
 
-    #     update = int(input("Update Name? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old Name: {client['Nombre']}")
-    #         name = input("New Name: ")
-    #     else:
-    #         name = client["Nombre"]
+        update = int(input("Update Name? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Name: {client.name}")
+            name = input("New Name: ")
+        else:
+            name = client.name
 
-    #     update = int(input("Update Lastname? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old Lastname: {client['Apellido']}")
-    #         lastname = input("New Lastname: ")
-    #     else:
-    #         lastname = client["Apellido"]
+        update = int(input("Update Lastname? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Lastname: {client.lastname}")
+            lastname = input("New Lastname: ")
+        else:
+            lastname = client.lastname
 
-    #     update = int(input("Update Telephone number? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old Telephone number {client['NumeroTelefonico']}")
-    #         number = input("New Telephone number: ")
-    #     else:
-    #         number = client["NumeroTelefonico"]
+        update = int(input("Update Telephone number? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Telephone number {client.telephone}")
+            number = input("New Telephone number: ")
+        else:
+            number = client.telephone
 
-    #     update = int(input("Update Country? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old Country: {client['Pais']}")
-    #         country = input("New Country: ")
-    #     else:
-    #         country = client["Pais"]
+        update = int(input("Update Country? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Country: {client.country}")
+            country = input("New Country: ")
+        else:
+            country = client.country
 
-    #     update = int(input("Update Email? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old Email: {client['Correo']}")
-    #         email = input("New Email: ")
-    #     else:
-    #         email = client["Correo"]
+        update = int(input("Update Email? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old Email: {client.email}")
+            email = input("New Email: ")
+        else:
+            email = client.email
 
-    #     update = int(input("Update Password? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old password {client['Contrasenha']}")
-    #         pswd = input("New password: ")
-    #     else:
-    #         pswd = client["Contrasenha"]
+        update = int(input("Update Password? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old password {client.pswd}")
+            pswd = input("New password: ")
+        else:
+            pswd = client.pswd
 
-    #     update = int(input("Update User? 0-No - 1-Yes "))
-    #     if update == 1:
-    #         print(f"Old User {client['Usuario']}")
-    #         user = input("New User: ")
-    #     else:
-    #         user = client["Usuario"]
+        update = int(input("Update User? 0-No - 1-Yes "))
+        if update == 1:
+            print(f"Old User {client.user}")
+            user = input("New User: ")
+        else:
+            user = client.user
 
-    #     self.dbcliente.updateClientBD(client["idClientes"],name,lastname,number,country,email,pswd,user)
-    #     client = self.dbcliente.searchClientById(client["idClientes"])
-    #     print("\nLos cambios se han efectuado con éxito.")
-    #     self.getClient(client)
+        self.dbcliente.updateClientBD(client.id,name,lastname,number,country,email,pswd,user)
+        client = self.dbcliente.searchClientById(client.id)
+        print("\nLos cambios se han efectuado con éxito.")
+        self.getClient(client)
 
-    # def clienteAgendaReserva(self,cliente):
-    #     pais=input("¿A qué país viajas? ")
+    def clienteAgendaReserva(self,cliente):
+        pais=input("¿A qué país viajas? ")
         
-    #     residencias = self.dbresidencias.busquedaDeResidencias(pais)
+        residencias = self.dbresidencias.busquedaDeResidencias(pais)
 
-    #     table = PrettyTable()
-    #     table.field_names = ["idResidencia","TipoAlojamiento","AirbnbPlus","Precio"]
+        table = PrettyTable()
+        table.field_names = ["idResidencia","TipoAlojamiento","AirbnbPlus","Precio"]
 
-    #     for residencia in residencias:
-    #         table.add_row([
-    #         residencia["idResidencia"],
-    #         residencia["TipoAlojamiento"],
-    #         residencia["AirbnbPlus"],
-    #         residencia["Precio"]
-    #         ])
+        for residencia in residencias:
+            table.add_row([
+            residencia.id,
+            residencia.tipoAlojamiento,
+            residencia.aPlus,
+            residencia.precio
+            ])
 
-    #     print(table)
-    #     table.clear()
+        print(table)
+        table.clear()
 
-    #     ver = int(input("¿Ver alguna residencia en específico? No(0)|Sí(1): "))
-    #     if ver==1:
-    #         residenciaVer = input("¿Cuál residencia quieres ver? (Introduce el ID de la residencia): ")
-    #         morada = self.dbresidencias.verResidenciaEspecifica(residenciaVer)
+        ver = int(input("¿Ver alguna residencia en específico? No(0)|Sí(1): "))
+        if ver==1:
+            residenciaVer = int(input("¿Cuál residencia quieres ver? (Introduce el ID de la residencia): "))
+            morada = self.dbresidencias.verResidenciaEspecifica(residenciaVer)
 
-    #         tablaResidencia = PrettyTable()
-    #         tablaDireccioin = PrettyTable()
+            tablaResidencia = PrettyTable()
+            tablaDireccioin = PrettyTable()
 
-    #         tablaResidencia.field_names = [
-    #             "idResidencia",
-    #             "TipoAlojamiento",
-    #             "Habitaciones",
-    #             "Banhos",
-    #             "Camas",
-    #             "Precio",
-    #             "FlexibilidadDeCancelacion",
-    #             "AirbnbPlus",
-    #             "Mascotas",
-    #             "Fumadores"
-    #         ]
+            tablaResidencia.field_names = [
+                "idResidencia",
+                "TipoAlojamiento",
+                "Habitaciones",
+                "Banhos",
+                "Camas",
+                "Precio",
+                "FlexibilidadDeCancelacion",
+                "AirbnbPlus",
+                "Mascotas",
+                "Fumadores"
+            ]
 
-    #         tablaDireccioin.field_names=[ 
-    #             "Estado",
-    #             "CodigoPostal", 
-    #             "Calle", 
-    #             "NombreCiudad", 
-    #             "NombrePais"
-    #         ]
+            tablaDireccioin.field_names=[ 
+                "Estado",
+                "CodigoPostal", 
+                "Calle", 
+                "NombreCiudad", 
+                "NombrePais"
+            ]
 
-    #         for residencia in morada:
-    #             tablaResidencia.add_row([
-    #                 residencia["idResidencia"],
-    #                 residencia["TipoAlojamiento"],
-    #                 residencia["Habitaciones"],
-    #                 residencia["Banhos"],
-    #                 residencia["Camas"],
-    #                 residencia["Precio"],
-    #                 residencia["FlexibilidadDeCancelacion"],
-    #                 residencia["AirbnbPlus"],
-    #                 residencia["Mascotas"],
-    #                 residencia["Fumadores"],
-    #             ])
-    #             tablaDireccioin.add_row([
-    #                 residencia["Estado"],
-    #                 residencia["CodigoPostal"], 
-    #                 residencia["Calle"], 
-    #                 residencia["NombreCiudad"], 
-    #                 residencia["NombrePais"]
-    #             ])
-    #         print(tablaResidencia)
-    #         tablaResidencia.clear()
-    #         print(tablaDireccioin)
-    #         tablaDireccioin.clear()
+            tablaResidencia.add_row([
+                morada.id,
+                morada.tipoAlojamiento,
+                morada.habitaciones,
+                morada.banhos,
+                morada.camas,
+                morada.precio,
+                morada.flexDeCancelacion,
+                morada.aPlus,
+                morada.pets,
+                morada.smokers,
+            ])
+
+            tablaDireccioin.add_row([
+                morada.estado,
+                morada.cp, 
+                morada.calle, 
+                morada.ciudad, 
+                morada.pais
+            ])
+
+            print(tablaResidencia)
+            tablaResidencia.clear()
+            print(tablaDireccioin)
+            tablaDireccioin.clear()
         
-    #         eleccion = int(input("Reservar ya No(0)|Sí(1): "))
-    #         if eleccion==1:
-    #             for res in morada:
-    #                 self.dbreservaciones.agendarReservaClientePerfil(cliente,res["idResidencia"])
+            eleccion = int(input("Reservar ya No(0)|Sí(1): "))
+            if eleccion==1:
+                idreserva = self.dbreservaciones.agendarReservaClientePerfil(cliente,morada.id)
+                self.facturasbe.insertarFacturaResidenciaProceso(morada.id,idreserva,cliente.id)
 
-    #     else:
-    #         eleccion = int(input("¿Reservar alguna residencia? No(0)|Sí(1): "))
-    #         if eleccion==1:
-    #             res = int(input("¿Cuál residencia desea reservar? Ingrese el ID de la residencia"))
-    #             self.dbreservaciones.agendarReservaClientePerfil(cliente,res)
-        """decision = bool(input("¿Quieres escoger otro país? No(0)|Sí(1)"))
-        if decision==False:
-            eleccion = input("¿Cuál residencia quieres reservar? ¡Ingresa el ID de la residencia! ")"""
-            
+        else:
+            eleccion = int(input("¿Reservar alguna residencia? No(0)|Sí(1): "))
+            if eleccion==1:
+                res = int(input("¿Cuál residencia desea reservar? Ingrese el ID de la residencia"))
+                self.dbreservaciones.agendarReservaClientePerfil(cliente,res)
+                idreserva = self.dbreservaciones.agendarReservaClientePerfil(cliente,morada.id)
+                self.facturasbe.insertarFacturaResidenciaProceso(morada.id,idreserva,cliente.id)
 
+    def verReservasCliente(self, cliente):
+        result = self.reservaslogic.getReservasCliente(cliente)
 
+        table = PrettyTable()
+        table.field_names = ["IdReserva","NombreCliente","TelefonoCliente","IdResidencia","FechaLlegada",
+                            "FechaRetirada","Adultos","Ninhos","Bebes","TipoPago"]
+
+        for reserva in result:
+            table.add_row([
+                reserva.idreserva,
+                reserva.cliente,
+                reserva.telephone,
+                reserva.idresidencia,
+                reserva.strFechaLlegada, 
+                reserva.strFechaRetirada,
+                reserva.intAdultos,
+                reserva.intNinhos,
+                reserva.intBebes,
+                reserva.intTipoPago
+                ])
+
+        print(table)
+        table.clear()
 

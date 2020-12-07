@@ -107,8 +107,22 @@ class ReservasLogic(Logic):
         super().deleteRowById(self.idName, id, self.tableName)
 
     def chequeoCancelacion(self,idReserva):
-        reservas={}
         database=self.database
         sql = f"SELECT IdResidencia FROM airbnb.reservas WHERE IdReserva={idReserva};"
         reservas = database.executeQueryOneRow(sql)
         return reservas["IdResidencia"]
+
+    def getReservasCliente(self,cliente):
+        database = self.database
+        sql = f"""select reservas.*
+        from reservas
+            inner join reservaciones on reservas.IdReserva = reservaciones.IdReserva
+            inner join clientes on reservaciones.IdCliente = clientes.idClientes
+        where clientes.idClientes = {cliente.id};
+        """
+        reservasList = database.executeQueryRows(sql)
+        reservasObjList = []
+        for reserva in reservasList:
+            newReserva = self.createReservaViewObj(reserva)
+            reservasObjList.append(newReserva)
+        return reservasObjList
