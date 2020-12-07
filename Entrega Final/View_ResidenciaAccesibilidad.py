@@ -1,6 +1,6 @@
 from prettytable import PrettyTable
 from Logic_ResidenciaAccesibilidadLogic import RAccesibilidadLogic
-# from DB_Residencia_BE import ResidenciaDB
+
 
 class raccesibilidadesBE:
     def __init__(self):
