@@ -49,7 +49,8 @@ def AppClientesRegular(cliente):
         1-Ver mi perfil
         2-Actualizar mi perfil
         3-Reservar
-        4-Registrarme para una experiencia\n"""
+        4-Registrarme para una experiencia
+        5-Ver mis facturas\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
@@ -67,5 +68,3 @@ def AppClientesRegular(cliente):
             reservasClientes(cliente)
         if option == 4:
             pass
-
-            
