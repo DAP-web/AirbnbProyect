@@ -39,7 +39,7 @@ class CiudadesLogic(Logic):
     def updateCityBD(self, id,cityname, idcountry):
         database = self.database
         sql = f"""UPDATE airbnb.ciudades SET
-            NombreCiudad = '{cityname}', IdPais = '{idcountry}'
+            NombreCiudad = '{cityname}', IdPais = {idcountry}
             WHERE idCiudad = {id};"""
         rows = database.executeNonQueryRows(sql)
         return rows
