@@ -11,7 +11,7 @@ class ResidenciaObj:
         aPlus,
         pets,
         smokers,
-        id,
+        id
     ):
         self.id = id
         self.tipoAlojamiento = tipoAlojamiento

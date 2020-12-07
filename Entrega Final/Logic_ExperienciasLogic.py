@@ -1,7 +1,6 @@
 from Core_dx_logic import Logic
 from Objects_ExperienciasObj import ExperienciaObj
 
-
 class ExperienciaLogic(Logic):
     def __init__(self):
         super().__init__("experiencia")
@@ -27,27 +26,16 @@ class ExperienciaLogic(Logic):
             experienciaDic["Organizacion"],
             experienciaDic["AnfitrionExp"],
             experienciaDic["ElementosANecesitar"],
-            experienciaDic["Estado"],
+            experienciaDic["PrecioIndividual"],
+            experienciaDic["Fecha"],
             experienciaDic["IdTematica"],
-            experienciaDic["idExp"],
+            experienciaDic["idExp"]
         )
         return experienciaObj
 
-    def insertExperiencia(
-        self,
-        host,
-        ExperienceTitle,
-        TypeExperience,
-        Location,
-        Descrption,
-        Idiom,
-        PublicObject,
-        Organization,
-        hostExperience,
-        NeedElements,
-        State,
-        idTematic,
-    ):
+    def insertExperiencia(self, host, ExperienceTitle, TypeExperience, Location, 
+    Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements, 
+    precio, fecha, idTematic):
         database = self.database
         sql = f"""INSERT INTO airbnb.experiencia
         (NombreAnfitrion,
@@ -60,7 +48,8 @@ class ExperienciaLogic(Logic):
         Organizacion,
         AnfitrionExp,
         ElementosANecesitar,
-        Estado,
+        PrecioIndividual,
+        Fecha,
         IdTematica)
         VALUES 
         ('{host}',
@@ -73,7 +62,8 @@ class ExperienciaLogic(Logic):
         '{Organization}',
         '{hostExperience}',
         '{NeedElements}',
-        {State},
+        {precio},
+        '{fecha}',
         {idTematic});"""
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -83,22 +73,9 @@ class ExperienciaLogic(Logic):
         newUser = self.creatExperienciaObj(rowDic)
         return newUser
 
-    def updateExperienciaBD(
-        self,
-        id,
-        host,
-        ExperienceTitle,
-        TypeExperience,
-        Location,
-        Descrption,
-        Idiom,
-        PublicObject,
-        Organization,
-        hostExperience,
-        NeedElements,
-        State,
-        idTematic,
-    ):
+    def updateExperienciaBD(self, id, host, ExperienceTitle, TypeExperience, Location,
+    Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements,
+    precio, fecha, idTematic):
         database = self.database
         sql = f"""UPDATE airbnb.experiencia SET
         NombreAnfitrion = '{host}', TituloExperiencia = '{ExperienceTitle}',
@@ -106,26 +83,14 @@ class ExperienciaLogic(Logic):
         Descripcion = '{Descrption}', Idioma = '{Idiom}',
         PublicoObjetivo = '{PublicObject}', Organizacion = '{Organization}',
         AnfitrionExp = '{hostExperience}', ElementosANecesitar = '{NeedElements}',
-        Estado = {State}, IdTematica ={idTematic}
+        PrecioIndividual = {precio}, Fecha = '{fecha}', IdTematica ={idTematic}
         WHERE idExp = {id};"""
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def traerIDExperiencia(
-        self,
-        host,
-        ExperienceTitle,
-        TypeExperience,
-        Location,
-        Descrption,
-        Idiom,
-        PublicObject,
-        Organization,
-        hostExperience,
-        NeedElements,
-        State,
-        idTematic,
-    ):
+    def traerIDExperiencia(self, host, ExperienceTitle, TypeExperience, Location,
+    Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements,
+    precio, fecha, idTematic):
         database = self.database
         sql = f"""SELECT idExp
         FROM experiencia
@@ -134,7 +99,7 @@ class ExperienciaLogic(Logic):
         Descripcion = '{Descrption}' AND Idioma = '{Idiom}' AND
         PublicoObjetivo = '{PublicObject}' AND Organizacion = '{Organization}' AND
         AnfitrionExp = '{hostExperience}' AND ElementosANecesitar = '{NeedElements}' AND
-        Estado = {State} AND IdTematica ={idTematic};"""
+        PrecioIndividual = {precio} AND Fecha = '{fecha}' AND IdTematica ={idTematic};"""
         id = database.executeQueryOneRow(sql)
         return id["idExp"]
 

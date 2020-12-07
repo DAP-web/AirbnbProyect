@@ -24,7 +24,7 @@ class clientesBE:
                 cliente.country,
                 cliente.email,
                 cliente.user
-                ])
+            ])
 
         print(table)
         table.clear()

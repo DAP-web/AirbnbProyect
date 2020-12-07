@@ -22,28 +22,28 @@ class experienciasBE:
             "Organizacion",
             "AnfitrionExp",
             "ElementosANecesitar",
-            "Estado",
+            "Precio",
+            "Fecha",
             "IdTematica",
         ]
 
         for experiencia in result:
-            table.add_row(
-                [
-                    experiencia.id,
-                    experiencia.host,
-                    experiencia.ExperienceTitle,
-                    experiencia.TypeExperience,
-                    experiencia.Location,
-                    experiencia.Descrption,
-                    experiencia.Idiom,
-                    experiencia.PublicObject,
-                    experiencia.Organization,
-                    experiencia.hostExperience,
-                    experiencia.NeedElements,
-                    experiencia.State,
-                    experiencia.idTematic,
-                ]
-            )
+            table.add_row([
+                experiencia.id,
+                experiencia.host,
+                experiencia.ExperienceTitle,
+                experiencia.TypeExperience,
+                experiencia.Location,
+                experiencia.Descrption,
+                experiencia.Idiom,
+                experiencia.PublicObject,
+                experiencia.Organization,
+                experiencia.hostExperience,
+                experiencia.NeedElements,
+                experiencia.precio,
+                experiencia.fecha,
+                experiencia.idTematic
+            ])
         print(table)
         table.clear()
 
@@ -59,37 +59,19 @@ class experienciasBE:
         Organization = input("Organizacion: ")
         hostExperience = input("Experiencia del anfitrion: ")
         NeedElements = input("Elementos faltantes: ")
-        State = int(input("Estado (0-No | 1-Sí): "))
+        PrecioIndividual = round(float(input("Precio Individual: ")),2)
+        strFecha = input("\nFecha (yyyy-mm-dd): ")
+        strHora = input("\nHora (hh:mm:ss): ")
         idTematic = input("Tematica ID: ")
+        strFechaCompleta = strFecha+" "+strHora
 
-        self.dbexperiencia.insertExperiencia(
-            host,
-            ExperienceTitle,
-            TypeExperience,
-            Location,
-            Descrption,
-            Idiom,
-            PublicObject,
-            Organization,
-            hostExperience,
-            NeedElements,
-            State,
-            idTematic,
-        )
-        idExp = self.dbexperiencia.traerIDExperiencia(
-            host,
-            ExperienceTitle,
-            TypeExperience,
-            Location,
-            Descrption,
-            Idiom,
-            PublicObject,
-            Organization,
-            hostExperience,
-            NeedElements,
-            State,
-            idTematic,
-        )
+        self.dbexperiencia.insertExperiencia(host, ExperienceTitle, TypeExperience, Location,
+        Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements,
+        PrecioIndividual,strFechaCompleta,idTematic)
+
+        idExp = self.dbexperiencia.traerIDExperiencia(host, ExperienceTitle, TypeExperience, Location,
+        Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements,
+        PrecioIndividual,strFechaCompleta,idTematic)
 
         print("\nLa experiencia se ha agregado con éxito")
         print(f"El codigo de la experiencia es {idExp}.\n")
@@ -171,35 +153,32 @@ class experienciasBE:
         else:
             NeedElements = experiencia.NeedElements
 
-        update = int(input("¿Actualizar el estado? 0-No - 1-Yes: "))
+        update = int(input("¿Actualizar el precio? 0-No - 1-Yes: "))
         if update == 1:
-            print(f"Antigüos estado: { experiencia.State}")
-            State = input("Nuevo estado: ")
+            print(f"Antigüo precio: {experiencia.precio}")
+            precio = round(float(input("Nuevo precio: ")),2)
         else:
-            State = experiencia.State
+            precio = experiencia.precio
+
+        update = int(input("¿Actualizar fecha de la experiencia? 0-No - 1-Sí: "))
+        if update == 1:
+            print(f"Fecha de retirada Vieja: {experiencia.fecha}")
+            strfecha = input("Nueva Fecha (yyyy-mm-dd): ")
+            strhora = input("Nueva hora (hh:mm:ss): ")
+            strfechacompleta = strfecha+' '+strhora
+        else:
+            strfechacompleta = experiencia.fecha
 
         update = int(input("¿Actualizar temática? 0-No - 1-Yes: "))
         if update == 1:
             print(f"Antigüa temática: { experiencia.idTematic}")
-            idTematic = input("Nuevo temática: ")
+            idTematic = input("Nueva temática: ")
         else:
             idTematic = experiencia.idTematic
 
-        self.dbexperiencia.updateExperienciaBD(
-            id,
-            host,
-            ExperienceTitle,
-            TypeExperience,
-            Location,
-            Descrption,
-            Idiom,
-            PublicObject,
-            Organization,
-            hostExperience,
-            NeedElements,
-            State,
-            idTematic,
-        )
+        self.dbexperiencia.updateExperienciaBD(id, host, ExperienceTitle, TypeExperience,
+        Location, Descrption, Idiom, PublicObject, Organization, hostExperience, 
+        NeedElements, precio, strfechacompleta, idTematic)
         print("\nLos cambios se han efectuado con éxito.")
         self.getAllExperiencias()
 
