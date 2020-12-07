@@ -28,7 +28,7 @@ class paisesBE:
 
         self.dbpais.insertCountry(countryname,code)
         idpais=self.dbpais.traerIDCountry(countryname,code)
-
+        
         print("\nSu pais se ha creado con éxito.\n")
         print(f"Su código de país único es {idpais}.\n")
         self.getAllCountries()
@@ -64,3 +64,4 @@ class paisesBE:
         self.dbpais.deleteCountryDB(id)
         print("El país se ha removido con éxito.")
         self.getAllCountries()
+        
