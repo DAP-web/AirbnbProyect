@@ -14,6 +14,11 @@ create view RServicio as
 select residenciaservicio.IdResidencia,servicios.NombreServicio
 from residenciaservicio inner join servicios on residenciaservicio.IdServicio=servicios.idServicio;
 
+alter view RAccesibilidades as
+select accesibilidades.idAccesibilidades,residenciaaccesibilidad.IdResidencia,accesibilidades.Nombre,accesibilidades.Descripcion
+from residenciaaccesibilidad
+	inner join accesibilidades on residenciaaccesibilidad.IdAccesibilidad=accesibilidades.idAccesibilidades;
+
 /*Vista de experiencias y tematicas*/
 create view Experiencias as
 select experiencia.NombreAnfitrion,experiencia.TituloExperiencia,experiencia.TipoDeExperiencia,experiencia.Ubicacion,experiencia.Descripcion,
