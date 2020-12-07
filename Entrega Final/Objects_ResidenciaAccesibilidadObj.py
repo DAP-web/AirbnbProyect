@@ -1,4 +1,4 @@
-class RAccesibilidadbj:
+class RAccesibilidadObj:
     def __init__(self,idAccesibilidad,idResidencia,id):
         self.id=id
         self.idAccesibilidad = idAccesibilidad
