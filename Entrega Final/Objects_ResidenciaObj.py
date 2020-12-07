@@ -1,18 +1,6 @@
 class ResidenciaObj:
-    def __init__(
-        self,
-        tipoAlojamiento,
-        habitaciones,
-        banhos,
-        camas,
-        idDireccion,
-        precio,
-        FlexDeCancelacion,
-        aPlus,
-        pets,
-        smokers,
-        id
-    ):
+    def __init__(self, tipoAlojamiento, habitaciones, banhos, camas, idDireccion, precio,
+    FlexDeCancelacion, aPlus, pets, smokers, id):
         self.id = id
         self.tipoAlojamiento = tipoAlojamiento
         self.habitaciones = habitaciones
