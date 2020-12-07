@@ -1,7 +1,6 @@
 from Core_dx_logic import Logic
 from Objects_ResidenciaObj import ResidenciaObj
 
-
 class ResidenciaLogic(Logic):
     def __init__(self):
         super().__init__("residencias")

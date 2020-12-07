@@ -32,5 +32,4 @@ def ExperienciasAppAdmin():
         if option == 4:
             beexperiencia.deleteExperiencia()
 
-
 ExperienciasAppAdmin()
