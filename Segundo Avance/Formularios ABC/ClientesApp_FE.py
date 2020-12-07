@@ -48,7 +48,8 @@ def AppClientesRegular(cliente):
         1-Ver mi perfil
         2-Actualizar mi perfil
         3-Reservar
-        4-Registrarme para una experiencia\n"""
+        4-Registrarme para una experiencia
+        5-Registrarme para una experiencia en línea\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)

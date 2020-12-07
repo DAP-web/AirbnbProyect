@@ -4,12 +4,12 @@ from Objects_ResidenciaAccesibilidadViewObj import RAccesibilidadesViewObj
 
 class RAccesibilidadLogic(Logic):
     def __init__(self):
-        super().__init__("raccesibilidades")
-        self.idName="IdRA"
+        super().__init__("residenciaaccesibilidad")
+        self.idName="idRA"
         self.vistaRAccesibilidad = "raccesibilidades"
 
-    def getRAccesibilidad(self):
-        RAccesibilidadesList = super().getAllRows(self.vistaRAccesibilidades)
+    def getRAccesibilidades(self):
+        RAccesibilidadesList = super().getAllRows(self.vistaRAccesibilidad)
         RAccesibilidadesViewObjList = []
         for raccesibilidades in RAccesibilidadesList:
             newRAccesibilidad = self.createRAccesibilidadViewObj(raccesibilidades)
@@ -18,30 +18,28 @@ class RAccesibilidadLogic(Logic):
 
     def createRAccesibilidadObj(self,RAccesibilidadesDict):
         RAccesibilidadobj = RAccesibilidadObj(
-            RAccesibilidadesDict["idAccesibilidad"],
-            RAccesibilidadesDict["idResidencia"]
+            RAccesibilidadesDict["IdAccesibilidad"],
+            RAccesibilidadesDict["IdResidencia"],
+            RAccesibilidadesDict["idRA"]
         )
         return RAccesibilidadobj
 
-    def createAccesibilidadViewObj(self, RAccesibilidadesDict):
+    def createRAccesibilidadViewObj(self, RAccesibilidadesDict):
         RAccesibilidadesoviewbj = RAccesibilidadesViewObj(
-            RAccesibilidadesDict["idAccesibilidad"],
-            RAccesibilidadesDict["idResidencia"],
-            
+            RAccesibilidadesDict["IdResidencia"],
+            RAccesibilidadesDict["Nombre"],
+            RAccesibilidadesDict["Descripcion"]
         )
         return RAccesibilidadesoviewbj
 
-    def agregarRAccesibilidad(self,idRA,idAccesibilidad, idResidencia):
+    def agregarRAccesibilidades(self, idAccesibilidad, idResidencia):
         database = self.database
         sql = f"""INSERT INTO `airbnb`.`residenciaaccesibilidad`
-        (`idRA`,
-        `IdAccesibilidad`,
+        (`IdAccesibilidad`,
         `IdResidencia`)
         VALUES
-        ({idRA},
-        {idAccesibilidad},
+        ({idAccesibilidad},
         {idResidencia});
-
         """
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -51,17 +49,13 @@ class RAccesibilidadLogic(Logic):
         newRAccesibilidad = self.createRAccesibilidadObj(rowDict)
         return newRAccesibilidad
     
-    def actualizarRAccesibilidad(self,id,idRA,idAccesibilidad,idResidencia):
+    def actualizarRAccesibilidad(self, idRA,idAccesibilidad,idResidencia):
         database = self.database
         sql = f"""UPDATE `airbnb`.`residenciaaccesibilidad`
-        SET
-        `idRA` = {idRA},
-        `IdAccesibilidad` = <{idAccesibilidad}>,
-        `IdResidencia` = {idResidencia}
-        WHERE `idRA` = <{id}>;
-
-
-
+        SET 
+        `IdAccesibilidad` = {idAccesibilidad}, 
+        `IdResidencia` = {idResidencia} 
+        WHERE `idRA` = {idRA};
         """
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -71,21 +65,14 @@ class RAccesibilidadLogic(Logic):
         newRAccesibilidad = self.createRAccesibilidadObj(rowDict)
         return newRAccesibilidad
 
-    def traerIDAccesibilidad(self,idRA,idAccesibilidad,idResidencia):
+    def traerIDAccesibilidad(self, idAccesibilidad,idResidencia):
         database = self.database
-        sql = f"""SELECT IdRA
+        sql = f"""SELECT idRA
         FROM residenciaaccesibilidad
-        WHERE IdRA{idRA} AND IDAccesibilidad={idAccesibilidad} AND IDResidencia='{idResidencia}' ;
+        WHERE IdAccesibilidad={idAccesibilidad} AND IdResidencia={idResidencia};
         """
         id = database.executeQueryOneRow(sql)
-        return id["IdRA"]
+        return id["idRA"]
     
     def cancelarRAccesibilidad(self, id):
         super().deleteRowById(self.idName, id, self.tableName)
-
-    def chequeoCancelacion(self,idRA):
-        reservas={}
-        database=self.database
-        sql = f"SELECT IdRA FROM airbnb.residenciaaccesibilidad WHERE IdRA={idRA};"
-        RAccesibilidades = database.executeQueryOneRow(sql)
-        return RAccesibilidades["IdRA"]
