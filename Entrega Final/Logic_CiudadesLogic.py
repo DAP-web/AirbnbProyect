@@ -4,7 +4,7 @@ from Objects_CiudadesObj import CityObj
 class CiudadesLogic(Logic):
     def __init__(self):
         super().__init__("ciudades")
-        self.idCiudad="idCiudad"
+        self.idName="idCiudad"
 
     def getCities(self):
         cityList = super().getAllRows(self.tableName)
@@ -31,8 +31,8 @@ class CiudadesLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def searchCountryById(self, idCity):
-        rowDict = super().getRowById(self.idName,id,self.tableName)
+    def searchCityById(self, idCity):
+        rowDict = super().getRowById(self.idName,idCity,self.tableName)
         newCity = self.createCityObj(rowDict)
         return newCity
 

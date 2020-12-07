@@ -1,6 +1,6 @@
 from Login import signin
 from Core_databaseX import DatabaseX
-from AppControl_Anfitrion_FE import AnfitrionApp
+from AppControl_Anfitrion_FE import AppAnfitrion
 
 def AirbnbClientes():
     print("Inicializando la app de Airbnb...")
@@ -35,8 +35,7 @@ def AirbnbClientes():
         if option == 5:
             pass
         if option == 6:
-            apphost.AppAnfitrion()
-            pass
+            AppAnfitrion()
 
 def AirbnbAdmin():
     print("Inicializando la app de Airbnb para administradores...")
