@@ -108,3 +108,8 @@ class FacturasLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
     
+    def botarFactura(self, idreserva):
+        database = self.database
+        sql = f"delete from factura where IdReserva = {idreserva};"
+        rows = database.executeNonQueryRows(sql)
+        return rows

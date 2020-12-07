@@ -1,11 +1,13 @@
 from prettytable import PrettyTable
 from Logic_ReservasLogics import ReservasLogic
 from Logic_ResidenciasLogic import ResidenciaLogic
+from Logic_FacturasLogic import FacturasLogic
 
 class reservaciones:
     def __init__(self):
         self.dbreservas=ReservasLogic()
         self.dbresidencia=ResidenciaLogic()
+        self.dbfacturas = FacturasLogic()
 
     def getAllReservas(self,):
         result = self.dbreservas.getReservas()
@@ -120,6 +122,7 @@ class reservaciones:
             print("\nLa residencia no tiene flexibilidad de cancelación.")
             print("No se ha podido cancelar la reserva.")
         else:
+            self.dbfacturas.botarFactura(id)
             self.dbreservas.cancelarReserva(id)
             print("\nLa reserva se ha cancelado con éxito.")
 
@@ -145,3 +148,4 @@ class reservaciones:
         idreserva=self.dbreservas.traerIDReserva(idCliente,idResidencia,strLlegada,strRetirada,intAdultos,intNinhos,intBebes,intTipoPago)
 
         print(f"\nSu reserva se ha agendado con éxito. Su número de reservación es {idreserva}\n")
+        return idreserva

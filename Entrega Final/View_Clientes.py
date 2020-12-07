@@ -3,13 +3,17 @@ from Logic_ClientLogic import ClientLogic
 from Logic_ResidenciasLogic import ResidenciaLogic
 from View_Reservas import reservaciones
 from Logic_ReservasLogics import ReservasLogic
+from Logic_FacturasLogic import FacturasLogic
+from View_Facturas import facturasBE
 
 class clientesBE:
     def __init__(self):
         self.dbcliente=ClientLogic()
         self.dbreservaciones = reservaciones()
         self.dbresidencias = ResidenciaLogic()
-        self.rerservasLogic = ReservasLogic()
+        self.reservaslogic = ReservasLogic()
+        self.dbfacturas = FacturasLogic()
+        self.facturasbe = facturasBE()
 
     def getAllClients(self):
         result = self.dbcliente.getClientes()
@@ -265,16 +269,19 @@ class clientesBE:
         
             eleccion = int(input("Reservar ya No(0)|Sí(1): "))
             if eleccion==1:
-                self.dbreservaciones.agendarReservaClientePerfil(cliente,morada.id)
+                idreserva = self.dbreservaciones.agendarReservaClientePerfil(cliente,morada.id)
+                self.facturasbe.insertarFacturaResidenciaProceso(morada.id,idreserva,cliente.id)
 
         else:
             eleccion = int(input("¿Reservar alguna residencia? No(0)|Sí(1): "))
             if eleccion==1:
                 res = int(input("¿Cuál residencia desea reservar? Ingrese el ID de la residencia"))
                 self.dbreservaciones.agendarReservaClientePerfil(cliente,res)
+                idreserva = self.dbreservaciones.agendarReservaClientePerfil(cliente,morada.id)
+                self.facturasbe.insertarFacturaResidenciaProceso(morada.id,idreserva,cliente.id)
 
     def verReservasCliente(self, cliente):
-        result = self.rerservasLogic.getReservasCliente(cliente)
+        result = self.reservaslogic.getReservasCliente(cliente)
 
         table = PrettyTable()
         table.field_names = ["IdReserva","NombreCliente","TelefonoCliente","IdResidencia","FechaLlegada",

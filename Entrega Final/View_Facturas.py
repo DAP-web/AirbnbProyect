@@ -104,3 +104,21 @@ class facturasBE:
 
         self.dbfacturas.agregarFacturaExp(idexperiencia,cliente,subtotal,cupon)
         print("La factura se ha registrado con éxito.")
+
+    def insertarFacturaResidenciaProceso(self, residencia, reserva, cliente):
+        idresidencia = residencia
+        reserva = reserva
+        cliente = cliente
+
+        #hacer un metodo para ir a traer el precio de la residencia
+        residencia = self.dbresidencias.searchResidenciasById(idresidencia)
+        
+        cupon = int(input("¿Tiene cupón? (0-No||1-Sí): "))
+
+        if cupon==0:
+            subtotal = ((float(residencia.precio))*0.13)+((float(residencia.precio))*1.09)
+        else:
+            subtotal = ((float(residencia.precio))*1.13)
+
+        self.dbfacturas.agregarFacturaResidencia(idresidencia,reserva,cliente,subtotal,cupon)
+        print("La factura se ha registrado con éxito.")
