@@ -38,7 +38,7 @@ class accesibilidadesBE:
         print("\nUpdating a booking...")
         id = int(input("\nID de la accesibilidad a modificar: "))
 
-        accesibilidad = self.dbreservas.buscarReservaU(id)
+        accesibilidad = self.dbaccesibilidades.buscarAccesibilidadU(id)
 
         update = int(input("¿Actualizar Nombre de la Accesibilidad? 0-No - 1-Sí "))
         if update == 1:
@@ -60,13 +60,13 @@ class accesibilidadesBE:
 
         self.dbaccesibilidades.actualizarAccesibilidad(id,strNombre, strDescripcion)
         print("\nLos cambios se han efectuado con éxito.")
-        # self.getAllReservas()
+      
 
     def cancelacionDeAccesibilidad(self):
         print("Cancelando accesibilidad...")
         id = int(input("ID de accesibilidad único: "))
 
         accesibilidad = self.dbaccesibilidades.chequeoCancelacion(id)
-        #chequeo = self.dbresidencia.chequeoFlexCancelacion(residencia["IdResidencia"])
+       
 
         self.dbaccesibilidades.cancelarAccesibilidad(id)
