@@ -1,16 +1,16 @@
 from View_Accesibilidades import accesibilidadesBE
-from Logic_AccesibilidadLogic import AccesibilidadLogic
+from Core_databaseX import DatabaseX
 
 
 def AppAccesibilidades():
-    dbaccesibilidad = AccesibilidadLogic()
-    beaccesibilidad = accesibilidadesBE
+    dbaccesibilidad = DatabaseX()
+    beaccesibilidad = accesibilidadesBE()
     print("Inicializando la app de Airbnb Reservas")
     while True:
         Menu = """\nElija una de las siguientes opciones:
         0-Salir de la app
         1- Recuperar todas las accesibilidades
-        2- Agendar una accesibilidad
+        2- Agregar una accesibilidad
         3- Actualizar accesibilidad
         4- Eliminar accesibilidad\n"""
         print("-"*100)
@@ -20,7 +20,7 @@ def AppAccesibilidades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Accesibilidades")
-            #reservas.dbreservas.database.endConnection()
+            # dbaccesibilidad.connection.close()
             break
         if option == 1:
             beaccesibilidad.getAllAccesibilidades()
@@ -29,6 +29,6 @@ def AppAccesibilidades():
         if option == 3:
             beaccesibilidad.modificarAccesibilidad()
         if option == 4:
-            beaccesibilidad.cancelacionDeAccesibilidad()
+            beaccesibilidad.eliminarAccesibilidad()
 
 AppAccesibilidades()

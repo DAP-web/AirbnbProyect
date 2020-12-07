@@ -6,18 +6,17 @@ class accesibilidadesBE:
     def __init__(self):
         self.dbaccesibilidades=AccesibilidadLogic()
         
-
-    def getAllAccesibilidades(self,):
-        result = self.dbaccesibilidad.getAccesibilidades()
+    def getAllAccesibilidades(self):
+        result = self.dbaccesibilidades.getAccesibilidades()
 
         table = PrettyTable()
         table.field_names = ["IdAccesibilidades","NombreAccesibilidad","DescripcionAccesibilidad"]
 
         for accesibilidad in result:
             table.add_row([
-                accesibilidad.idaccesibilidades,
-                accesibilidad.nombre,
-                accesibilidad.descripcion,
+                accesibilidad.idAccesibilidades,
+                accesibilidad.strNombre,
+                accesibilidad.strDescripcion,
                 ])
 
         print(table)
@@ -25,11 +24,11 @@ class accesibilidadesBE:
 
     def agregarAccesibilidadV(self):
         print("\nAdding a new accesibilidad...")
-        strNombre = int(input("\nNombre: "))
-        strDescripcion = int(input("\nDescripcion: "))
+        strNombre = input("\nNombre: ")
+        strDescripcion = input("\nDescripcion: ")
         
         self.dbaccesibilidades.agregarAccesibilidad(strNombre, strDescripcion)
-        idaccesibilidades=self.dbaccesibilidad.traerIDAccesibilidad(strNombre,strDescripcion)
+        idaccesibilidades=self.dbaccesibilidades.traerIDAccesibilidad(strNombre,strDescripcion)
 
         print(f"\nSu accesibilidad se ha agendado con éxito. Su número de accesibilidad es {idaccesibilidades}\n")
         self.getAllAccesibilidades()
@@ -42,31 +41,23 @@ class accesibilidadesBE:
 
         update = int(input("¿Actualizar Nombre de la Accesibilidad? 0-No - 1-Sí "))
         if update == 1:
-            print(f"Nombre: {accesibilidad.Nombre}")
+            print(f"Nombre: {accesibilidad.strNombre}")
             strNombre = input("Nombre: ")
-            
         else:
             strNombre = accesibilidad.strNombre
 
         update = int(input("¿Actualizar descripcion de la accesibilidad? 0-No - 1-Sí "))
         if update == 1:
-            print(f"Descripcion de Accesibilidad Vieja: {accesibilidad.strNombre}")
+            print(f"Descripcion de Accesibilidad Vieja: {accesibilidad.strDescripcion}")
             strDescripcion = input("Nueva Descripcion de accesibilidad: ")
-            
         else:
             strDescripcion = accesibilidad.strDescripcion
 
-    
-
         self.dbaccesibilidades.actualizarAccesibilidad(id,strNombre, strDescripcion)
         print("\nLos cambios se han efectuado con éxito.")
-      
 
-    def cancelacionDeAccesibilidad(self):
+    def eliminarAccesibilidad(self):
         print("Cancelando accesibilidad...")
         id = int(input("ID de accesibilidad único: "))
 
-        accesibilidad = self.dbaccesibilidades.chequeoCancelacion(id)
-       
-
-        self.dbaccesibilidades.cancelarAccesibilidad(id)
+        self.dbaccesibilidades.eliminarAccesibilidad(id)
