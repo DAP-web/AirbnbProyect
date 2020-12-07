@@ -4,11 +4,10 @@ from Logic_DireccionesLogic import DirectionLogic
 from Logic_CiudadesLogic import CiudadesLogic
 from Logic_PaisesLogic import PaisesLogic
 
-
 class anfitrionBE:
     def __init__(self):
         self.dbresidencia = ResidenciaLogic()
-        self.iddireccion = DirectionLogic()
+        self.direcciones = DirectionLogic()
         self.dbciudad = CiudadesLogic()
         self.dbpais = PaisesLogic()
 
@@ -94,7 +93,7 @@ class anfitrionBE:
 
         print("\nLa residencia se ha agregado con éxito.")
         print(f"El código de la residencia es {idResidencia}. \n")
-    break
+    
     
     #UPDATES
 
@@ -133,17 +132,17 @@ class anfitrionBE:
 
         update = int(input("Update Name? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old Name: {ciudad['NombreCiudad']}")
+            print(f"Old Name: {ciudad.cityname}")
             cityname = input("New Name: ")
         else:
-            cityname = ciudad["NombreCiudad"]
+            cityname = ciudad.cityname
 
         update = int(input("Update IdPais? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old IdPais: {ciudad['IdPais']}")
+            print(f"Old IdPais: {ciudad.idcountry}")
             idcountry = input("New IdPais: ")
         else:
-            idcountry = ciudad["IdPais"]
+            idcountry = ciudad.idcountry
 
         self.dbciudad.updateCityBD(id,cityname,idcountry)
         print("\nLos cambios se han efectuado con éxito.")
@@ -270,10 +269,9 @@ class anfitrionBE:
         )
         print("\nLos cambios se han efectuado con éxito.")
         #self.getAllResidencias()
-    break
 
     #DELETACION
-    def deleteAlojamiento
+    def deleteAlojamiento(self):
         self.deleteResidencia()
 
     def deleteResidencia(self):
@@ -282,4 +280,3 @@ class anfitrionBE:
 
         self.dbresidencia.deleteResidenciaDB(id)
         print("La residencia se ha removido con éxito.")
-    break
