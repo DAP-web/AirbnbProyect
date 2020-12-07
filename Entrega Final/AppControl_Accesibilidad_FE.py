@@ -5,7 +5,7 @@ from Logic_AccesibilidadLogic import AccesibilidadLogic
 def AppAccesibilidades():
     dbaccesibilidad = AccesibilidadLogic()
     beaccesibilidad = accesibilidadesBE
-    print("Inicializando la app de Airbnb Reservas")
+    print("Inicializando la app de Airbnb Accesibilidad")
     while True:
         Menu = """\nElija una de las siguientes opciones:
         0-Salir de la app
@@ -20,7 +20,7 @@ def AppAccesibilidades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Accesibilidades")
-            #reservas.dbreservas.database.endConnection()
+            
             break
         if option == 1:
             beaccesibilidad.getAllAccesibilidades()

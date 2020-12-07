@@ -1,6 +1,6 @@
 from Core_dx_logic import Logic
 from Objects_AccesibilidadObj import AccesibilidadesObj
-from Objects_AccesibilidadViewObj import AccesibilidadViewObj
+from Objects_AccesibilidadViewObj import  AccesibilidadesViewObj
 
 class AccesibilidadLogic(Logic):
     def __init__(self):
