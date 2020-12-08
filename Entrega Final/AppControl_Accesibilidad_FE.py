@@ -1,7 +1,6 @@
 from View_Accesibilidades import accesibilidadesBE
 from Logic_AccesibilidadLogic import AccesibilidadLogic
 
-
 def AppAccesibilidades():
     dbaccesibilidad = AccesibilidadLogic()
     beaccesibilidad = accesibilidadesBE

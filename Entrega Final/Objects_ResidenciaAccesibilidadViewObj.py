@@ -1,7 +1,7 @@
 class RAccesibilidadesViewObj:
-    def __init__(self, idResidencia, nombre, descripcion):
-        self.idResidencia = idResidencia
-        self.nombre=nombre
-        self.descripcion=descripcion
+    def __init__(self, idRA, idAccesibilidad, idResidencia):
+        self.idRa= idRA
+        self.idAccesibilidad=idAccesibilidad
+        self.idResidencia=idResidencia
         
         
