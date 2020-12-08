@@ -31,4 +31,4 @@ def AppFacturas():
         if option == 4:
             facturasbe.insertarFacturaExp()
 
-AppFacturas()
+# AppFacturas()

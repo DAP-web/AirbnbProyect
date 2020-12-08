@@ -28,7 +28,8 @@ class RAccesibilidadLogic(Logic):
         RAccesibilidadesoviewbj = RAccesibilidadesViewObj(
             RAccesibilidadesDict["IdResidencia"],
             RAccesibilidadesDict["Nombre"],
-            RAccesibilidadesDict["Descripcion"]
+            RAccesibilidadesDict["Descripcion"],
+            RAccesibilidadesDict["idAccesibilidades"]
         )
         return RAccesibilidadesoviewbj
 
@@ -39,8 +40,7 @@ class RAccesibilidadLogic(Logic):
         `IdResidencia`)
         VALUES
         ({idAccesibilidad},
-        {idResidencia});
-        """
+        {idResidencia});"""
         rows = database.executeNonQueryRows(sql)
         return rows
 
@@ -55,22 +55,20 @@ class RAccesibilidadLogic(Logic):
         SET 
         `IdAccesibilidad` = {idAccesibilidad}, 
         `IdResidencia` = {idResidencia} 
-        WHERE `idRA` = {idRA};
-        """
+        WHERE `idRA` = {idRA};"""
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def buscarRAccesibilidadV(self, id):
         rowDict = super().getRowById(self.idName,id,self.vistaRAccesibilidad)
-        newRAccesibilidad = self.createRAccesibilidadObj(rowDict)
+        newRAccesibilidad = self.createRAccesibilidadViewObj(rowDict)
         return newRAccesibilidad
 
     def traerIDAccesibilidad(self, idAccesibilidad,idResidencia):
         database = self.database
         sql = f"""SELECT idRA
         FROM residenciaaccesibilidad
-        WHERE IdAccesibilidad={idAccesibilidad} AND IdResidencia={idResidencia};
-        """
+        WHERE IdAccesibilidad={idAccesibilidad} AND IdResidencia={idResidencia};"""
         id = database.executeQueryOneRow(sql)
         return id["idRA"]
     

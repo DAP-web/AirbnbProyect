@@ -60,4 +60,4 @@ class accesibilidadesBE:
         print("Cancelando accesibilidad...")
         id = int(input("ID de accesibilidad único: "))
 
-        self.dbaccesibilidades.eliminarAccesibilidad(id)
+        self.dbaccesibilidades.cancelarAccesibilidad(id)

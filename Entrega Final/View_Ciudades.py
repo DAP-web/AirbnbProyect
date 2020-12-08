@@ -12,7 +12,11 @@ class ciudadesBE:
         table.field_names = ["IdCiudad", "NombreCiudad", "IdPais"]
 
         for ciudades in result:
-            table.add_row([ciudades["idCiudad"],ciudades["NombreCiudad"],ciudades["IdPais"]])
+            table.add_row([
+                ciudades.id,
+                ciudades.cityname,
+                ciudades.idcountry
+                ])
 
         print(table)
         table.clear()
@@ -37,17 +41,17 @@ class ciudadesBE:
 
         update = int(input("Update Name? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old Name: {ciudad['NombreCiudad']}")
+            print(f"Old Name: {ciudad.cityname}")
             cityname = input("New Name: ")
         else:
-            cityname = ciudad["NombreCiudad"]
+            cityname = ciudad.cityname
 
         update = int(input("Update IdPais? 0-No - 1-Yes "))
         if update == 1:
-            print(f"Old IdPais: {ciudad['IdPais']}")
+            print(f"Old IdPais: {ciudad.idcountry}")
             idcountry = input("New IdPais: ")
         else:
-            idcountry = ciudad["IdPais"]
+            idcountry = ciudad.idcountry
 
         self.dbciudad.updateCityBD(id,cityname,idcountry)
         print("\nLos cambios se han efectuado con éxito.")

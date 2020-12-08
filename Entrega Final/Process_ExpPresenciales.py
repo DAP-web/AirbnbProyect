@@ -18,7 +18,7 @@ def ExperienciasPresenciales(cliente):
     table1 = PrettyTable()
 
     table.field_names = ["idExp", "NombreAnfitrion", "TituloExperiencia", "TipoDeExperiencia",
-        "Ubicacion", "Descripcion", "Idioma"]
+    "Ubicacion", "Descripcion", "Idioma"]
 
     table1.field_names = ["idExp", "PublicoObjetivo", "Organizacion", "AnfitrionExp",
     "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]

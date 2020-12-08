@@ -33,4 +33,4 @@ def ExperienciaresidenciasAppAdmin():
             experenciaresidenciabe.deleteExperienciaResidencia()
 
 
-ExperienciaresidenciasAppAdmin()
+# ExperienciaresidenciasAppAdmin()

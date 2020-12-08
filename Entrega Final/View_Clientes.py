@@ -303,4 +303,20 @@ class clientesBE:
 
         print(table)
         table.clear()
+    
+    def ClienteRegistro(self):
+        print("\nAdding a new client...")
+        name = input("\nNombre: ")
+        lastname = input("\nApellido: ")
+        telephone = input("\nNumero de Telefono: ")
+        country = input("\nPais de provinencia: ")
+        email = input("\nCorreo electrónico: ")
+        pswrd = input("\nContraseña: ")
+        user = input("\nNombre de usuario: ")
+
+        self.dbcliente.insertClient(name,lastname,telephone,country,email,pswrd,user)
+        idcliente=self.dbcliente.traerIDCliente(name,lastname,telephone,country,email,pswrd,user)
+
+        print("\nSu perfil se ha creado con éxito.\n")
+        print(f"Su código de cliente único es {idcliente}.\n")
 

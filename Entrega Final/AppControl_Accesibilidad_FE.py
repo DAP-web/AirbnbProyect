@@ -3,7 +3,7 @@ from Logic_AccesibilidadLogic import AccesibilidadLogic
 
 def AppAccesibilidades():
     dbaccesibilidad = AccesibilidadLogic()
-    beaccesibilidad = accesibilidadesBE
+    beaccesibilidad = accesibilidadesBE()
     print("Inicializando la app de Airbnb Accesibilidad")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -28,6 +28,6 @@ def AppAccesibilidades():
         if option == 3:
             beaccesibilidad.modificarAccesibilidad()
         if option == 4:
-            beaccesibilidad.cancelacionDeAccesibilidad()
+            beaccesibilidad.eliminarAccesibilidad()
 
-AppAccesibilidades()
+# AppAccesibilidades()

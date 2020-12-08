@@ -138,3 +138,65 @@ class facturasBE:
             
         self.dbfacturas.agregarFacturaExp(idexperiencia,cliente,subtotal,cupon)
         print("La factura se ha registrado con éxito.")
+
+    def verMisFacturas(self, cliente):
+        print("Facturas de Experiencias: ")
+        result = self.dbfacturas.verMisFacturas(cliente.id,True)
+
+        table = PrettyTable()
+        table.field_names = [
+            "idFactura", 
+            "IdExp", 
+            "PrecioIndividual", 
+            "Cliente", 
+            "NumeroTelefonico", 
+            "IVA", 
+            "Subtotal", 
+            "Cupon"
+        ]
+
+        for factura in result:
+            table.add_row([
+                factura.idfactura,
+                factura.idexperiencia,
+                factura.precio,
+                factura.cliente,
+                factura.numero,
+                factura.iva,
+                factura.subtotal,
+                factura.cupon
+            ])
+        print(table)
+        table.clear()
+
+        print("Facturas de Reservaciones: ")
+        result1 = self.dbfacturas.verMisFacturas(cliente.id, False)
+        table1 = PrettyTable()
+        table1.field_names = [
+            "idFactura", 
+            "IdResidencia", 
+            "IdReserva", 
+            "Precio", 
+            "Cliente", 
+            "FechaEmitida", 
+            "NumeroTelefonico", 
+            "IVA", 
+            "Subtotal", 
+            "Cupon"
+        ]
+
+        for factura in result1:
+            table1.add_row([
+                factura.idfactura,
+                factura.idresidencia,
+                factura.idreserva,
+                factura.precio,
+                factura.cliente,
+                factura.fechaEmitida,
+                factura.numero,
+                factura.iva,
+                factura.subtotal,
+                factura.cupon
+            ])
+        print(table1)
+        table1.clear()

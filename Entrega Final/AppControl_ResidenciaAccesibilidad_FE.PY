@@ -1,7 +1,6 @@
 from View_ResidenciaAccesibilidad import raccesibilidadesBE
 from Core_databaseX import DatabaseX
 
-
 def AppRAccesibilidades():
     dbraccesibilidad = DatabaseX()
     beraccesibilidad = raccesibilidadesBE()
@@ -20,7 +19,7 @@ def AppRAccesibilidades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Accesibilidades de Residencia")
-            dbraccesibilidad.connection.close()
+            # dbraccesibilidad.connection.close()
             break
         if option == 1:
             beraccesibilidad.getAllRAccesibilidades()
@@ -29,6 +28,6 @@ def AppRAccesibilidades():
         if option == 3:
             beraccesibilidad.modificarRAccesibilidad()
         if option == 4:
-            beraccesibilidad.cancelacionDeRAccesibilidad()
+            beraccesibilidad.eliminarRAccesibilidad()
 
-AppRAccesibilidades()
+# AppRAccesibilidades()

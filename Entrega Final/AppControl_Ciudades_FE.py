@@ -3,7 +3,7 @@ from View_Ciudades import ciudadesBE
 
 def AppCiudades():
     dbciudad = CiudadesLogic()
-    beciudad = ciudadesBE
+    beciudad = ciudadesBE()
     print("Inicializando la app de Airbnb Ciudades")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -19,7 +19,7 @@ def AppCiudades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Ciudades")
-            dbciudad.connection.close()
+            # dbciudad.connection.close()
             break
         if option == 1:
             beciudad.getAllCities()

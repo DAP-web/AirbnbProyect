@@ -33,4 +33,4 @@ def residenciaservicioAppAdmin():
             resiservbe.deleteResidenciaServicio()
 
 
-residenciaservicioAppAdmin()
+# residenciaservicioAppAdmin()

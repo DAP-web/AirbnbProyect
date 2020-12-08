@@ -113,3 +113,32 @@ class FacturasLogic(Logic):
         sql = f"delete from factura where IdReserva = {idreserva};"
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    def verMisFacturas(self, cliente, boolExp):
+        database = self.database
+        facturasObjList=[]
+        if boolExp:
+            sql = f"""select facturaexperiencias.*
+            from facturaexperiencias 
+                inner join factura on facturaexperiencias.idFactura = factura.idFactura
+                inner join clientes on factura.IdCliente = clientes.idClientes
+            where clientes.idClientes = {cliente};
+            """
+            facturasList = database.executeQueryRows(sql)
+            
+            for factura in facturasList:
+                nuevaFactura = self.createFacturaExpViewObj(factura)
+                facturasObjList.append(nuevaFactura)
+            return facturasObjList
+        else:
+            sql = f"""select facturaresidencias.*
+            from facturaresidencias 
+                inner join factura on facturaresidencias.idFactura = factura.idFactura
+                inner join clientes on factura.IdCliente = clientes.idClientes
+            where clientes.idClientes = {cliente};
+            """
+            facturasList = database.executeQueryRows(sql)
+            for factura in facturasList:
+                nuevaFactura = self.createFacturaResidenciaViewObj(factura)
+                facturasObjList.append(nuevaFactura)
+            return facturasObjList

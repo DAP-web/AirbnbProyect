@@ -1,7 +1,6 @@
 from prettytable import PrettyTable
 from Logic_ExperienciasLogic import ExperienciaLogic
 
-
 class experienciasBE:
     def __init__(self):
         self.dbexperiencia = ExperienciaLogic()
@@ -189,3 +188,4 @@ class experienciasBE:
         self.dbexperiencia.deleteExperienciaDB(id)
         print("La experiencia se ha removido con éxito.")
         self.getAllExperiencias()
+

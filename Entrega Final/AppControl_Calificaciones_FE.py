@@ -29,4 +29,4 @@ def AppCalificaciones():
         if option == 4:
             pass
 
-AppCalificaciones()
+# AppCalificaciones()

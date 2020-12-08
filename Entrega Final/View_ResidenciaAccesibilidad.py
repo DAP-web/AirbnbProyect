@@ -5,7 +5,7 @@ class raccesibilidadesBE:
     def __init__(self):
         self.dbraccesibilidades=RAccesibilidadLogic()
         
-    def getAllRAccesibilidades(self,):
+    def getAllRAccesibilidades(self):
         result = self.dbraccesibilidades.getRAccesibilidades()
 
         table = PrettyTable()
@@ -13,9 +13,9 @@ class raccesibilidadesBE:
 
         for raccesibilidad in result:
             table.add_row([
-                raccesibilidad.idResidencia,
+                raccesibilidad.idresidencia,
                 raccesibilidad.nombre,
-                raccesibilidad.descripcion,
+                raccesibilidad.descripcion
                 ])
 
         print(table)
@@ -56,8 +56,7 @@ class raccesibilidadesBE:
         self.dbraccesibilidades.actualizarRAccesibilidad(id,idAccesibilidad,idResidencia)
         print("\nLos cambios se han efectuado con éxito.")
         
-
-    def cancelacionDeRAccesibilidad(self):
+    def eliminarRAccesibilidad(self):
         print("Cancelando accesibilidad de residencia...")
         id = int(input("ID de accesibilidad único: "))
        

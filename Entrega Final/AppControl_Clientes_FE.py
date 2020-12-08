@@ -5,6 +5,8 @@ from AppControl_Reservas_FE import(
     reservasClientes
 )
 from Process_ExpEnLinea import ExperienciasEnLinea
+from Process_ExpPresenciales import ExperienciasPresenciales
+from View_Facturas import facturasBE
 
 #Menú para administradores
 def AppClientes():
@@ -43,6 +45,7 @@ def AppClientes():
 def AppClientesRegular(cliente):
     # dbcliente = DBClientes()
     becliente = clientesBE()
+    befacturas = facturasBE()
     print("Inicializando la app de Airbnb Clientes")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -69,8 +72,8 @@ def AppClientesRegular(cliente):
         if option == 3:
             reservasClientes(cliente)
         if option == 4:
-            pass
+            ExperienciasPresenciales(cliente)
         if option == 5:
             ExperienciasEnLinea(cliente)
         if option == 6:
-            pass
+            befacturas.verMisFacturas(cliente)
