@@ -319,4 +319,3 @@ class clientesBE:
 
         print("\nSu perfil se ha creado con éxito.\n")
         print(f"Su código de cliente único es {idcliente}.\n")
-
