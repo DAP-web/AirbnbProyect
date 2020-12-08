@@ -1,0 +1,6 @@
+1- Correr el archivo .sql llamado "airbnbDump102.sql" en MySQL Workbench
+2- Correr el archivo "Main_Airbnb.py" y ver el proyecto.
+	Se le preguntará qué aplicación gusta iniciar, si la de Clientes o la de Administradores.
+	Ingresa el dígito respectivo que se le indicará y verá el funcionamiento completo.
+	Para cambiarse de aplicación debe volver a correr el archivo "Main_Airbnb.py" y seleccionar la opción respectiva.
+Cualquier inconveniente o consulta estamos a la orden.
