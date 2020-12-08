@@ -1,8 +1,8 @@
 from Core_databaseX import DatabaseX
-from View_OrdenarExperiencia import OrganizarexperienciasBE
+from View_OrdenarExperiencia import organizarExperienciaBE
 from View_ExperienciaResidencia import ExperienciaResidenciasBE
 
-ordenarexperienciabe = OrganizarexperienciasBE()
+ordenarexperienciabe = organizarExperienciaBE()
 experienciaresidenciabe= ExperienciaResidenciasBE()
 organizarExperienciadb = DatabaseX()
 
@@ -24,7 +24,8 @@ def AppOrganizarExperiencia():
             organizarExperienciadb.connection.close()
             break
         if option == 1:
-           ordenarexperienciabe.addOrganizarExperiencia()
+           ordenarexperienciabe.ordenartematica()
+           
            
           
         if option == 2:
