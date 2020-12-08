@@ -4,6 +4,7 @@ from View_Clientes import clientesBE
 from AppControl_Reservas_FE import(
     reservasClientes
 )
+from Process_ExpEnLinea import ExperienciasEnLinea
 
 #Menú para administradores
 def AppClientes():
@@ -50,7 +51,8 @@ def AppClientesRegular(cliente):
         2-Actualizar mi perfil
         3-Reservar
         4-Registrarme para una experiencia
-        5-Ver mis facturas\n"""
+        5-Registrarme para una experiencia en línea
+        6-Ver mis facturas\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
@@ -67,4 +69,8 @@ def AppClientesRegular(cliente):
         if option == 3:
             reservasClientes(cliente)
         if option == 4:
+            pass
+        if option == 5:
+            ExperienciasEnLinea(cliente)
+        if option == 6:
             pass
