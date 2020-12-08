@@ -1,10 +1,12 @@
 from Core_dx_logic import Logic
 from Objects_ExperienciasObj import ExperienciaObj
+from Objects_ExperienciaViewObj import ExperienciaViewObj
 
 class ExperienciaLogic(Logic):
     def __init__(self):
         super().__init__("experiencia")
         self.idName = "idExp"
+        self.vistaName = "experiencias"
 
     def getExperiencia(self):
         experienciaList = super().getAllRows(self.tableName)
@@ -32,6 +34,25 @@ class ExperienciaLogic(Logic):
             experienciaDic["idExp"]
         )
         return experienciaObj
+
+    def creatExperienciaViewObj(self, experienciaDic):
+        experienciaViewObj = ExperienciaViewObj(
+            experienciaDic["NombreAnfitrion"],
+            experienciaDic["TituloExperiencia"],
+            experienciaDic["TipoDeExperiencia"],
+            experienciaDic["Ubicacion"],
+            experienciaDic["Descripcion"],
+            experienciaDic["Idioma"],
+            experienciaDic["PublicoObjetivo"],
+            experienciaDic["Organizacion"],
+            experienciaDic["AnfitrionExp"],
+            experienciaDic["ElementosANecesitar"],
+            experienciaDic["Precio"],
+            experienciaDic["Fecha"],
+            experienciaDic["NombreTematica"],
+            experienciaDic["idExp"]
+        )
+        return experienciaViewObj
 
     def insertExperiencia(self, host, ExperienceTitle, TypeExperience, Location, 
     Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements, 
@@ -73,6 +94,11 @@ class ExperienciaLogic(Logic):
         newUser = self.creatExperienciaObj(rowDic)
         return newUser
 
+    def searchExperienciaByIdView(self, id):
+        rowDic = super().getRowById(self.idName, id, self.vistaName)
+        newUser = self.creatExperienciaViewObj(rowDic)
+        return newUser
+
     def updateExperienciaBD(self, id, host, ExperienceTitle, TypeExperience, Location,
     Descrption, Idiom, PublicObject, Organization, hostExperience, NeedElements,
     precio, fecha, idTematic):
@@ -105,3 +131,13 @@ class ExperienciaLogic(Logic):
 
     def deleteExperienciaDB(self, idExp):
         super().deleteRowById(self.idName, idExp, self.tableName)
+
+    def buscarExperienciasEnLinea(self):
+        database = self.database
+        sql = "SELECT * FROM airbnb.experiencias where TipoDeExperiencia=0;"
+        experienciaList = database.executeQueryRows(sql)
+        experienciaObjList = []
+        for experiencia in experienciaList:
+            newExperiencia = self.creatExperienciaViewObj(experiencia)
+            experienciaObjList.append(newExperiencia)
+        return experienciaObjList
