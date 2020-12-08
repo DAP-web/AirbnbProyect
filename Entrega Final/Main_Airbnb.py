@@ -15,7 +15,8 @@ def AirbnbClientes():
         2-Registrarse como cliente
         3-Buscar residencias
         4-Buscar experiencias
-        5-Ser anfitrión\n"""
+        5-Ser anfitrión
+        6-Organizar una experiencia\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
@@ -30,11 +31,13 @@ def AirbnbClientes():
         if option == 2:
             clientesBE().ClienteRegistro()
         if option == 3:
-            pass
+            clientesBE().BuscarResidenciasFull()
         if option == 4:
             adminCliente.buscarExpFull()
         if option == 5:
             AppAnfitrion()
+        if option == 6:
+            adminCliente.organizarExperiencia()
 
 def AirbnbAdmin():
     admin = Admin()

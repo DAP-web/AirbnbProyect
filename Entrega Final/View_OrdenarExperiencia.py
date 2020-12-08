@@ -2,16 +2,15 @@ from prettytable import PrettyTable
 from Logic_ExperienciaResidenciaLogic import ExperienciaResidenciaLogic
 from Logic_ExperienciasLogic import ExperienciaLogic
 from Logic_TematicaLogic import TematicaLogic
-
-
+from View_Tematica import TematicaBE
 
 class organizarExperienciaBE:
     def __init__(self):
         self.dbexperiencia = ExperienciaLogic()
         self.dbexperienciaresidencia = ExperienciaResidenciaLogic()
         self.dbtematica =TematicaLogic()
-        
-
+        self.betematica = TematicaBE()
+    
     #INGRESO DE DATOS
     def addOrganizarExperiencia(self):
         self.addExperiencia()
@@ -20,11 +19,12 @@ class organizarExperienciaBE:
         print("\nAdding a new experiencia...")
         host = input("\nNombre del anfitrion: ")
         ExperienceTitle = input("\nTítulo experiencia: ")
-        TypeExperience =input("\nTipo de experiencia (1.Online| 2.Presencial): ")
+        TypeExperience =int(input("\nTipo de experiencia (0-Online||1-Presencial): "))
 
-        if TypeExperience==1:
-            TypeExperience= 1
-            Location=input("\nTipo de experiencia (1.Meets|2.Zoom|3.Teams|4.Otro): ")
+        if TypeExperience==0:
+            TypeExperience= 0
+            Location=input("\nPlataforma (Meets|Zoom|Teams|Otro): ")
+            description = input("Descripción de la experiencia: ")
             Idiom=input("\nIdioma : ")
             PublicObject = input("Publico objetivo: ")
             Organization = input("Organizacion: ")
@@ -33,87 +33,78 @@ class organizarExperienciaBE:
             PrecioIndividual = round(float(input("Precio Individual($0.00): ")),2)
             strFecha = input("\nFecha (yyyy-mm-dd): ")
             strHora = input("\nHora (hh:mm:ss): ")
-            ordenarTematica()
-            idTematic = input("¿La tematica se encuentra en las opciones?(1.Sí|2.No): ")
+            self.ordenarTematica()
+
+            idTematic = int(input("¿La tematica se encuentra en las opciones?(1-Sí||0-No): "))
             if idTematic==1:
                 idTematic=input("Ingrese el id de la tematica: ")
-                strFechaCompleta = strFecha+" "+strHora
-            if idTematic==2:
-                idTematic= self.dbtematica.insertTematica()
-                strFechaCompleta = strFecha+" "+strHora
-        
-            else:
-                idTematic==1
-                strFechaCompleta = strFecha+" "+strHora
-        if TypeExperience==2:
 
-            TypeExperience= 2
-            Location=input("\nTipo de experiencia (1.Meets|2.Zoom|3.Teams|4.Otro): ")
-            Idiom=input("\nIdioma : ")
+            elif idTematic==0:
+                idTematic = self.betematica.addTematicaProceso()
+
+            strFechaCompleta = strFecha+" "+strHora
+
+        elif TypeExperience==1:
+            TypeExperience = 1
+            Location=input("Ubicación: ")
+            Idiom=input("Idioma : ")
+            description = input("Descripción de la experiencia: ")
             PublicObject = input("Publico objetivo: ")
             Organization = input("Organizacion: ")
             hostExperience = input("Experiencia del anfitrion(Basico|Medio|Experto): ")
             NeedElements = input("Elementos faltantes: ")
             PrecioIndividual = round(float(input("Precio Individual($0.00): ")),2)
-            strFecha = input("\nFecha (yyyy-mm-dd): ")
-            strHora = input("\nHora (hh:mm:ss): ")
-            ordenarTematica()
-            idTematic = input("¿La tematica se encuentra en las opciones?(1.Sí|2.No): ")
+            strFecha = input("Fecha (yyyy-mm-dd): ")
+            strHora = input("Hora (hh:mm:ss): ")
+            self.ordenarTematica()
+            idTematic = int(input("¿La tematica se encuentra en las opciones?(1-Sí||0-No): "))
             if idTematic==1:
                 idTematic=input("Ingrese el id de la tematica: ")
-                strFechaCompleta = strFecha+" "+strHora
-            if idTematic==2:
-                idTematic= self.dbtematica.insertTematica()
-                strFechaCompleta = strFecha+" "+strHora
-        
-            else:
-                idTematic==1
-                strFechaCompleta = strFecha+" "+strHora
-           
+
+            elif idTematic==0:
+                idTematic = self.betematica.addTematicaProceso()
+
+            strFechaCompleta = strFecha+" "+strHora
+
         else:
-            TypeExperience= 1
-            Location=input("\nTipo de experiencia (1.Meets|2.Zoom|3.Teams|4.Otro): ")
-            Idiom=input("\nIdioma : ")
+            TypeExperience= 0
+            Location=input("Plataforma (1.Meets|2.Zoom|3.Teams|4.Otro): ")
+            Idiom=input("Idioma : ")
+            description = input("Descripción de la experiencia: ")
             PublicObject = input("Publico objetivo: ")
             Organization = input("Organizacion: ")
             hostExperience = input("Experiencia del anfitrion(Basico|Medio|Experto): ")
             NeedElements = input("Elementos faltantes: ")
             PrecioIndividual = round(float(input("Precio Individual($0.00): ")),2)
-            strFecha = input("\nFecha (yyyy-mm-dd): ")
-            strHora = input("\nHora (hh:mm:ss): ")
-            ordenarTematica()
-            idTematic = input("¿La tematica se encuentra en las opciones?(1.Sí|2.No): ")
+            strFecha = input("Fecha (yyyy-mm-dd): ")
+            strHora = input("Hora (hh:mm:ss): ")
+            self.ordenarTematica()
+            idTematic = int(input("¿La tematica se encuentra en las opciones?(1-Sí||0-No): "))
             if idTematic==1:
                 idTematic=input("Ingrese el id de la tematica: ")
                 strFechaCompleta = strFecha+" "+strHora
-            if idTematic==2:
+            elif idTematic==0:
                 idTematic= self.dbtematica.insertTematica()
                 strFechaCompleta = strFecha+" "+strHora
-        
-            else:
-                idTematic==1
-                strFechaCompleta = strFecha+" "+strHora
-        self.dbexperiencia.insertExperiencia(host,ExperienceTitle,TypeExperience,Location,Idiom,PublicObject,Organization,hostExperience,NeedElements,PrecioIndividual,strFechaCompleta,idTematic)
-        idexperiencia=self.dbexperiencia.traerIDExperiencia(host,ExperienceTitle,TypeExperience,Location,Idiom,PublicObject,Organization,hostExperience,NeedElements,PrecioIndividual,strFechaCompleta,idTematic)
+
+        self.dbexperiencia.insertExperiencia(host,ExperienceTitle,TypeExperience,Location,
+        description, Idiom,PublicObject,Organization,hostExperience,NeedElements,PrecioIndividual,
+        strFechaCompleta,idTematic)
+
+        idexperiencia=self.dbexperiencia.traerIDExperiencia(host,ExperienceTitle,TypeExperience,
+        Location, description, Idiom,PublicObject,Organization,hostExperience,NeedElements,PrecioIndividual,
+        strFechaCompleta,idTematic)
         
         print("\nSu experiencia se ha creado con éxito.\n")
         print(f"Su código de experiencia único es {idexperiencia}.\n")
-        self.addExperiencia()
-
    
     #UPDATES
-
     def updateOrdenarExperiencia(self):
         self.updateExperiencia()
 
     def updateExperiencia(self):
         print("\nUpdating an existing experiencia...")
         id = int(input("\nID de la experiencia a actualizar: "))
-
-        experiencia = self.dbexperiencia.searchExperienciaById(id)
-
-        print("\nActualizando la experiencia...")
-        id = int(input("\nID de la expereincia a actualizar: "))
 
         experiencia = self.dbexperiencia.searchExperienciaById(id)
 
@@ -215,9 +206,7 @@ class organizarExperienciaBE:
         Location, Descrption, Idiom, PublicObject, Organization, hostExperience, 
         NeedElements, precio, strfechacompleta, idTematic)
         print("\nLos cambios se han efectuado con éxito.")
-        self.getAllExperiencias()
 
-    
 
     #DELETACION
     def deleteOrganizarExperiencia(self):
@@ -227,8 +216,8 @@ class organizarExperienciaBE:
         print("Borrando experiencia...")
         id = int(input("ID de la experiencia a eliminar: "))
 
-        self.dbresidencia.deleteResidenciaDB(id)
-        print("La residencia se ha removido con éxito.")
+        self.dbexperiencia.deleteExperienciaDB(id)
+        print("La experiencia se ha removido con éxito.")
 
     #ORDENAR
 

@@ -13,109 +13,109 @@ class anfitrionBE:
 
     #INGRESO DE DATOS
     def addAlojamiento(self):
-            result = self.dbpais.getCountries()
+        result = self.dbpais.getCountries()
 
-            table = PrettyTable()
-            table.field_names = ["IdPais", "NombrePais", "CodigoTelefonico"]
+        table = PrettyTable()
+        table.field_names = ["IdPais", "NombrePais", "CodigoTelefonico"]
 
-            for paises in result:
-                table.add_row([
-                paises.id,
-                paises.countryname,
-                paises.code
-                ])
+        for paises in result:
+            table.add_row([
+            paises.id,
+            paises.countryname,
+            paises.code
+            ])
 
         print(table)
         table.clear()
         print("-"*100)
         print("¿Está el país que buscas en esta tabla? 0-No, 1-Si")
         option = int(input("Opción: "))
-            if option == 0
-                self.addCountry()
-            if option == 1
-                countryname = input("\nNombre de pais: ")
-                code = input("\nCodigo telefonico: ")
-                idpais=self.dbpais.traerIDCountry(countryname,code)
-                print(f"El código de país elegido es {idpais}.\n")
-                self.cityHub()
+        if option == 0:
+            self.addCountry()
+        if option == 1:
+            countryname = input("Nombre de pais (Escrito de la misma forma que está en la tabla): ")
+            code = input("Codigo telefonico: ")
+            idpais=self.dbpais.traerIDCountry(countryname,code)
+            print(f"\nEl código de país elegido es {idpais}.\n")
+            self.cityHub()
 
     def addCountry(self):
-        print("\nAdding a new country...")
-        countryname = input("\nNombre de pais: ")
-        code = input("\nCodigo telefonico: ")
+        print("Adding a new country...")
+        countryname = input("Nombre de pais: ")
+        code = input("Codigo telefonico: ")
 
         self.dbpais.insertCountry(countryname,code)
         idpais=self.dbpais.traerIDCountry(countryname,code)
         
-        print("\nSu pais se ha creado con éxito.\n")
-        print(f"Su código de país único es {idpais}.\n")
+        print("\nSu pais se ha creado con éxito.")
+        print(f"\nSu código de país único es {idpais}.\n")
         self.cityHub()
 
     def cityHub(self):
-            result = self.dbciudad.getCities()
+        result = self.dbciudad.getCities()
 
-            table = PrettyTable()
-            table.field_names = ["IdCiudad", "NombreCiudad", "IdPais"]
+        table = PrettyTable()
+        table.field_names = ["IdCiudad", "NombreCiudad", "IdPais"]
 
-            for ciudades in result:
-                table.add_row([
-                ciudades.id,
-                ciudades.cityname,
-                ciudades.idcountry
-                ])
+        for ciudades in result:
+            table.add_row([
+            ciudades.id,
+            ciudades.cityname,
+            ciudades.idcountry
+            ])
 
         print(table)
         table.clear()
         print("-"*100)
         print("¿Está la ciudad que buscas en esta tabla? 0-No, 1-Si")
         option = int(input("Opción: "))
-            if option == 0
-                self.addCity()
-            if option == 1
-                cityname = input("\nNombre de ciudad: ")
-                idcountry = input("\nCodigo de pais (Número recibido en el ingreso del país): ")
-                idciudad=self.dbciudad.traerIDCity(cityname,idcountry)
-                print(f"Su código de ciudad elegido es {idciudad}.\n")
-                self.addDirection()
+        if option == 0:
+            self.addCity()
+        if option == 1:
+            cityname = input("Nombre de ciudad: ")
+            idcountry = input("Codigo de pais (Número recibido en el ingreso del país): ")
+            idciudad=self.dbciudad.traerIDCity(cityname,idcountry)
+            print(f"\nSu código de ciudad elegido es {idciudad}.\n")
+            self.addDirection()
 
     def addCity(self):
         print("\nAdding a new city...")
-        cityname = input("\nNombre de ciudad: ")
-        idcountry = input("\nCodigo de pais (Número recibido en el ingreso del país): ")
+        cityname = input("Nombre de ciudad: ")
+        idcountry = input("Codigo de pais (Número recibido en el ingreso del país): ")
 
         self.dbciudad.insertCity(cityname,idcountry)
         idciudad=self.dbciudad.traerIDCity(cityname,idcountry)
 
-        print("\nSu ciudad se ha creado con éxito.\n")
-        print(f"Su código de ciudad único es {idciudad}.\n")
+        print("\nSu ciudad se ha creado con éxito.")
+        print(f"\nSu código de ciudad único es {idciudad}.\n")
         self.addDirection()
     
     def addDirection(self):
-        print("\nAdding a new direction...")
-        state = input("\nEstado: ")
-        postalcode = input("\nCodigoPostal: ")
-        street = input("\nCalle: ")
-        cityid = input("\nIdCiudad (Numero recibido en el ingreso de la ciudad): ")
+        print("Adding a new direction...")
+        state = input("Estado: ")
+        postalcode = input("CodigoPostal: ")
+        street = input("Calle: ")
+        cityid = input("IdCiudad (Numero recibido en el ingreso de la ciudad): ")
 
         self.direcciones.insertDirection(state,postalcode,street,cityid)
         iddireccion=self.direcciones.traerIDDireccion(state,postalcode,street,cityid)
 
-        print("\nSu direccion se ha registrado con éxito.\n")
-        print(f"Su código de direccion única es {iddireccion}.\n")
+        print("\nSu direccion se ha registrado con éxito.")
+        print(f"\nSu código de direccion única es {iddireccion}.\n")
         self.addResidencia()
 
     def addResidencia(self):
-        print("\nAñadiendo una nueva residencia...")
-        tipoAlojamiento = input("\nTipo de alojamiento: ")
-        habitaciones = input("\nNúmero de habitaciones: ")
-        banhos = input("\nNúmero de baños: ")
-        camas = input("\nNúmero de camas: ")
-        idDireccion = input("\nid de la dirección (Código recibido en el ingreso de dirección): ")
-        precio = input("\nIngrese el precio de la residencia: ")
-        FlexDeCancelacion = int(input("\nFlexibilidad de cancelación (0-No | 1-Sí): "))
-        aPlus = int(input("\nAirbnb Plus (0-No | 1-Sí): "))
-        pets = int(input("\nMascotas (0-No | 1-Sí): "))
-        smokers = int(input("\nFumador (0-No | 1-Sí): "))
+        print("Añadiendo una nueva residencia...")
+        tipoAlojamiento = input("Tipo de alojamiento: ")
+        habitaciones = input("Número de habitaciones: ")
+        banhos = input("Número de baños: ")
+        camas = input("Número de camas: ")
+        idDireccion = input("id de la dirección (Código recibido en el ingreso de dirección): ")
+        precio = input("Ingrese el precio de la residencia: ")
+        FlexDeCancelacion = int(input("Flexibilidad de cancelación (0-No | 1-Sí): "))
+        aPlus = int(input("Airbnb Plus (0-No | 1-Sí): "))
+        pets = int(input("Mascotas (0-No | 1-Sí): "))
+        smokers = int(input("Fumador (0-No | 1-Sí): "))
 
         self.dbresidencia.insertResidencias(
             tipoAlojamiento,
@@ -143,7 +143,7 @@ class anfitrionBE:
         )
 
         print("\nLa residencia se ha agregado con éxito.")
-        print(f"El código de la residencia es {idResidencia}. \n")
+        print(f"\nEl código de la residencia es {idResidencia}. \n")
     
     
     #UPDATES

@@ -14,6 +14,7 @@ from AppControl_Residencia_FE import residenciasAppAdmin
 from AppControl_Servicios_FE import ServiciosAdmin
 from AppControl_Tematica_FE import TematicaAppAdmin
 from BuscarExpFull import ExperienciasAppAdmin
+from AppControl_OrdenarExperiencia_FE import AppOrganizarExperiencia
 
 class Admin:
     def __init__(self):
@@ -66,3 +67,6 @@ class Admin:
 
     def buscarExpFull(self):
         ExperienciasAppAdmin()
+
+    def organizarExperiencia(self):
+        AppOrganizarExperiencia()

@@ -31,6 +31,18 @@ class TematicaBE:
 
         print("\nSu tematica se ha creado con éxito.\n")
         print(f"Su descripción es {idtematica}.\n")
+    
+    def addTematicaProceso(self):
+        print("\nAdding a new tematica...")
+        tematicaname = input("\nNombre de tematica: ")
+        description = input("\nDescripción: ")
+
+        self.dbtematica.insertTematica(tematicaname,description)
+        idtematica=self.dbtematica.traerIDTematica(tematicaname,description)
+
+        print("\nSu tematica se ha creado con éxito.\n")
+        print(f"Su descripción es {idtematica}.\n")
+        return idtematica
 
     def updateTematica(self):
         print("\nUpdating an existing tematica...")
