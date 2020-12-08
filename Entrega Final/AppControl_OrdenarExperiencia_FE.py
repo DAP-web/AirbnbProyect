@@ -1,8 +1,7 @@
 from View_OrdenarExperiencia import organizarExperienciaBE
 
 def AppOrganizarExperiencia():
-
-    ordenarexperiencia = organizarExperienciaBE
+    ordenarexperiencia = organizarExperienciaBE()
     print("Inicializando la app de Airbnb Organizar experiencia...")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -20,13 +19,12 @@ def AppOrganizarExperiencia():
             break
         if option == 1:
             ordenarexperiencia.addOrganizarExperiencia()
-    
         if option == 2:
             ordenarexperiencia.updateOrdenarExperiencia()
-
         if option == 3:
             ordenarexperiencia.deleteOrganizarExperiencia()
-AppOrganizarExperiencia()
+
+# AppOrganizarExperiencia()
    
    
    

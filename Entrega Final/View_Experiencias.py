@@ -265,6 +265,9 @@ class experienciasBE:
             tablaexp.clear()
             print(tablaexp2)
             tablaexp2.clear()
+        mensaje = """En caso de querer registrarse para una experiencia,
+debe de iniciar sesión."""
+        print(mensaje)
 
 #Proceso para busqueda en presencial 
     def buscarExperienciasPresenciales(self):
@@ -343,4 +346,7 @@ class experienciasBE:
             tablaexp.clear()
             print(tablaexp2)
             tablaexp2.clear()
+        mensaje = """En caso de querer registrarse para una experiencia,
+debe de iniciar sesión."""
+        print(mensaje)
 

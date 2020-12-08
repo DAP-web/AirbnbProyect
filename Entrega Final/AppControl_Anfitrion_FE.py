@@ -1,5 +1,3 @@
-#from Logic_ClientLogic import ClientLogic
-
 from View_Anfitrion import anfitrionBE
 
 #Menú para anfitirones
@@ -26,4 +24,4 @@ def AppAnfitrion():
             beanfitrion.updateAlojamiento()
         if option == 3:
             beanfitrion.deleteAlojamiento()
-AppAnfitrion()
+# AppAnfitrion()

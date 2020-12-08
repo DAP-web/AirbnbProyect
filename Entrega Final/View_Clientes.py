@@ -5,6 +5,7 @@ from View_Reservas import reservaciones
 from Logic_ReservasLogics import ReservasLogic
 from Logic_FacturasLogic import FacturasLogic
 from View_Facturas import facturasBE
+from View_Paises import paisesBE
 
 class clientesBE:
     def __init__(self):
@@ -14,6 +15,7 @@ class clientesBE:
         self.reservaslogic = ReservasLogic()
         self.dbfacturas = FacturasLogic()
         self.facturasbe = facturasBE()
+        self.paisesbe = paisesBE()
 
     def getAllClients(self):
         result = self.dbcliente.getClientes()
@@ -194,7 +196,8 @@ class clientesBE:
         self.getClient(client)
 
     def clienteAgendaReserva(self,cliente):
-        pais=input("¿A qué país viajas? ")
+        self.paisesbe.getAllCountries()
+        pais=input("¿A qué país viajas? (Digita el nombre del pais tal cual está en la tabla): ")
         
         residencias = self.dbresidencias.busquedaDeResidencias(pais)
 
@@ -319,3 +322,81 @@ class clientesBE:
 
         print("\nSu perfil se ha creado con éxito.\n")
         print(f"Su código de cliente único es {idcliente}.\n")
+
+    def BuscarResidenciasFull(self):
+        self.paisesbe.getAllCountries()
+        pais=input("¿A qué país viajas? (Digita el nombre del pais tal cual está en la tabla): ")
+        
+        residencias = self.dbresidencias.busquedaDeResidencias(pais)
+        print("\nSi no hay residencias para el país que ingresa, la tabla estará vacía.\n")
+
+        table = PrettyTable()
+        table.field_names = ["idResidencia","TipoAlojamiento","AirbnbPlus","Precio"]
+
+        for residencia in residencias:
+            table.add_row([
+            residencia.id,
+            residencia.tipoAlojamiento,
+            residencia.aPlus,
+            residencia.precio
+            ])
+
+        print(table)
+        table.clear()
+
+        ver = int(input("¿Ver alguna residencia en específico? No(0)|Sí(1): "))
+        if ver==1:
+            residenciaVer = int(input("¿Cuál residencia quieres ver? (Introduce el ID de la residencia): "))
+            morada = self.dbresidencias.verResidenciaEspecifica(residenciaVer)
+
+            tablaResidencia = PrettyTable()
+            tablaDireccioin = PrettyTable()
+
+            tablaResidencia.field_names = [
+                "idResidencia",
+                "TipoAlojamiento",
+                "Habitaciones",
+                "Banhos",
+                "Camas",
+                "Precio",
+                "FlexibilidadDeCancelacion",
+                "AirbnbPlus",
+                "Mascotas",
+                "Fumadores"
+            ]
+
+            tablaDireccioin.field_names=[ 
+                "Estado",
+                "CodigoPostal", 
+                "Calle", 
+                "NombreCiudad", 
+                "NombrePais"
+            ]
+
+            tablaResidencia.add_row([
+                morada.id,
+                morada.tipoAlojamiento,
+                morada.habitaciones,
+                morada.banhos,
+                morada.camas,
+                morada.precio,
+                morada.flexDeCancelacion,
+                morada.aPlus,
+                morada.pets,
+                morada.smokers,
+            ])
+
+            tablaDireccioin.add_row([
+                morada.estado,
+                morada.cp, 
+                morada.calle, 
+                morada.ciudad, 
+                morada.pais
+            ])
+
+            print(tablaResidencia)
+            tablaResidencia.clear()
+            print(tablaDireccioin)
+            tablaDireccioin.clear()
+        
+        print("Para reservar alguna experiencia debes registrarte en tu cuenta.")
