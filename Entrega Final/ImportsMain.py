@@ -13,7 +13,7 @@ from AppControl.AppControl_ResidenciaServicio_FE import residenciaservicioAppAdm
 from AppControl.AppControl_Residencia_FE import residenciasAppAdmin
 from AppControl.AppControl_Servicios_FE import ServiciosAdmin
 from AppControl.AppControl_Tematica_FE import TematicaAppAdmin
-from AppControl.BuscarExpFull import ExperienciasAppAdmin
+from AppControl.BuscarExpFull import ExperienciasAppProceso
 from AppControl.AppControl_OrdenarExperiencia_FE import AppOrganizarExperiencia
 
 class Admin:
@@ -66,7 +66,7 @@ class Admin:
         TematicaAppAdmin()
 
     def buscarExpFull(self):
-        ExperienciasAppAdmin()
+        ExperienciasAppProceso()
 
     def organizarExperiencia(self):
         AppOrganizarExperiencia()

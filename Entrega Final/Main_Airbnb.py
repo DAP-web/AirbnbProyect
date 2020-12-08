@@ -98,5 +98,8 @@ def AirbnbAdmin():
         if option == 14:
             admin.FacturasApp()
         
-# AirbnbAdmin()
-AirbnbClientes()
+eleccion = int(input("1-Inicializar Clientes||0-InicializarAdmin: "))
+if eleccion == 1:
+    AirbnbClientes()
+else:
+    AirbnbAdmin()

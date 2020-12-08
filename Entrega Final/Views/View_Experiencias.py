@@ -199,7 +199,7 @@ class experienciasBE:
         "Ubicacion", "Descripcion", "Idioma"]
 
         table1.field_names = ["idExp", "PublicoObjetivo", "Organizacion", "AnfitrionExp",
-        "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+        "ElementosANecesitar", "Precio", "Fecha", "Tematica"]
 
         for experiencia in result:
             table.add_row([
@@ -239,7 +239,7 @@ class experienciasBE:
             "Ubicacion", "Descripcion", "Idioma"]
 
             tablaexp2.field_names = ["PublicoObjetivo", "Organizacion", "AnfitrionExp",
-            "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+            "ElementosANecesitar", "Precio", "Fecha", "Tematica"]
 
             tablaexp.add_row([
                 experiencia.id,
@@ -280,7 +280,7 @@ debe de iniciar sesión."""
         "Ubicacion", "Descripcion", "Idioma"]
 
         table1.field_names = ["idExp", "PublicoObjetivo", "Organizacion", "AnfitrionExp",
-        "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+        "ElementosANecesitar", "Precio", "Fecha", "Tematica"]
 
         for experiencia in result:
             table.add_row([
@@ -320,7 +320,7 @@ debe de iniciar sesión."""
             "Ubicacion", "Descripcion", "Idioma"]
 
             tablaexp2.field_names = ["PublicoObjetivo", "Organizacion", "AnfitrionExp",
-            "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+            "ElementosANecesitar", "Precio", "Fecha", "Tematica"]
 
             tablaexp.add_row([
                 experiencia.id,
