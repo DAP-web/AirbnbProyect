@@ -12,7 +12,7 @@ def AppOrganizarExperiencia():
     while True:
         Menu = """\nElija una de las siguientes opciones:
         0-Salir de la app
-        1-Organizar experiencia
+        1-Organizar una nueva experiencia
         2-Volver al menú principal\n"""
         print("-"*100)
         print(Menu)
@@ -24,7 +24,9 @@ def AppOrganizarExperiencia():
             organizarExperienciadb.connection.close()
             break
         if option == 1:
-            organizarExperienciadb.calificar()
+           experienciabe.addExperiencia()
+           
+          
         if option == 2:
             organizarExperienciadb.calificar()
       

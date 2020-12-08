@@ -5,7 +5,7 @@ class DatabaseX:
     def __init__(self):
         self.host = "localhost"
         self.user = "root"
-        self.password = "12345678"
+        self.password = "12345"
         self.database = "airbnb"
         self.cursorType = pymysql.cursors.DictCursor
         self.connection = self.createConnection()
