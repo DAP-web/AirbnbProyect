@@ -89,11 +89,11 @@ def AirbnbAdmin():
         if option == 11:
             admin.experienciaApp()
         if option == 12:
-            pass
+            admin.TematicaApp()
         if option ==13:
             admin.expResApp()
         if option == 14:
             admin.FacturasApp()
         
-# AirbnbAdmin()
-AirbnbClientes()
+AirbnbAdmin()
+# AirbnbClientes()

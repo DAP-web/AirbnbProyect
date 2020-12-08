@@ -1,9 +1,6 @@
-from Logic_TematicaLogic import Logic
 from View_Tematica import TematicaBE
 
-
 def TematicaAppAdmin():
-    dbtematica = TematicaLogic()
     beTematica = TematicaBE()
 
     print("Inicializando la app de Airbnb Residencia")
@@ -24,12 +21,12 @@ def TematicaAppAdmin():
             # experienciabd.connection.close()
             break
         if option == 1:
-            beexperiencia.getAllTematicas()
+            beTematica.getAllTematicas()
         if option == 2:
-            beexperiencia.addTematica()
+            beTematica.addTematica()
         if option == 3:
-            beexperiencia.updateTematica()
+            beTematica.updateTematica()
         if option == 4:
-            beexperiencia.deleteTematica()
+            beTematica.deleteTematica()
 
-TematicaAppAdmin()
+# TematicaAppAdmin()

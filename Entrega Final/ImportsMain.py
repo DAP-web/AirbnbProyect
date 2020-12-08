@@ -12,6 +12,7 @@ from AppControl_ResidenciaAccesibilidad_FE import AppRAccesibilidades
 from AppControl_ResidenciaServicio_FE import residenciaservicioAppAdmin
 from AppControl_Residencia_FE import residenciasAppAdmin
 from AppControl_Servicios_FE import ServiciosAdmin
+from AppControl_Tematica_FE import TematicaAppAdmin
 from BuscarExpFull import ExperienciasAppAdmin
 
 class Admin:
@@ -59,6 +60,9 @@ class Admin:
 
     def ServiciosApp(self):
         ServiciosAdmin()
+
+    def TematicaApp(self):
+        TematicaAppAdmin()
 
     def buscarExpFull(self):
         ExperienciasAppAdmin()
