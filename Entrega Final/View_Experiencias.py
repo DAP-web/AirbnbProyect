@@ -188,4 +188,159 @@ class experienciasBE:
         self.dbexperiencia.deleteExperienciaDB(id)
         print("La experiencia se ha removido con éxito.")
         self.getAllExperiencias()
+        
+    #Proceso de busqueda en linea   
+    def buscarExperienciasEnLinea(self):
+        result = self.dbexperiencia.buscarExperienciasEnLinea()
+        table = PrettyTable()
+        table1 = PrettyTable()
+
+        table.field_names = ["idExp", "NombreAnfitrion", "TituloExperiencia", "TipoDeExperiencia",
+        "Ubicacion", "Descripcion", "Idioma"]
+
+        table1.field_names = ["idExp", "PublicoObjetivo", "Organizacion", "AnfitrionExp",
+        "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+
+        for experiencia in result:
+            table.add_row([
+                experiencia.id,
+                experiencia.host,
+                experiencia.ExperienceTitle,
+                experiencia.TypeExperience,
+                experiencia.Location,
+                experiencia.Descrption,
+                experiencia.Idiom
+            ])
+            table1.add_row([
+                experiencia.id,
+                experiencia.PublicObject,
+                experiencia.Organization,
+                experiencia.hostExperience,
+                experiencia.NeedElements,
+                experiencia.precio,
+                experiencia.fecha,
+                experiencia.tematica
+            ])
+
+        print(table)
+        table.clear()
+        print(table1)
+        table1.clear()
+
+        option = int(input("¿Ver alguna experiencia en línea en específico? (0-No||1-Sí): "))
+        
+        if option == 1:
+            exp = int(input("Ingresa el ID de la experiencia (idExp): "))
+            experiencia = self.dbexperiencia.searchExperienciaByIdView(exp)
+            tablaexp = PrettyTable()
+            tablaexp2 = PrettyTable()
+
+            tablaexp.field_names = ["idExp", "NombreAnfitrion", "TituloExperiencia", "TipoDeExperiencia",
+            "Ubicacion", "Descripcion", "Idioma"]
+
+            tablaexp2.field_names = ["PublicoObjetivo", "Organizacion", "AnfitrionExp",
+            "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+
+            tablaexp.add_row([
+                experiencia.id,
+                experiencia.host,
+                experiencia.ExperienceTitle,
+                experiencia.TypeExperience,
+                experiencia.Location,
+                experiencia.Descrption,
+                experiencia.Idiom
+            ])
+
+            tablaexp2.add_row([
+                experiencia.PublicObject,
+                experiencia.Organization,
+                experiencia.hostExperience,
+                experiencia.NeedElements,
+                experiencia.precio,
+                experiencia.fecha,
+                experiencia.tematica
+            ])
+
+            print(tablaexp)
+            tablaexp.clear()
+            print(tablaexp2)
+            tablaexp2.clear()
+
+#Proceso para busqueda en presencial 
+    def buscarExperienciasPresenciales(self):
+        result = self.dbexperiencia.buscarExperienciasPresenciales()
+
+        table = PrettyTable()
+        table1 = PrettyTable()
+
+        table.field_names = ["idExp", "NombreAnfitrion", "TituloExperiencia", "TipoDeExperiencia",
+        "Ubicacion", "Descripcion", "Idioma"]
+
+        table1.field_names = ["idExp", "PublicoObjetivo", "Organizacion", "AnfitrionExp",
+        "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+
+        for experiencia in result:
+            table.add_row([
+                experiencia.id,
+                experiencia.host,
+                experiencia.ExperienceTitle,
+                experiencia.TypeExperience,
+                experiencia.Location,
+                experiencia.Descrption,
+                experiencia.Idiom
+            ])
+            table1.add_row([
+                experiencia.id,
+                experiencia.PublicObject,
+                experiencia.Organization,
+                experiencia.hostExperience,
+                experiencia.NeedElements,
+                experiencia.precio,
+                experiencia.fecha,
+                experiencia.tematica
+            ])
+
+        print(table)
+        table.clear()
+        print(table1)
+        table1.clear()
+
+        option = int(input("¿Ver alguna experiencia presencial en específico? (0-No||1-Sí): "))
+        
+        if option == 1:
+            exp = int(input("Ingresa el ID de la experiencia (idExp): "))
+            experiencia = self.dbexperiencia.searchExperienciaByIdView(exp)
+            tablaexp = PrettyTable()
+            tablaexp2 = PrettyTable()
+
+            tablaexp.field_names = ["idExp", "NombreAnfitrion", "TituloExperiencia", "TipoDeExperiencia",
+            "Ubicacion", "Descripcion", "Idioma"]
+
+            tablaexp2.field_names = ["PublicoObjetivo", "Organizacion", "AnfitrionExp",
+            "ElementosANecesitar", "Precio", "Fecha", "IdTematica"]
+
+            tablaexp.add_row([
+                experiencia.id,
+                experiencia.host,
+                experiencia.ExperienceTitle,
+                experiencia.TypeExperience,
+                experiencia.Location,
+                experiencia.Descrption,
+                experiencia.Idiom
+            ])
+
+            tablaexp2.add_row([
+                experiencia.PublicObject,
+                experiencia.Organization,
+                experiencia.hostExperience,
+                experiencia.NeedElements,
+                experiencia.precio,
+                experiencia.fecha,
+                experiencia.tematica
+            ])
+
+            print(tablaexp)
+            tablaexp.clear()
+            print(tablaexp2)
+            tablaexp2.clear()
 
