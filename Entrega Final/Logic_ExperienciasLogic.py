@@ -141,3 +141,13 @@ class ExperienciaLogic(Logic):
             newExperiencia = self.creatExperienciaViewObj(experiencia)
             experienciaObjList.append(newExperiencia)
         return experienciaObjList
+
+    def buscarExperienciasPresenciales(self):
+        database = self.database
+        sql = "SELECT * FROM airbnb.experiencias where TipoDeExperiencia=1;"
+        experienciaList = database.executeQueryRows(sql)
+        experienciaObjList = []
+        for experiencia in experienciaList:
+            newExperiencia = self.creatExperienciaViewObj(experiencia)
+            experienciaObjList.append(newExperiencia)
+        return experienciaObjList
