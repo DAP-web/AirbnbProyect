@@ -19,7 +19,6 @@ def ExperienciasAppAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Experiencia")
-            # experienciabd.connection.close()
             break
         if option == 1:
             beexperiencia.buscarExperienciasEnLinea()
@@ -27,4 +26,4 @@ def ExperienciasAppAdmin():
             beexperiencia.buscarExperienciasPresenciales()
 
 
-ExperienciasAppAdmin()
+# ExperienciasAppAdmin()
