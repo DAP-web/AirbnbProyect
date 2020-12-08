@@ -1,8 +1,8 @@
 from prettytable import PrettyTable
-from Logic_ExperienciaResidenciaLogic import ExperienciaResidenciaLogic
-from Logic_ExperienciasLogic import ExperienciaLogic
-from Logic_TematicaLogic import TematicaLogic
-from View_Tematica import TematicaBE
+from Logic.Logic_ExperienciaResidenciaLogic import ExperienciaResidenciaLogic
+from Logic.Logic_ExperienciasLogic import ExperienciaLogic
+from Logic.Logic_TematicaLogic import TematicaLogic
+from Views.View_Tematica import TematicaBE
 
 class organizarExperienciaBE:
     def __init__(self):

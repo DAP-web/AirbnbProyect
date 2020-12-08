@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_ExperienciasLogic import ExperienciaLogic
+from Logic.Logic_ExperienciasLogic import ExperienciaLogic
 
 class experienciasBE:
     def __init__(self):

@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_CiudadesObj import CityObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_CiudadesObj import CityObj
 
 class CiudadesLogic(Logic):
     def __init__(self):

@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_ExperienciaResidenciaObj import ExperienciaResidenciaObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ExperienciaResidenciaObj import ExperienciaResidenciaObj
 
 
 class ExperienciaResidenciaLogic(Logic):

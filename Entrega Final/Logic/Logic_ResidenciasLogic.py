@@ -1,8 +1,8 @@
-from Core_dx_logic import Logic
-from Objects_ResidenciaObj import ResidenciaObj,ResidenciaFullObj
-from Objects_CiudadesObj import CityObj
-from Objects_PaisesObj import CountryObj
-from Objects_DireccionesObj import DirectionObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ResidenciaObj import ResidenciaObj,ResidenciaFullObj
+from Objects.Objects_CiudadesObj import CityObj
+from Objects.Objects_PaisesObj import CountryObj
+from Objects.Objects_DireccionesObj import DirectionObj
 
 class ResidenciaLogic(Logic):
     def __init__(self):

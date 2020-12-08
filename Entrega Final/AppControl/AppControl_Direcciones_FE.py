@@ -1,9 +1,7 @@
-from Logic_DireccionesLogic import DirectionLogic
-from View_Direcciones import direccionesBE
+from Views.View_Direcciones import direccionesBE
 
 def direccionesAdmin():
     direccionesbe=direccionesBE()
-    direccionesdb=DirectionLogic()
     print("Inicializando la app de Airbnb Direcciones")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -19,7 +17,6 @@ def direccionesAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Direcciones")
-            #direccionesdb.connection.close()
             break
         if option == 1:
             direccionesbe.getAllDirections()

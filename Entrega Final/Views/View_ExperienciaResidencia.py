@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_ExperienciaResidenciaLogic import ExperienciaResidenciaLogic
+from Logic.Logic_ExperienciaResidenciaLogic import ExperienciaResidenciaLogic
 
 
 class ExperienciaResidenciasBE:

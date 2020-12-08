@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_PaisesObj import CountryObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_PaisesObj import CountryObj
 
 class PaisesLogic(Logic):
     def __init__(self):

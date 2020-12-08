@@ -1,6 +1,6 @@
-from Core_dx_logic import Logic
-from Objects_CalificacionesObj import CalificacionesObj
-from Objects_CalificacionesViewObj import CalificacionesViewObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_CalificacionesObj import CalificacionesObj
+from Objects.Objects_CalificacionesViewObj import CalificacionesViewObj
 
 class CalificacionesLogic(Logic):
     def __init__(self):

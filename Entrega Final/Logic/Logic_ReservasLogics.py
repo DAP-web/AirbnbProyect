@@ -1,6 +1,6 @@
-from Core_dx_logic import Logic
-from Objects_ReservaObj import ReservasObj
-from Objects_ReservasViewObj import ReservasViewObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ReservaObj import ReservasObj
+from Objects.Objects_ReservasViewObj import ReservasViewObj
 
 class ReservasLogic(Logic):
     def __init__(self):

@@ -1,14 +1,16 @@
-from Core_dx_logic import Logic
-from Objects_FacturasObj import FacturaObj
-from Objects_FacturasViews import FacturasViewExpObj,FacturasViewReservasObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_FacturasObj import FacturaObj
+from Objects.Objects_FacturasViews import FacturasViewExpObj,FacturasViewReservasObj
 
 class FacturasLogic(Logic):
     def __init__(self):
         super().__init__("factura")
         self.idName="idFactura"
+        self.vistaResFac = "facturaresidencias"
+        self.vistaExpFac = "facturaexperiencias"
     
     def obtenerFacturasResidencias(self):
-        facturasList = super().getAllRows("facturaresidencias")
+        facturasList = super().getAllRows(self.vistaResFac)
         facturasObjList=[]
         for factura in facturasList:
             nuevaFactura = self.createFacturaResidenciaViewObj(factura)
@@ -16,7 +18,7 @@ class FacturasLogic(Logic):
         return facturasObjList
 
     def obtenerFacturasExperiencias(self):
-        facturasList = super().getAllRows("facturaexperiencias")
+        facturasList = super().getAllRows(self.vistaExpFac)
         facturasObjList=[]
         for factura in facturasList:
             nuevaFactura = self.createFacturaExpViewObj(factura)
@@ -114,7 +116,7 @@ class FacturasLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def verMisFacturas(self, cliente, boolExp):
+    def verMisFacturasDB(self, cliente, boolExp):
         database = self.database
         facturasObjList=[]
         if boolExp:
@@ -142,3 +144,30 @@ class FacturasLogic(Logic):
                 nuevaFactura = self.createFacturaResidenciaViewObj(factura)
                 facturasObjList.append(nuevaFactura)
             return facturasObjList
+
+    def verUnaFactura(self, cliente, boolExp):
+        database = self.database
+        if boolExp:
+            sql = f"""select facturaexperiencias.*
+            from facturaexperiencias 
+                inner join factura on facturaexperiencias.idFactura = factura.idFactura
+                inner join clientes on factura.IdCliente = clientes.idClientes
+            where clientes.idClientes = {cliente}
+            order by idFactura desc
+            limit 1;
+            """
+            facturasList = database.executeQueryOneRow(sql)
+            facturaObj = self.createFacturaExpViewObj(facturasList)
+            return facturaObj
+        else:
+            sql = f"""select facturaresidencias.*
+            from facturaresidencias 
+                inner join factura on facturaresidencias.idFactura = factura.idFactura
+                inner join clientes on factura.IdCliente = clientes.idClientes
+            where clientes.idClientes = {cliente}
+            order by idFactura desc
+            limit 1;
+            """
+            facturasList = database.executeQueryOneRow(sql)
+            facturaObj = self.createFacturaResidenciaViewObj(facturasList)
+            return facturaObj

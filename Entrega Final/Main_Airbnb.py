@@ -1,7 +1,7 @@
 from Login import signin
-from Core_databaseX import DatabaseX
-from AppControl_Anfitrion_FE import AppAnfitrion
-from View_Clientes import clientesBE
+from Core.Core_databaseX import DatabaseX
+from AppControl.AppControl_Anfitrion_FE import AppAnfitrion
+from Views.View_Clientes import clientesBE
 from ImportsMain import Admin
 
 def AirbnbClientes():

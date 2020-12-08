@@ -1,10 +1,7 @@
-from Logic_ResidenciasLogic import ResidenciaLogic
-from View_Residencia import residenciasBE
-
+from Views.View_Residencia import residenciasBE
 
 def residenciasAppAdmin():
     residenciabe = residenciasBE()
-    residenciadb = ResidenciaLogic()
     print("Inicializando la app de Airbnb Residencia")
     while True:
         Menu = """\nElija una de las siguientes opciones:
@@ -20,17 +17,14 @@ def residenciasAppAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Residencia")
-            # residenciadb.connection.close()
             break
         if option == 1:
             residenciabe.getAllResidencias()
         if option == 2:
             residenciabe.addResidencia()
-            # residenciaFull()
         if option == 3:
             residenciabe.updateResidencia()
         if option == 4:
             residenciabe.deleteResidencia()
-
 
 # residenciasAppAdmin()

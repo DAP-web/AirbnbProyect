@@ -1,6 +1,6 @@
-from Core_databaseX import DatabaseX
-from Logic_ClientLogic import ClientLogic
-from AppControl_Clientes_FE import AppClientes,AppClientesRegular
+from Core.Core_databaseX import DatabaseX
+from Logic.Logic_ClientLogic import ClientLogic
+from AppControl.AppControl_Clientes_FE import AppClientes,AppClientesRegular
 
 dbcliente = ClientLogic()
 database = DatabaseX()

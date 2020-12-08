@@ -1,5 +1,5 @@
-from View_Reservas import reservaciones
-from View_Clientes import clientesBE
+from Views.View_Reservas import reservaciones
+from Views.View_Clientes import clientesBE
 
 clientebe = clientesBE()
 reservas = reservaciones()

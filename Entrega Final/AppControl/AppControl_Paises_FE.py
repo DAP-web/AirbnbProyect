@@ -1,8 +1,6 @@
-from Logic_PaisesLogic import PaisesLogic
-from View_Paises import paisesBE
+from Views.View_Paises import paisesBE
 
 def AppPaises():
-    dbpais = PaisesLogic()
     bepais = paisesBE()
     print("Inicializando la app de Airbnb Paises")
     while True:
@@ -19,7 +17,6 @@ def AppPaises():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Paises")
-            #dbpais.connection.close()
             break
         if option == 1:
             bepais.getAllCountries()

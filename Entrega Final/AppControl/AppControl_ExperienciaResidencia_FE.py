@@ -1,9 +1,6 @@
-from Logic_ExperienciaResidenciaLogic import ExperienciaResidenciaLogic
-from View_ExperienciaResidencia import ExperienciaResidenciasBE
-
+from Views.View_ExperienciaResidencia import ExperienciaResidenciasBE
 
 def ExperienciaresidenciasAppAdmin():
-    experienciaresidenciadb = ExperienciaResidenciaLogic()
     experenciaresidenciabe = ExperienciaResidenciasBE()
 
     print("Inicializando la app de Airbnb Experiencias de Residencia")
@@ -21,7 +18,6 @@ def ExperienciaresidenciasAppAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Residencia")
-            # experienciaresidenciadb.connection.close()
             break
         if option == 1:
             experenciaresidenciabe.getAllExperienciasResidencias()

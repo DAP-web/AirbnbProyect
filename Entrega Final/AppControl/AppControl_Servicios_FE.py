@@ -1,9 +1,7 @@
-from Logic_ServiciosLogic import ServiceLogic
-from View_Servicios import serviciosBE
+from Views.View_Servicios import serviciosBE
 
 def ServiciosAdmin():
     serviciosbe = serviciosBE()
-    serviciosdb = ServiceLogic()
     print("Inicializando la app de Airbnb Servicios")
     while True:
         Menu = """\nElija una de las siguientes opciones:

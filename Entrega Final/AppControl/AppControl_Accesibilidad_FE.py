@@ -1,5 +1,5 @@
-from View_Accesibilidades import accesibilidadesBE
-from Logic_AccesibilidadLogic import AccesibilidadLogic
+from Views.View_Accesibilidades import accesibilidadesBE
+from Logic.Logic_AccesibilidadLogic import AccesibilidadLogic
 
 def AppAccesibilidades():
     dbaccesibilidad = AccesibilidadLogic()
@@ -19,7 +19,6 @@ def AppAccesibilidades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Accesibilidades")
-            
             break
         if option == 1:
             beaccesibilidad.getAllAccesibilidades()

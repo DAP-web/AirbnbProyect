@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_TematicaObj import TematicaObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_TematicaObj import TematicaObj
 
 class TematicaLogic(Logic):
     def __init__(self):

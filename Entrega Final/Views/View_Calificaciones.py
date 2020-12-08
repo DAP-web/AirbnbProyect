@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_CalificacionesLogic import CalificacionesLogic
+from Logic.Logic_CalificacionesLogic import CalificacionesLogic
 
 class calificionesBE:
     def __init__(self):

@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_ClientObj import ClientObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ClientObj import ClientObj
 
 class ClientLogic(Logic):
     def __init__(self):

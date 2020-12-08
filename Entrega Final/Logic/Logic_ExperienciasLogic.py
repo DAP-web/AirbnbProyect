@@ -1,6 +1,6 @@
-from Core_dx_logic import Logic
-from Objects_ExperienciasObj import ExperienciaObj
-from Objects_ExperienciaViewObj import ExperienciaViewObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ExperienciasObj import ExperienciaObj
+from Objects.Objects_ExperienciaViewObj import ExperienciaViewObj
 
 class ExperienciaLogic(Logic):
     def __init__(self):

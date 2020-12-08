@@ -1,7 +1,5 @@
-from Core_databaseX import DatabaseX
-from View_Facturas import facturasBE
+from Views.View_Facturas import facturasBE
 
-database = DatabaseX()
 facturasbe = facturasBE()
 
 def AppFacturas():
@@ -20,7 +18,6 @@ def AppFacturas():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            database.connection.close()
             break
         if option == 1:
             facturasbe.getFacturasResidencias()

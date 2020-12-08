@@ -1,5 +1,5 @@
-from Core_databaseX import DatabaseX
-from View_Calificaciones import calificionesBE
+from Core.Core_databaseX import DatabaseX
+from Views.View_Calificaciones import calificionesBE
 
 calificacionbe = calificionesBE()
 calificaciondb = DatabaseX()
@@ -18,7 +18,7 @@ def AppCalificaciones():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            calificaciondb.connection.close()
+            # calificaciondb.connection.close()
             break
         if option == 1:
             calificacionbe.getCalificaciones()
