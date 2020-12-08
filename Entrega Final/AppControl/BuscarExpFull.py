@@ -1,7 +1,7 @@
 from Views.View_Experiencias import experienciasBE
 
 
-def ExperienciasAppAdmin():
+def ExperienciasAppProceso():
     beexperiencia = experienciasBE()
 
     print("Inicializando la app de Airbnb Residencia")
