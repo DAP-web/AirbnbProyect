@@ -5,6 +5,7 @@ from View_Clientes import clientesBE
 from ImportsMain import Admin
 
 def AirbnbClientes():
+    adminCliente = Admin()
     print("Inicializando la app de Airbnb...")
     while True:
         Menu = """\nBienvenido a la plataforma de Airbnb
@@ -14,8 +15,7 @@ def AirbnbClientes():
         2-Registrarse como cliente
         3-Buscar residencias
         4-Buscar experiencias
-        5-Buscar experiencias en línea
-        6-Ser anfitrión\n"""
+        5-Ser anfitrión\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
@@ -32,10 +32,8 @@ def AirbnbClientes():
         if option == 3:
             pass
         if option == 4:
-            pass
+            adminCliente.buscarExpFull()
         if option == 5:
-            pass
-        if option == 6:
             AppAnfitrion()
 
 def AirbnbAdmin():
@@ -91,11 +89,11 @@ def AirbnbAdmin():
         if option == 11:
             admin.experienciaApp()
         if option == 12:
-            pass
+            admin.TematicaApp()
         if option ==13:
             admin.expResApp()
         if option == 14:
             admin.FacturasApp()
         
-AirbnbAdmin()
-# AirbnbClientes()
+# AirbnbAdmin()
+AirbnbClientes()
