@@ -46,3 +46,9 @@ from clientes
 	 inner join factura on clientes.idClientes=factura.IdCliente
      inner join experiencia on factura.IdExp=experiencia.idExp
 where factura.IdResidencia is null;
+
+/*Vista de residencias y accesibilidades*/
+create view RAccesibilidades as
+select residenciaaccesibilidad.IdResidencia,accesibilidades.Nombre,accesibilidades.Descripcion
+from residenciaaccesibilidad
+	 inner join accesibilidades on residenciaaccesibilidad.IdAccesibilidad=accesibilidades.idAccesibilidades;
