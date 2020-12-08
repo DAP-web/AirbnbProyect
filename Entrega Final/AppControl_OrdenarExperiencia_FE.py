@@ -1,34 +1,33 @@
-from Core_databaseX import DatabaseX
 from View_OrdenarExperiencia import organizarExperienciaBE
-from View_ExperienciaResidencia import ExperienciaResidenciasBE
-
-ordenarexperienciabe = organizarExperienciaBE()
-experienciaresidenciabe= ExperienciaResidenciasBE()
-organizarExperienciadb = DatabaseX()
-
 
 def AppOrganizarExperiencia():
+
+    ordenarexperiencia = organizarExperienciaBE
     print("Inicializando la app de Airbnb Organizar experiencia...")
     while True:
         Menu = """\nElija una de las siguientes opciones:
         0-Salir de la app
         1-Organizar una nueva experiencia
-        2-Volver al menú principal\n"""
+        2-Actualizar experiencia
+        3-Eliminar experiencia\n"""
         print("-"*100)
         print(Menu)
         print("-"*100)
         option = int(input("Opción: "))
 
         if option == 0:
-            print("\nDeteniendo la aplicación de Airbnb Clientes")
-            organizarExperienciadb.connection.close()
+            print("\nDeteniendo la aplicación de Airbnb Organizar Experiencia")
             break
         if option == 1:
-           ordenarexperienciabe.ordenartematica()
-           
-           
-          
+            ordenarexperiencia.addOrganizarExperiencia()
+    
         if option == 2:
-            organizarExperienciadb.calificar()
-      
+            ordenarexperiencia.updateOrdenarExperiencia()
+
+        if option == 3:
+            ordenarexperiencia.deleteOrganizarExperiencia()
 AppOrganizarExperiencia()
+   
+   
+   
+    
