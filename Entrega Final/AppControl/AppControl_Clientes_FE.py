@@ -1,16 +1,13 @@
-from Logic_ClientLogic import ClientLogic
-from View_Clientes import clientesBE
-
-from AppControl_Reservas_FE import(
+from Views.View_Clientes import clientesBE
+from AppControl.AppControl_Reservas_FE import(
     reservasClientes
 )
-from Process_ExpEnLinea import ExperienciasEnLinea
-from Process_ExpPresenciales import ExperienciasPresenciales
-from View_Facturas import facturasBE
+from Views.Process_ExpEnLinea import ExperienciasEnLinea
+from Views.Process_ExpPresenciales import ExperienciasPresenciales
+from Views.View_Facturas import facturasBE
 
 #Menú para administradores
 def AppClientes():
-    dbcliente = ClientLogic()
     becliente = clientesBE()
     print("Inicializando la app de Airbnb Clientes")
     while True:
@@ -27,7 +24,6 @@ def AppClientes():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            # dbcliente.connection.close()
             break
         if option == 1:
             becliente.getAllClients()
@@ -39,11 +35,11 @@ def AppClientes():
             becliente.deleteClient()
 
 # AppClientes()
+
 # Desde el perfil de un cliente
 # Se le presenta este menú
 
 def AppClientesRegular(cliente):
-    # dbcliente = DBClientes()
     becliente = clientesBE()
     befacturas = facturasBE()
     print("Inicializando la app de Airbnb Clientes")
@@ -63,7 +59,6 @@ def AppClientesRegular(cliente):
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Clientes")
-            #connection.close()
             break
         if option == 1:
             becliente.getClient(cliente)

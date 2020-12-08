@@ -1,6 +1,5 @@
 from prettytable import PrettyTable
-from Logic_ResidenciasLogic import ResidenciaLogic
-
+from Logic.Logic_ResidenciasLogic import ResidenciaLogic
 
 class residenciasBE:
     def __init__(self):

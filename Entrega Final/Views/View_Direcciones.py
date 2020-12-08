@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_DireccionesLogic import DirectionLogic
+from Logic.Logic_DireccionesLogic import DirectionLogic
 
 class direccionesBE:
     def __init__(self):

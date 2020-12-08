@@ -1,4 +1,4 @@
-from View_Tematica import TematicaBE
+from Views.View_Tematica import TematicaBE
 
 def TematicaAppAdmin():
     beTematica = TematicaBE()
@@ -18,7 +18,6 @@ def TematicaAppAdmin():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Experiencia")
-            # experienciabd.connection.close()
             break
         if option == 1:
             beTematica.getAllTematicas()

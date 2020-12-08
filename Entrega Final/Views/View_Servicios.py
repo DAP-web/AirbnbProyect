@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_ServiciosLogic import ServiceLogic
+from Logic.Logic_ServiciosLogic import ServiceLogic
 
 class serviciosBE:
     def __init__(self):

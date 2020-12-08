@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_PaisesLogic import PaisesLogic
+from Logic.Logic_PaisesLogic import PaisesLogic
 
 class paisesBE:
     def __init__(self):

@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_TematicaLogic import TematicaLogic
+from Logic.Logic_TematicaLogic import TematicaLogic
 
 class TematicaBE:
     def __init__(self):

@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_DireccionesObj import DirectionObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_DireccionesObj import DirectionObj
  
 class DirectionLogic(Logic):
     def __init__(self):

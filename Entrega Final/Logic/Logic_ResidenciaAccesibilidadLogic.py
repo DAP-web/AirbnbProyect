@@ -1,6 +1,6 @@
-from Core_dx_logic import Logic
-from Objects_ResidenciaAccesibilidadObj import RAccesibilidadObj
-from Objects_ResidenciaAccesibilidadViewObj import RAccesibilidadesViewObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ResidenciaAccesibilidadObj import RAccesibilidadObj
+from Objects.Objects_ResidenciaAccesibilidadViewObj import RAccesibilidadesViewObj
 
 class RAccesibilidadLogic(Logic):
     def __init__(self):

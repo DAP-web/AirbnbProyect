@@ -1,4 +1,4 @@
-from View_Anfitrion import anfitrionBE
+from Views.View_Anfitrion import anfitrionBE
 
 #Menú para anfitirones
 

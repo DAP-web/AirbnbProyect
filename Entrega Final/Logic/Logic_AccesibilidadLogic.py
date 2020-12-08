@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_AccesibilidadObj import AccesibilidadesObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_AccesibilidadObj import AccesibilidadesObj
 
 class AccesibilidadLogic(Logic):
     def __init__(self):

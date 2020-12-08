@@ -1,9 +1,7 @@
-from Logic_ExperienciasLogic import ExperienciaLogic
-from View_Experiencias import experienciasBE
+from Views.View_Experiencias import experienciasBE
 
 
 def ExperienciasAppAdmin():
-    dbexperiencia = ExperienciaLogic()
     beexperiencia = experienciasBE()
 
     print("Inicializando la app de Airbnb Residencia")
@@ -24,6 +22,5 @@ def ExperienciasAppAdmin():
             beexperiencia.buscarExperienciasEnLinea()
         if option == 2:
             beexperiencia.buscarExperienciasPresenciales()
-
 
 # ExperienciasAppAdmin()

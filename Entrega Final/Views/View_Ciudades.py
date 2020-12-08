@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from Logic_CiudadesLogic import CiudadesLogic
+from Logic.Logic_CiudadesLogic import CiudadesLogic
 
 class ciudadesBE:
     def __init__(self):

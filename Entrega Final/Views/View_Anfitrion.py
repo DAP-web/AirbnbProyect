@@ -1,8 +1,8 @@
 from prettytable import PrettyTable
-from Logic_ResidenciasLogic import ResidenciaLogic
-from Logic_DireccionesLogic import DirectionLogic
-from Logic_CiudadesLogic import CiudadesLogic
-from Logic_PaisesLogic import PaisesLogic
+from Logic.Logic_ResidenciasLogic import ResidenciaLogic
+from Logic.Logic_DireccionesLogic import DirectionLogic
+from Logic.Logic_CiudadesLogic import CiudadesLogic
+from Logic.Logic_PaisesLogic import PaisesLogic
 
 class anfitrionBE:
     def __init__(self):

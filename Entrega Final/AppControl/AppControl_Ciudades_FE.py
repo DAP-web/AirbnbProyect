@@ -1,8 +1,6 @@
-from Logic_CiudadesLogic import CiudadesLogic
-from View_Ciudades import ciudadesBE
+from Views.View_Ciudades import ciudadesBE
 
 def AppCiudades():
-    dbciudad = CiudadesLogic()
     beciudad = ciudadesBE()
     print("Inicializando la app de Airbnb Ciudades")
     while True:
@@ -19,7 +17,6 @@ def AppCiudades():
 
         if option == 0:
             print("\nDeteniendo la aplicación de Airbnb Ciudades")
-            # dbciudad.connection.close()
             break
         if option == 1:
             beciudad.getAllCities()

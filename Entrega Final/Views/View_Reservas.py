@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
-from Logic_ReservasLogics import ReservasLogic
-from Logic_ResidenciasLogic import ResidenciaLogic
-from Logic_FacturasLogic import FacturasLogic
+from Logic.Logic_ReservasLogics import ReservasLogic
+from Logic.Logic_ResidenciasLogic import ResidenciaLogic
+from Logic.Logic_FacturasLogic import FacturasLogic
 
 class reservaciones:
     def __init__(self):

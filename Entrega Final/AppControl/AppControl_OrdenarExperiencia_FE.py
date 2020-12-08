@@ -1,4 +1,4 @@
-from View_OrdenarExperiencia import organizarExperienciaBE
+from Views.View_OrdenarExperiencia import organizarExperienciaBE
 
 def AppOrganizarExperiencia():
     ordenarexperiencia = organizarExperienciaBE()

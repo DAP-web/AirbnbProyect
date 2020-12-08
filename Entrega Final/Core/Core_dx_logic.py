@@ -1,4 +1,4 @@
-from Core_databaseX import DatabaseX
+from Core.Core_databaseX import DatabaseX
 
 class Logic:
     def __init__(self, tableName=None):

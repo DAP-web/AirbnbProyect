@@ -1,5 +1,5 @@
-from Core_dx_logic import Logic
-from Objects_ServiciosObj import ServiceObj
+from Core.Core_dx_logic import Logic
+from Objects.Objects_ServiciosObj import ServiceObj
 
 class ServiceLogic(Logic):
     def __init__(self):

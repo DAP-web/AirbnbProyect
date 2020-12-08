@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
-from Logic_FacturasLogic import FacturasLogic
-from Logic_ResidenciasLogic import ResidenciaLogic
-from Logic_ExperienciasLogic import ExperienciaLogic
+from Logic.Logic_FacturasLogic import FacturasLogic
+from Logic.Logic_ResidenciasLogic import ResidenciaLogic
+from Logic.Logic_ExperienciasLogic import ExperienciaLogic
 
 class facturasBE:
     def __init__(self):
@@ -122,6 +122,37 @@ class facturasBE:
 
         self.dbfacturas.agregarFacturaResidencia(idresidencia,reserva,cliente,subtotal,cupon)
         print("La factura se ha registrado con éxito.")
+        factura = self.dbfacturas.verUnaFactura(cliente,False)
+        print("La factura se ha registrado con éxito.")
+
+        table1 = PrettyTable()
+        table1.field_names = [
+            "idFactura", 
+            "IdResidencia", 
+            "IdReserva", 
+            "Precio", 
+            "Cliente", 
+            "FechaEmitida", 
+            "NumeroTelefonico", 
+            "IVA", 
+            "Subtotal", 
+            "Cupon"
+        ]
+
+        table1.add_row([
+            factura.idfactura,
+            factura.idresidencia,
+            factura.idreserva,
+            factura.precio,
+            factura.cliente,
+            factura.fechaEmitida,
+            factura.numero,
+            factura.iva,
+            factura.subtotal,
+            factura.cupon
+        ])
+        print(table1)
+        table1.clear()
 
     def insertarFacturaExpProceso(self, experiencia, cliente):
         idexperiencia = experiencia
@@ -137,11 +168,37 @@ class facturasBE:
             subtotal = (float(experiencia.precio)*1.13)
             
         self.dbfacturas.agregarFacturaExp(idexperiencia,cliente,subtotal,cupon)
+        factura = self.dbfacturas.verUnaFactura(cliente,True)
         print("La factura se ha registrado con éxito.")
+
+        table = PrettyTable()
+        table.field_names = [
+            "idFactura", 
+            "IdExp", 
+            "PrecioIndividual", 
+            "Cliente", 
+            "NumeroTelefonico", 
+            "IVA", 
+            "Subtotal", 
+            "Cupon"
+        ]
+
+        table.add_row([
+            factura.idfactura,
+            factura.idexperiencia,
+            factura.precio,
+            factura.cliente,
+            factura.numero,
+            factura.iva,
+            factura.subtotal,
+            factura.cupon
+            ])
+        print(table)
+        table.clear()
 
     def verMisFacturas(self, cliente):
         print("Facturas de Experiencias: ")
-        result = self.dbfacturas.verMisFacturas(cliente.id,True)
+        result = self.dbfacturas.verMisFacturasDB(cliente.id,True)
 
         table = PrettyTable()
         table.field_names = [
@@ -170,7 +227,7 @@ class facturasBE:
         table.clear()
 
         print("Facturas de Reservaciones: ")
-        result1 = self.dbfacturas.verMisFacturas(cliente.id, False)
+        result1 = self.dbfacturas.verMisFacturasDB(cliente.id, False)
         table1 = PrettyTable()
         table1.field_names = [
             "idFactura", 

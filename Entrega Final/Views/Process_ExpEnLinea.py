@@ -1,9 +1,9 @@
 from prettytable import PrettyTable
-from Core_databaseX import DatabaseX
-from Logic_ExperienciasLogic import ExperienciaLogic
-from View_Facturas import facturasBE
-from Logic_TematicaLogic import TematicaLogic
-from View_Tematica import TematicaBE
+from Core.Core_databaseX import DatabaseX
+from Logic.Logic_ExperienciasLogic import ExperienciaLogic
+from Views.View_Facturas import facturasBE
+from Logic.Logic_TematicaLogic import TematicaLogic
+from Views.View_Tematica import TematicaBE
 
 database = DatabaseX()
 dbexperiencia = ExperienciaLogic()

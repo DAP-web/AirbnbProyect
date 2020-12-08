@@ -1,11 +1,11 @@
 from prettytable import PrettyTable
-from Logic_ClientLogic import ClientLogic
-from Logic_ResidenciasLogic import ResidenciaLogic
-from View_Reservas import reservaciones
-from Logic_ReservasLogics import ReservasLogic
-from Logic_FacturasLogic import FacturasLogic
-from View_Facturas import facturasBE
-from View_Paises import paisesBE
+from Logic.Logic_ClientLogic import ClientLogic
+from Logic.Logic_ResidenciasLogic import ResidenciaLogic
+from Views.View_Reservas import reservaciones
+from Logic.Logic_ReservasLogics import ReservasLogic
+from Logic.Logic_FacturasLogic import FacturasLogic
+from Views.View_Facturas import facturasBE
+from Views.View_Paises import paisesBE
 
 class clientesBE:
     def __init__(self):
